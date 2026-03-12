@@ -23,19 +23,19 @@
                         class="toggler-servico px-6 md:px-10 py-3 rounded-xl text-base font-bold transition-all duration-400 bg-marca text-white shadow-lg shadow-marca/20 cursor-pointer"
                         data-categoria="1">
                     <i class="fa-solid fa-building mr-2 text-sm"></i>
-                    Gestão Empresarial
+                    Contabilidade para Empresas
                 </button>
                 <button id="toggler-cat-2"
                         class="toggler-servico px-6 md:px-10 py-3 rounded-xl text-base font-bold transition-all duration-400 text-neutral-500 hover:text-neutral-700 cursor-pointer"
                         data-categoria="2">
                     <i class="fa-solid fa-globe mr-2 text-sm"></i>
-                    Comércio &amp; Estratégia
+                    Comércio Exterior
                 </button>
             </div>
         </div>
 
-        {{-- Cards Categoria 1 --}}
-        <div id="servicos-cat-1" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {{-- Cards Categoria 1 - Contabilidade para Empresas --}}
+        <div id="servicos-cat-1" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {{-- BPO Fiscal e Financeiro --}}
             <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 animar-entrada atraso-1 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
@@ -44,12 +44,9 @@
                         <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">BPO Fiscal e Financeiro</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         Serviços terceirizados das áreas fiscais e financeiras para otimizar operações, reduzir custos e melhorar a eficiência.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
                 </div>
             </div>
 
@@ -61,12 +58,9 @@
                         <i class="fa-solid fa-lightbulb text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Contabilidade Inteligente</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         Serviços tecnológicos integrados ao seu sistema financeiro, garantindo precisão em lançamentos e conciliações.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
                 </div>
             </div>
 
@@ -78,12 +72,9 @@
                         <i class="fa-solid fa-users text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Gestão de Dept. Pessoal</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         Da admissão à administração mensal da folha de pagamento, garantindo eficiência e conformidade.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
                 </div>
             </div>
 
@@ -95,18 +86,43 @@
                         <i class="fa-solid fa-scale-balanced text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Gestão Fiscal e Tributária</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         Planejamentos tributários para reduzir impostos e maximizar benefícios fiscais com segurança.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </div>
+
+            {{-- Gestão Societária --}}
+            <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 animar-entrada atraso-5 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-marca/10 text-marca mb-5 group-hover:bg-marca group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-handshake text-xl"></i>
                     </div>
+                    <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Gestão Societária</h3>
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
+                        Auxiliamos empresários e investidores no início de novos negócios com gestão societária sólida.
+                    </p>
+                </div>
+            </div>
+
+            {{-- Benefícios Fiscais de SC --}}
+            <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 animar-entrada atraso-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="relative z-10">
+                    <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-marca/10 text-marca mb-5 group-hover:bg-marca group-hover:text-white transition-all duration-500">
+                        <i class="fa-solid fa-award text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Benefícios Fiscais de SC</h3>
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
+                        Incentivos estratégicos que reduzem a carga do ICMS para competitividade e crescimento.
+                    </p>
                 </div>
             </div>
         </div>
 
-        {{-- Cards Categoria 2 --}}
-        <div id="servicos-cat-2" class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {{-- Cards Categoria 2 - Comércio Exterior --}}
+        <div id="servicos-cat-2" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
             {{-- Assessoria para Comércio Exterior --}}
             <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
@@ -115,46 +131,9 @@
                         <i class="fa-solid fa-ship text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Assessoria Comércio Exterior</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         Regimes especiais, análise fiscal, suporte RADAR, consultoria tributária e custos de importação.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Gestão Societária --}}
-            <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
-                <div class="relative z-10">
-                    <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-marca/10 text-marca mb-5 group-hover:bg-marca group-hover:text-white transition-all duration-500">
-                        <i class="fa-solid fa-handshake text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Gestão Societária</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Auxiliamos empresários e investidores no início de novos negócios com gestão societária sólida.
-                    </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Benefícios Fiscais de SC --}}
-            <div class="group bg-white rounded-2xl border border-neutral-100 p-7 hover:border-marca/20 hover:shadow-xl hover:shadow-marca/5 transition-all duration-500 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-24 h-24 bg-marca/5 rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
-                <div class="relative z-10">
-                    <div class="w-14 h-14 flex items-center justify-center rounded-2xl bg-marca/10 text-marca mb-5 group-hover:bg-marca group-hover:text-white transition-all duration-500">
-                        <i class="fa-solid fa-award text-xl"></i>
-                    </div>
-                    <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Benefícios Fiscais de SC</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Incentivos estratégicos que reduzem a carga do ICMS para competitividade e crescimento.
-                    </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
                 </div>
             </div>
 
@@ -166,12 +145,9 @@
                         <i class="fa-solid fa-satellite-dish text-xl"></i>
                     </div>
                     <h3 class="text-lg font-black text-neutral-900 mb-3 group-hover:text-marca transition-colors duration-300">Revisão e RADAR</h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed transition-transform duration-300 group-hover:scale-105 origin-top-left">
                         99% de sucesso nas solicitações de habilitação RADAR nas modalidades Limitada e Ilimitada.
                     </p>
-                    <div class="mt-5 flex items-center gap-2 text-marca text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Saiba mais <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </div>
                 </div>
             </div>
         </div>

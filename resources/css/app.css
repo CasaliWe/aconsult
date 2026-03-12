@@ -24,7 +24,7 @@
 
 @font-face {
     font-family: 'Coolvetica';
-    src: url('/fonts/Coolvetica Hv Comp.woff2') format('woff2');
+    src: url('/fonts/Coolvetica Rg.woff2') format('woff2');
     font-style: normal;
     font-weight: 700 900;
     font-display: swap;
@@ -44,6 +44,7 @@
     --animate-zoom-lento: zoom-lento 8s ease-out both;
     --animate-pulsar: pulsar 2s ease-in-out infinite;
     --animate-rolar-logos: rolar-logos 25s linear infinite;
+    --animate-rolar-logos-mobile: rolar-logos 12s linear infinite;
     --animate-slide-down: slide-down 0.3s ease-out both;
 }
 
@@ -165,13 +166,10 @@
 }
 
 .navbar-flutuante.fixo {
-    margin: 0;
-    border-radius: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
-    max-width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
 }
 
 /* ─── Zoom ativo no banner ─── */

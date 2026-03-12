@@ -7,12 +7,12 @@
     <x-home.banner-principal />
     <x-home.parceiros />
     <x-home.servicos />
-    <x-home.aplicativo />
     <x-home.numeros />
-    <x-home.cta-contato />
+    <x-home.aplicativo />
     <x-home.blog-preview />
+    <x-home.cta-contato />
     <x-home.reels />
-    <x-home.cta-whatsapp />
     <x-home.depoimentos />
+    <x-home.cta-whatsapp />
     <x-home.faq />
 @endsection

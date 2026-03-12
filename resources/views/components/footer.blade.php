@@ -12,7 +12,7 @@
             <div class="lg:col-span-1">
                 <img src="{{ asset('arquivos/identidade-visual/logo-x-white.png') }}"
                      alt="Aconsult Contabilidade"
-                     class="h-14 mb-6 -ml-1">
+                     class="h-12 mb-6">
                 <p class="text-white/60 text-base leading-relaxed mb-6">
                     Contabilidade e inteligência tributária para impulsionar negócios por todo o Brasil.
                 </p>
@@ -164,7 +164,7 @@
 
         {{-- Rodapé inferior --}}
         <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-white/40 text-sm">
+            <p class="text-white/40 text-sm text-center md:text-left">
                 &copy; {{ date('Y') }} Aconsult Contabilidade. Todos os direitos reservados.
             </p>
             <div class="flex items-center gap-1.5">

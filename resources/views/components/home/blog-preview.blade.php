@@ -7,7 +7,7 @@
         {{-- Cabeçalho --}}
         <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 mb-14 animar-entrada">
             <div>
-                <span class="text-marca text-sm font-bold uppercase tracking-widest">Blog</span>
+                <span class="text-marca text-sm font-bold uppercase tracking-widest">News</span>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mt-3">
                     Universo <span class="text-marca">Aconsult</span>
                 </h2>
@@ -53,9 +53,13 @@
                     <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
                         O erro silencioso de 2026 que coloca sua empresa em risco
                     </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
                         Descubra quais mudanças fiscais de 2026 podem impactar diretamente o seu negócio e como se preparar.
                     </p>
+                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
+                        Ler notícia
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </span>
                 </a>
             </article>
 
@@ -84,9 +88,13 @@
                     <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
                         IBS e CBS em 2026: por que o ano de teste já exige postura definitiva
                     </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
                         Entenda por que as empresas precisam se posicionar agora diante das mudanças do IBS e CBS.
                     </p>
+                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
+                        Ler notícia
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </span>
                 </a>
             </article>
 
@@ -115,9 +123,13 @@
                     <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
                         Compliance tributário e a Reforma Tributária: papel mais estratégico
                     </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
                         Saiba por que o compliance tributário ganha importância com a Reforma Tributária no Brasil.
                     </p>
+                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
+                        Ler notícia
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </span>
                 </a>
             </article>
         </div>

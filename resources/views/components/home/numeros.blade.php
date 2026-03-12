@@ -37,8 +37,8 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl">
             <div class="text-center animar-entrada atraso-1">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-xl font-bold">+</span>
-                    <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="7">0</span>
+                    <span class="text-marca text-2xl font-bold">+</span>
+                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="7">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
                 <span class="text-white/60 text-base font-normal">Anos de história</span>
@@ -46,8 +46,8 @@
 
             <div class="text-center animar-entrada atraso-2">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-xl font-bold">+</span>
-                    <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="30">0</span>
+                    <span class="text-marca text-2xl font-bold">+</span>
+                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="30">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
                 <span class="text-white/60 text-base font-normal">Colaboradores</span>
@@ -55,8 +55,8 @@
 
             <div class="text-center animar-entrada atraso-3">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-xl font-bold">+</span>
-                    <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="350">0</span>
+                    <span class="text-marca text-2xl font-bold">+</span>
+                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="350">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
                 <span class="text-white/60 text-base font-normal">Clientes ativos</span>
@@ -64,8 +64,8 @@
 
             <div class="text-center animar-entrada atraso-4">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-xl font-bold">+</span>
-                    <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="10">0</span>
+                    <span class="text-marca text-2xl font-bold">+</span>
+                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="10">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
                 <span class="text-white/60 text-base font-normal">Estados atendidos</span>

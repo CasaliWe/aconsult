@@ -1,8 +1,8 @@
 {{-- Banner Principal - Slider Full Screen --}}
-<section id="banner-principal" class="relative w-full h-[80vh] 2xl:h-[65vh] overflow-hidden">
+<section id="banner-principal" class="relative w-full h-[100vh] md:h-[80vh] 2xl:h-[85vh] overflow-hidden">
 
     {{-- Container de Slides --}}
-    <div class="relative w-full h-full">
+    <div class="relative w-full h-full" id="slides-container">
 
         {{-- Slide 1 - Destaque com efeito de digitação --}}
         <div class="slide-banner absolute inset-0 opacity-100 z-10 transition-opacity duration-1000 ativo" data-slide="0">
@@ -14,19 +14,15 @@
             <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
             <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <div class="inline-flex items-center gap-2 bg-marca/20 backdrop-blur-sm border border-marca/30 rounded-full px-5 py-2 mb-6 animate-fade-in">
-                        <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
-                        <span class="text-white/90 text-sm tracking-wider uppercase font-bold">Itajaí - Santa Catarina</span>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-black text-white leading-[1.1] mb-6">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
                         Contabilidade e
                         <br>
                         <span id="texto-digitacao" class="text-marca cursor-digitacao inline-block min-h-[1.2em]"></span>
                         <br>
                         <span class="text-white/90">para o seu negócio</span>
                     </h1>
-                    <p class="text-xl md:text-2xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
-                        Com uma equipe de contadores experientes e comprometidos, otimizamos suas operações tributárias e potencializamos o crescimento do seu negócio.
+                    <p class="text-lg md:text-xl text-white/70 font-normal max-w-lg mb-8 leading-relaxed">
+                        Otimizamos suas operações tributárias e potencializamos o crescimento da sua empresa.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
@@ -47,25 +43,22 @@
             </div>
         </div>
 
-        {{-- Slide 2 --}}
+        {{-- Slide 2 - Soluções para Empresas --}}
         <div class="slide-banner absolute inset-0 opacity-0 z-0 transition-opacity duration-1000" data-slide="1">
             <div class="absolute inset-0 overflow-hidden">
                 <img src="{{ asset('arquivos/imagens-empresa/3-mulheres-trabalhando-alegre.jpg') }}"
-                     alt="Eficiência contábil Aconsult"
+                     alt="Soluções para empresas Aconsult"
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
             <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <span class="inline-block bg-marca text-white text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
-                        Nosso diferencial
-                    </span>
                     <h2 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
-                        Eficiência contábil que<br>
-                        <span class="text-marca">faz a diferença!</span>
+                        Soluções para<br>
+                        <span class="text-marca">sua empresa</span>
                     </h2>
-                    <p class="text-xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
-                        Simplificamos sua jornada empreendedora com nossa expertise contábil, enquanto você se dedica ao seu negócio.
+                    <p class="text-lg md:text-xl text-white/70 font-normal max-w-lg mb-8 leading-relaxed">
+                        Tributação fiscal, contabilidade inteligente e gestão estratégica para o seu negócio crescer com segurança.
                     </p>
                     <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
                        target="_blank" rel="noopener noreferrer"
@@ -80,25 +73,22 @@
             </div>
         </div>
 
-        {{-- Slide 3 --}}
+        {{-- Slide 3 - Soluções para E-commerce --}}
         <div class="slide-banner absolute inset-0 opacity-0 z-0 transition-opacity duration-1000" data-slide="2">
             <div class="absolute inset-0 overflow-hidden">
-                <img src="{{ asset('arquivos/imagens-empresa/2-funcionario-descontraidos-sorrindo-1.jpg') }}"
-                     alt="Comércio Exterior Aconsult"
+                <img src="{{ asset('arquivos/imagens-empresa/3-funcionarias-conversando.jpg') }}"
+                     alt="Soluções para e-commerce Aconsult"
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
             <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <span class="inline-block bg-marca text-white text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
-                        Comércio Exterior
-                    </span>
                     <h2 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
-                        Especialistas em<br>
-                        <span class="text-marca">Comércio Exterior</span>
+                        Soluções para<br>
+                        <span class="text-marca">e-commerce</span>
                     </h2>
-                    <p class="text-xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
-                        Nossa equipe está preparada para oferecer suporte personalizado e estratégico para o seu negócio no mercado internacional.
+                    <p class="text-lg md:text-xl text-white/70 font-normal max-w-lg mb-8 leading-relaxed">
+                        Contabilidade especializada para lojas virtuais, marketplaces e negócios digitais.
                     </p>
                     <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
                        target="_blank" rel="noopener noreferrer"
@@ -106,7 +96,37 @@
                        style="background-color: #e21850;"
                        onmouseenter="this.style.backgroundColor='#9b153a'"
                        onmouseleave="this.style.backgroundColor='#e21850'">
-                        Quero saber mais
+                        Saiba mais
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {{-- Slide 4 - Soluções para Comex --}}
+        <div class="slide-banner absolute inset-0 opacity-0 z-0 transition-opacity duration-1000" data-slide="3">
+            <div class="absolute inset-0 overflow-hidden">
+                <img src="{{ asset('arquivos/imagens-empresa/2-funcionario-descontraidos-sorrindo-1.jpg') }}"
+                     alt="Comércio Exterior Aconsult"
+                     class="w-full h-full object-cover slide-bg-zoom">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
+            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
+                <div class="max-w-3xl">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
+                        Especialistas em<br>
+                        <span class="text-marca">comércio exterior</span>
+                    </h2>
+                    <p class="text-lg md:text-xl text-white/70 font-normal max-w-lg mb-8 leading-relaxed">
+                        Assessoria estratégica em RADAR, regimes especiais e operações internacionais.
+                    </p>
+                    <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
+                       target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5"
+                       style="background-color: #e21850;"
+                       onmouseenter="this.style.backgroundColor='#9b153a'"
+                       onmouseleave="this.style.backgroundColor='#e21850'">
+                        Saiba mais
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
@@ -116,12 +136,12 @@
 
     {{-- Setas de navegação --}}
     <button id="banner-prev"
-            class="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
+            class="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
             aria-label="Slide anterior">
         <i class="fa-solid fa-chevron-left text-sm"></i>
     </button>
     <button id="banner-next"
-            class="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
+            class="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 hidden md:flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
             aria-label="Próximo slide">
         <i class="fa-solid fa-chevron-right text-sm"></i>
     </button>
@@ -131,6 +151,7 @@
         <button class="dot-banner w-10 h-1 rounded-full bg-white/80 transition-all duration-500 cursor-pointer" data-dot="0" aria-label="Ir para slide 1"></button>
         <button class="dot-banner w-6 h-1 rounded-full bg-white/30 transition-all duration-500 cursor-pointer" data-dot="1" aria-label="Ir para slide 2"></button>
         <button class="dot-banner w-6 h-1 rounded-full bg-white/30 transition-all duration-500 cursor-pointer" data-dot="2" aria-label="Ir para slide 3"></button>
+        <button class="dot-banner w-6 h-1 rounded-full bg-white/30 transition-all duration-500 cursor-pointer" data-dot="3" aria-label="Ir para slide 4"></button>
     </div>
 
     {{-- Scroll indicator --}}
@@ -147,6 +168,7 @@
         const btnPrev = document.getElementById('banner-prev');
         const btnNext = document.getElementById('banner-next');
         const textoDigitacao = document.getElementById('texto-digitacao');
+        const slidesContainer = document.getElementById('slides-container');
         let slideAtual = 0;
         let intervalo = null;
         const totalSlides = slides.length;
@@ -241,7 +263,7 @@
             if (intervalo) clearInterval(intervalo);
         }
 
-        /* Event listeners */
+        /* Event listeners - Arrows */
         btnNext.addEventListener('click', () => {
             proximoSlide();
             iniciarAutoplay();
@@ -258,6 +280,28 @@
                 iniciarAutoplay();
             });
         });
+
+        /* ─── Swipe mobile ─── */
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const swipeThreshold = 50;
+
+        slidesContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slidesContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    proximoSlide();
+                } else {
+                    slideAnterior();
+                }
+                iniciarAutoplay();
+            }
+        }, { passive: true });
 
         /* Inicia autoplay */
         iniciarAutoplay();

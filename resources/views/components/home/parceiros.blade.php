@@ -23,7 +23,7 @@
         <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-neutral-50 to-transparent z-10"></div>
         <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-neutral-50 to-transparent z-10"></div>
 
-        <div class="flex animate-rolar-logos hover:[animation-play-state:paused]" id="carrossel-logos">
+        <div class="flex animate-rolar-logos-mobile md:animate-rolar-logos hover:[animation-play-state:paused]" id="carrossel-logos">
             @for ($i = 0; $i < 2; $i++)
                 <div class="flex items-center gap-16 shrink-0 px-8">
                     @for ($j = 0; $j < 8; $j++)

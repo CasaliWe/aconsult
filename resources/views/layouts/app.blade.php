@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Aconsult Contabilidade">
 
@@ -49,7 +49,7 @@
         }
         @font-face {
             font-family: 'Coolvetica';
-            src: url('/fonts/Coolvetica Hv Comp.woff2') format('woff2');
+            src: url('/fonts/Coolvetica Rg.woff2') format('woff2');
             font-style: normal;
             font-weight: 700 900;
             font-display: swap;

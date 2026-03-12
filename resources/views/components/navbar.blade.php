@@ -30,29 +30,29 @@
                             </div>
                             <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
                                 <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
-                                    <i class="fa-solid fa-chart-line text-sm"></i>
-                                </span>
-                                <div>
-                                    <span class="text-sm font-bold block">Link 1</span>
-                                    <span class="text-xs text-neutral-400">Descrição do link</span>
-                                </div>
-                            </a>
-                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
-                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
                                     <i class="fa-solid fa-building text-sm"></i>
                                 </span>
                                 <div>
-                                    <span class="text-sm font-bold block">Link 2</span>
-                                    <span class="text-xs text-neutral-400">Descrição do link</span>
+                                    <span class="text-sm font-bold block">Soluções para Empresas</span>
+                                    <span class="text-xs text-neutral-400">Tributação e contabilidade</span>
                                 </div>
                             </a>
                             <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
                                 <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
-                                    <i class="fa-solid fa-globe text-sm"></i>
+                                    <i class="fa-solid fa-cart-shopping text-sm"></i>
                                 </span>
                                 <div>
-                                    <span class="text-sm font-bold block">Link 3</span>
-                                    <span class="text-xs text-neutral-400">Descrição do link</span>
+                                    <span class="text-sm font-bold block">Soluções para E-commerce</span>
+                                    <span class="text-xs text-neutral-400">Lojas virtuais e marketplaces</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-ship text-sm"></i>
+                                </span>
+                                <div>
+                                    <span class="text-sm font-bold block">Soluções para Comex</span>
+                                    <span class="text-xs text-neutral-400">Comércio exterior e RADAR</span>
                                 </div>
                             </a>
                         </div>
@@ -116,16 +116,16 @@
                     </button>
                     <div id="submenu-solucoes-mobile" class="hidden pl-4 mt-1 flex flex-col gap-0.5">
                         <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
-                            <i class="fa-solid fa-chart-line text-[10px] text-marca"></i>
-                            Link 1
-                        </a>
-                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
                             <i class="fa-solid fa-building text-[10px] text-marca"></i>
-                            Link 2
+                            Soluções para Empresas
                         </a>
                         <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
-                            <i class="fa-solid fa-globe text-[10px] text-marca"></i>
-                            Link 3
+                            <i class="fa-solid fa-cart-shopping text-[10px] text-marca"></i>
+                            Soluções para E-commerce
+                        </a>
+                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-ship text-[10px] text-marca"></i>
+                            Soluções para Comex
                         </a>
                     </div>
                 </div>

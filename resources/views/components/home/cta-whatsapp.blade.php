@@ -1,7 +1,10 @@
 {{-- CTA WhatsApp - Moderno e elegante --}}
 <section class="relative py-20 md:py-24 overflow-hidden">
-    {{-- Fundo com gradiente sofisticado --}}
-    <div class="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950"></div>
+    {{-- Imagem de fundo sutil --}}
+    <div class="absolute inset-0">
+        <img src="{{ asset('arquivos/imagens-empresa/toda-equipe.jpg') }}" alt="" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-neutral-950/93 via-neutral-900/90 to-neutral-950/93"></div>
 
     {{-- Elemento decorativo --}}
     <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl" style="background: radial-gradient(circle, rgba(226, 24, 80, 0.15), transparent 70%);"></div>
