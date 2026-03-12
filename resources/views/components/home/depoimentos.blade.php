@@ -4,10 +4,10 @@
     <div class="absolute top-10 left-0 w-72 h-72 bg-marca/3 rounded-full blur-3xl -translate-x-1/2"></div>
     <div class="absolute bottom-10 right-0 w-72 h-72 bg-marca-escura/3 rounded-full blur-3xl translate-x-1/2"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-10">
         {{-- Cabeçalho --}}
         <div class="text-center mb-14 animar-entrada">
-            <span class="text-marca text-xs font-bold uppercase tracking-widest">Depoimentos</span>
+            <span class="text-marca text-sm font-bold uppercase tracking-widest">Depoimentos</span>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mt-3 mb-4">
                 O que nossos <span class="text-marca">clientes</span> dizem
             </h2>
@@ -27,25 +27,20 @@
                             <div class="relative z-10">
                                 {{-- Estrelas --}}
                                 <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
                                 </div>
                                 {{-- Texto --}}
                                 <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
                                     "A Aconsult transformou completamente a gestão tributária da nossa empresa. Profissionais competentes, atenciosos e sempre disponíveis. Recomendo de olhos fechados!"
                                 </p>
                                 {{-- Info do cliente --}}
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-marca text-white font-black text-lg">
-                                        M
-                                    </div>
-                                    <div>
-                                        <span class="text-sm font-black text-neutral-900 block">Maria Silva</span>
-                                        <span class="text-xs text-neutral-400 font-normal">Diretora - Empresa XYZ Importações</span>
-                                    </div>
+                                <div>
+                                    <span class="text-base font-black text-neutral-900 block">Maria Silva</span>
+                                    <span class="text-sm text-neutral-400 font-normal">Diretora - Empresa XYZ Importações</span>
                                 </div>
                             </div>
                         </div>
@@ -57,23 +52,18 @@
                             <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
                             <div class="relative z-10">
                                 <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
                                 </div>
                                 <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
                                     "Desde que começamos a trabalhar com a Aconsult, conseguimos reduzir significativamente nossos custos tributários. Uma equipe que realmente entende do negócio."
                                 </p>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-marca-escura text-white font-black text-lg">
-                                        R
-                                    </div>
-                                    <div>
-                                        <span class="text-sm font-black text-neutral-900 block">Roberto Oliveira</span>
-                                        <span class="text-xs text-neutral-400 font-normal">CEO - Tech Solutions Ltda</span>
-                                    </div>
+                                <div>
+                                    <span class="text-base font-black text-neutral-900 block">Roberto Oliveira</span>
+                                    <span class="text-sm text-neutral-400 font-normal">CEO - Tech Solutions Ltda</span>
                                 </div>
                             </div>
                         </div>
@@ -85,23 +75,18 @@
                             <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
                             <div class="relative z-10">
                                 <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
                                 </div>
                                 <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
                                     "O suporte para habilitação RADAR foi impecável. A Aconsult nos orientou em cada etapa e conseguimos a aprovação rapidamente. Excelente trabalho!"
                                 </p>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-neutral-900 text-white font-black text-lg">
-                                        A
-                                    </div>
-                                    <div>
-                                        <span class="text-sm font-black text-neutral-900 block">Ana Costa</span>
-                                        <span class="text-xs text-neutral-400 font-normal">Sócia - Global Trade SC</span>
-                                    </div>
+                                <div>
+                                    <span class="text-base font-black text-neutral-900 block">Ana Costa</span>
+                                    <span class="text-sm text-neutral-400 font-normal">Sócia - Global Trade SC</span>
                                 </div>
                             </div>
                         </div>
@@ -113,23 +98,18 @@
                             <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
                             <div class="relative z-10">
                                 <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
-                                    <i class="fa-solid fa-star text-sm"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
+                                    <i class="fa-solid fa-star text-base"></i>
                                 </div>
                                 <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
                                     "Profissionais dedicados e sempre atualizados. A Aconsult é parceira estratégica do nosso crescimento. Confiamos plenamente no trabalho deles."
                                 </p>
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 flex items-center justify-center rounded-full bg-marca text-white font-black text-lg">
-                                        P
-                                    </div>
-                                    <div>
-                                        <span class="text-sm font-black text-neutral-900 block">Pedro Santos</span>
-                                        <span class="text-xs text-neutral-400 font-normal">Diretor Financeiro - Navegantes Log</span>
-                                    </div>
+                                <div>
+                                    <span class="text-base font-black text-neutral-900 block">Pedro Santos</span>
+                                    <span class="text-sm text-neutral-400 font-normal">Diretor Financeiro - Navegantes Log</span>
                                 </div>
                             </div>
                         </div>

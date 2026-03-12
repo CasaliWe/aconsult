@@ -3,14 +3,14 @@
     {{-- Decoração --}}
     <div class="absolute top-0 right-0 w-96 h-96 bg-marca/3 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-6">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-10">
         {{-- Cabeçalho --}}
         <div class="text-center mb-14 animar-entrada">
-            <span class="text-marca text-xs font-bold uppercase tracking-widest">Dúvidas</span>
+            <span class="text-marca text-sm font-bold uppercase tracking-widest">Dúvidas</span>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mt-3 mb-4">
                 Perguntas <span class="text-marca">frequentes</span>
             </h2>
-            <p class="text-neutral-500 font-normal max-w-lg mx-auto">
+            <p class="text-neutral-500 text-base font-normal max-w-lg mx-auto">
                 Tire suas dúvidas sobre nossos serviços e processos contábeis.
             </p>
         </div>
@@ -29,7 +29,7 @@
                     </span>
                 </button>
                 <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-sm font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
                         A Aconsult oferece uma gama completa de serviços contábeis, incluindo BPO Fiscal e Financeiro, Contabilidade Inteligente, Gestão de Departamento Pessoal, Gestão Fiscal e Tributária, Assessoria para Comércio Exterior, Gestão Societária, Benefícios Fiscais de Santa Catarina e Revisão e Solicitação de RADAR.
                     </p>
                 </div>
@@ -46,7 +46,7 @@
                     </span>
                 </button>
                 <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-sm font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
                         Sim! Embora nossa sede seja em Itajaí, Santa Catarina, atendemos clientes em mais de 10 estados brasileiros. Nossa estrutura tecnológica permite oferecer suporte completo de forma 100% remota, sem perder a qualidade e proximidade no atendimento.
                     </p>
                 </div>
@@ -63,7 +63,7 @@
                     </span>
                 </button>
                 <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-sm font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
                         Nossa assessoria para Comércio Exterior abrange regimes especiais, análise fiscal, suporte para habilitação no RADAR da Receita Federal, constituição e extinção de empresas, escritório virtual, consultoria tributária e análise de custos de importação. Temos 99% de sucesso nas solicitações de RADAR.
                     </p>
                 </div>
@@ -80,7 +80,7 @@
                     </span>
                 </button>
                 <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-sm font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
                         Santa Catarina oferece incentivos fiscais estratégicos que podem reduzir significativamente a carga do ICMS. Isso proporciona à sua empresa uma excelente oportunidade de crescimento, ganho de competitividade, expansão de operações e aumento da lucratividade. A Aconsult auxilia na análise e obtenção desses benefícios.
                     </p>
                 </div>
@@ -97,7 +97,7 @@
                     </span>
                 </button>
                 <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-sm font-normal leading-relaxed">
+                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
                         Você pode entrar em contato pelo WhatsApp no número (47) 2125-0281, pelo e-mail contato@aconsultcontabilidade.com.br, ou visitando nosso escritório na Rua São Cristovão, 879, Cordeiros - Itajaí/SC. Também estamos presentes nas redes sociais: Instagram, Facebook e LinkedIn.
                     </p>
                 </div>

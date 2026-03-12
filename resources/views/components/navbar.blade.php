@@ -6,11 +6,11 @@
             <a href="{{ route('home') }}" class="shrink-0">
                 <img src="{{ asset('arquivos/identidade-visual/logo-x-colorida.png') }}"
                      alt="Aconsult Contabilidade"
-                     class="h-9 xl:h-10">
+                     class="h-12">
             </a>
 
             {{-- Links Desktop --}}
-            <ul class="hidden lg:flex items-center gap-7 text-[15px] font-normal">
+            <ul class="hidden lg:flex items-center gap-7 text-base font-normal">
                 <li>
                     <a href="{{ route('home') }}" class="hover:text-marca transition-colors duration-300">Início</a>
                 </li>
@@ -81,7 +81,10 @@
                 <a href="https://onvio.com.br/#/"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="bg-marca hover:bg-marca-escura text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-marca/25">
+                   class="text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-marca/25"
+                   style="background-color: #e21850;"
+                   onmouseenter="this.style.backgroundColor='#9b153a'"
+                   onmouseleave="this.style.backgroundColor='#e21850'">
                     Área Cliente
                 </a>
             </div>

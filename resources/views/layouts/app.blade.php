@@ -35,7 +35,7 @@
     <style>
         @font-face {
             font-family: 'Coolvetica';
-            src: url('/fonts/Coolvetica Rg Cond.woff2') format('woff2');
+            src: url('/fonts/Coolvetica Rg.woff2') format('woff2');
             font-style: normal;
             font-weight: 400;
             font-display: swap;
@@ -62,7 +62,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans bg-white text-neutral-900">
+<body class="font-sans bg-white text-neutral-900 text-base">
     <x-navbar />
 
     <main>

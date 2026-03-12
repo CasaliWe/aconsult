@@ -3,22 +3,22 @@
     {{-- Faixa decorativa superior --}}
     <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-marca/20 to-transparent"></div>
 
-    <div class="max-w-7xl mx-auto px-6 mb-10 animar-entrada">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 mb-10 animar-entrada">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-                <span class="text-marca text-xs font-bold uppercase tracking-widest">Parceiros</span>
-                <h2 class="text-2xl md:text-3xl font-black text-neutral-900 mt-1">
+                <span class="text-marca text-sm font-bold uppercase tracking-widest">Parceiros</span>
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-neutral-900 mt-1">
                     Quem <span class="text-marca">confia</span> na Aconsult
                 </h2>
             </div>
-            <p class="text-neutral-500 text-sm font-normal max-w-md text-center md:text-right">
+            <p class="text-neutral-500 text-base font-normal max-w-md text-center md:text-right">
                 Empresas que escolheram a Aconsult para impulsionar seus negócios.
             </p>
         </div>
     </div>
 
     {{-- Carrossel infinito de logos --}}
-    <div class="relative">
+    <div class="relative max-w-7xl mx-auto px-6 md:px-10">
         {{-- Gradientes laterais para fade --}}
         <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-neutral-50 to-transparent z-10"></div>
         <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-neutral-50 to-transparent z-10"></div>

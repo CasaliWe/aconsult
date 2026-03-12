@@ -4,20 +4,20 @@
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-marca/5 rounded-full blur-3xl"></div>
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-marca-escura/5 rounded-full blur-3xl translate-x-1/2"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {{-- Conteúdo texto --}}
             <div class="animar-entrada">
-                <span class="text-marca text-xs font-bold uppercase tracking-widest">Aplicativo</span>
+                <span class="text-marca text-sm font-bold uppercase tracking-widest">Aplicativo</span>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mt-3 mb-5 leading-tight">
                     Baixe nosso<br>
                     <span class="text-marca">Aplicativo</span>
                 </h2>
-                <p class="text-neutral-500 font-normal leading-relaxed mb-4 max-w-lg">
+                <p class="text-neutral-500 text-base font-normal leading-relaxed mb-4 max-w-lg">
                     Gerenciamento de entregas e comunicação entre os clientes e a Aconsult Contabilidade.
                 </p>
-                <p class="text-neutral-500 font-normal leading-relaxed mb-8 max-w-lg">
+                <p class="text-neutral-500 text-base font-normal leading-relaxed mb-8 max-w-lg">
                     Receba e gerencie solicitações do nosso escritório, documentos eletrônicos e visualização de comunicados.
                 </p>
 
@@ -27,25 +27,25 @@
                         <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0">
                             <i class="fa-solid fa-file-lines text-sm"></i>
                         </div>
-                        <span class="text-sm font-normal text-neutral-700">Documentos eletrônicos</span>
+                        <span class="text-base font-normal text-neutral-700">Documentos eletrônicos</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0">
                             <i class="fa-solid fa-bell text-sm"></i>
                         </div>
-                        <span class="text-sm font-normal text-neutral-700">Notificações em tempo real</span>
+                        <span class="text-base font-normal text-neutral-700">Notificações em tempo real</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0">
                             <i class="fa-solid fa-shield-halved text-sm"></i>
                         </div>
-                        <span class="text-sm font-normal text-neutral-700">Segurança garantida</span>
+                        <span class="text-base font-normal text-neutral-700">Segurança garantida</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0">
                             <i class="fa-solid fa-comments text-sm"></i>
                         </div>
-                        <span class="text-sm font-normal text-neutral-700">Comunicação direta</span>
+                        <span class="text-base font-normal text-neutral-700">Comunicação direta</span>
                     </div>
                 </div>
 
@@ -53,20 +53,26 @@
                 <div class="flex flex-wrap gap-4">
                     <a href="https://apps.apple.com/br/app/onvio-documentos/id1005121694"
                        target="_blank" rel="noopener noreferrer"
-                       class="flex items-center gap-3 bg-neutral-900 hover:bg-neutral-800 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group">
+                       class="flex items-center gap-3 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group"
+                       style="background-color: #171717;"
+                       onmouseenter="this.style.backgroundColor='#262626'"
+                       onmouseleave="this.style.backgroundColor='#171717'">
                         <i class="fa-brands fa-apple text-2xl group-hover:scale-110 transition-transform"></i>
                         <div>
-                            <span class="text-[10px] text-white/60 uppercase tracking-wider block leading-none">Disponível na</span>
-                            <span class="text-sm font-bold">App Store</span>
+                            <span class="text-xs text-white/60 uppercase tracking-wider block leading-none">Disponível na</span>
+                            <span class="text-base font-bold">App Store</span>
                         </div>
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=com.thomsonreuters.cs.onvio.drive"
                        target="_blank" rel="noopener noreferrer"
-                       class="flex items-center gap-3 bg-neutral-900 hover:bg-neutral-800 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group">
+                       class="flex items-center gap-3 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group"
+                       style="background-color: #171717;"
+                       onmouseenter="this.style.backgroundColor='#262626'"
+                       onmouseleave="this.style.backgroundColor='#171717'">
                         <i class="fa-brands fa-google-play text-xl group-hover:scale-110 transition-transform"></i>
                         <div>
-                            <span class="text-[10px] text-white/60 uppercase tracking-wider block leading-none">Disponível na</span>
-                            <span class="text-sm font-bold">Google Play</span>
+                            <span class="text-xs text-white/60 uppercase tracking-wider block leading-none">Disponível na</span>
+                            <span class="text-base font-bold">Google Play</span>
                         </div>
                     </a>
                 </div>
@@ -74,13 +80,13 @@
                 {{-- Avaliação --}}
                 <div class="flex items-center gap-3 mt-6">
                     <div class="flex items-center gap-0.5 text-yellow-400">
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
-                        <i class="fa-solid fa-star text-sm"></i>
+                        <i class="fa-solid fa-star text-base"></i>
+                        <i class="fa-solid fa-star text-base"></i>
+                        <i class="fa-solid fa-star text-base"></i>
+                        <i class="fa-solid fa-star text-base"></i>
+                        <i class="fa-solid fa-star text-base"></i>
                     </div>
-                    <span class="text-xs text-neutral-400 font-normal">Classificado como 5/5</span>
+                    <span class="text-sm text-neutral-400 font-normal">Classificado como 5/5</span>
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 {{-- Banner Principal - Slider Full Screen --}}
-<section id="banner-principal" class="relative w-full h-screen overflow-hidden">
+<section id="banner-principal" class="relative w-full h-[80vh] 2xl:h-[65vh] overflow-hidden">
 
     {{-- Container de Slides --}}
     <div class="relative w-full h-full">
@@ -12,11 +12,11 @@
                      class="w-full h-full object-cover">
             </div>
             <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30"></div>
-            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-6 md:px-10">
+            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <div class="inline-flex items-center gap-2 bg-marca/20 backdrop-blur-sm border border-marca/30 rounded-full px-4 py-1.5 mb-6 animate-fade-in">
+                    <div class="inline-flex items-center gap-2 bg-marca/20 backdrop-blur-sm border border-marca/30 rounded-full px-5 py-2 mb-6 animate-fade-in">
                         <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
-                        <span class="text-white/90 text-xs tracking-wider uppercase font-bold">Itajaí - Santa Catarina</span>
+                        <span class="text-white/90 text-sm tracking-wider uppercase font-bold">Itajaí - Santa Catarina</span>
                     </div>
                     <h1 class="text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-black text-white leading-[1.1] mb-6">
                         Contabilidade e
@@ -25,18 +25,21 @@
                         <br>
                         <span class="text-white/90">para o seu negócio</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
+                    <p class="text-xl md:text-2xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
                         Com uma equipe de contadores experientes e comprometidos, otimizamos suas operações tributárias e potencializamos o crescimento do seu negócio.
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
                            target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 bg-marca hover:bg-marca-escura text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5">
+                           class="inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5"
+                           style="background-color: #e21850;"
+                           onmouseenter="this.style.backgroundColor='#9b153a'"
+                           onmouseleave="this.style.backgroundColor='#e21850'">
                             Conhecer soluções
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </a>
                         <a href="{{ route('contato') }}"
-                           class="inline-flex items-center gap-2 border-2 border-white/30 hover:border-white/60 text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm">
+                           class="inline-flex items-center gap-2 border-2 border-white/30 hover:border-white/60 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm">
                             Fale conosco
                         </a>
                     </div>
@@ -52,21 +55,24 @@
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25"></div>
-            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-6 md:px-10">
+            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <span class="inline-block bg-marca text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
+                    <span class="inline-block bg-marca text-white text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
                         Nosso diferencial
                     </span>
                     <h2 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
                         Eficiência contábil que<br>
                         <span class="text-marca">faz a diferença!</span>
                     </h2>
-                    <p class="text-lg text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
+                    <p class="text-xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
                         Simplificamos sua jornada empreendedora com nossa expertise contábil, enquanto você se dedica ao seu negócio.
                     </p>
                     <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
                        target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 bg-marca hover:bg-marca-escura text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5">
+                       class="inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5"
+                       style="background-color: #e21850;"
+                       onmouseenter="this.style.backgroundColor='#9b153a'"
+                       onmouseleave="this.style.backgroundColor='#e21850'">
                         Saiba mais
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -82,21 +88,24 @@
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>
             <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25"></div>
-            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-6 md:px-10">
+            <div class="relative z-10 flex items-center h-full max-w-7xl mx-auto px-10 md:px-16 lg:px-20">
                 <div class="max-w-3xl">
-                    <span class="inline-block bg-marca text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
+                    <span class="inline-block bg-marca text-white text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-6">
                         Comércio Exterior
                     </span>
                     <h2 class="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-black text-white leading-[1.1] mb-5">
                         Especialistas em<br>
                         <span class="text-marca">Comércio Exterior</span>
                     </h2>
-                    <p class="text-lg text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
+                    <p class="text-xl text-white/70 font-normal max-w-xl mb-8 leading-relaxed">
                         Nossa equipe está preparada para oferecer suporte personalizado e estratégico para o seu negócio no mercado internacional.
                     </p>
                     <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
                        target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 bg-marca hover:bg-marca-escura text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5">
+                       class="inline-flex items-center gap-2 text-white px-8 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:shadow-xl hover:shadow-marca/30 hover:-translate-y-0.5"
+                       style="background-color: #e21850;"
+                       onmouseenter="this.style.backgroundColor='#9b153a'"
+                       onmouseleave="this.style.backgroundColor='#e21850'">
                         Quero saber mais
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
@@ -107,12 +116,12 @@
 
     {{-- Setas de navegação --}}
     <button id="banner-prev"
-            class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
+            class="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
             aria-label="Slide anterior">
         <i class="fa-solid fa-chevron-left text-sm"></i>
     </button>
     <button id="banner-next"
-            class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
+            class="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white hover:bg-marca transition-all duration-300 border border-white/20 hover:border-marca cursor-pointer"
             aria-label="Próximo slide">
         <i class="fa-solid fa-chevron-right text-sm"></i>
     </button>

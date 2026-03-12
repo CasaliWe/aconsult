@@ -24,10 +24,10 @@
     <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/70 to-black/80 z-10"></div>
 
     {{-- Conteúdo --}}
-    <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-7xl mx-auto px-6">
+    <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-7xl mx-auto px-6 md:px-10">
         {{-- Título --}}
         <div class="text-center mb-14 animar-entrada">
-            <span class="text-marca text-xs font-bold uppercase tracking-widest">Em números</span>
+            <span class="text-marca text-sm font-bold uppercase tracking-widest">Em números</span>
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mt-2">
                 Nossos <span class="text-marca">números</span>
             </h2>
@@ -37,38 +37,38 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl">
             <div class="text-center animar-entrada atraso-1">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-lg font-bold">+</span>
+                    <span class="text-marca text-xl font-bold">+</span>
                     <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="7">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-sm font-normal">Anos de história</span>
+                <span class="text-white/60 text-base font-normal">Anos de história</span>
             </div>
 
             <div class="text-center animar-entrada atraso-2">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-lg font-bold">+</span>
+                    <span class="text-marca text-xl font-bold">+</span>
                     <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="30">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-sm font-normal">Colaboradores</span>
+                <span class="text-white/60 text-base font-normal">Colaboradores</span>
             </div>
 
             <div class="text-center animar-entrada atraso-3">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-lg font-bold">+</span>
+                    <span class="text-marca text-xl font-bold">+</span>
                     <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="350">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-sm font-normal">Clientes ativos</span>
+                <span class="text-white/60 text-base font-normal">Clientes ativos</span>
             </div>
 
             <div class="text-center animar-entrada atraso-4">
                 <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-lg font-bold">+</span>
+                    <span class="text-marca text-xl font-bold">+</span>
                     <span class="text-5xl md:text-6xl font-black text-white contador" data-alvo="10">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-sm font-normal">Estados atendidos</span>
+                <span class="text-white/60 text-base font-normal">Estados atendidos</span>
             </div>
         </div>
     </div>

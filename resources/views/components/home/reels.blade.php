@@ -3,17 +3,17 @@
     {{-- Decoração --}}
     <div class="absolute bottom-0 right-0 w-96 h-96 bg-marca/3 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
         {{-- Cabeçalho --}}
         <div class="text-center max-w-2xl mx-auto mb-14 animar-entrada">
-            <span class="text-marca text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
+            <span class="text-marca text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2">
                 <i class="fa-solid fa-play text-[8px]"></i>
                 Conteúdo em vídeo
             </span>
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-neutral-900 mt-3 mb-4">
                 Nossos <span class="text-marca">Reels</span>
             </h2>
-            <p class="text-neutral-500 font-normal">
+            <p class="text-neutral-500 text-base font-normal">
                 Acompanhe nossos conteúdos e fique por dentro do mundo contábil.
             </p>
         </div>
@@ -58,16 +58,12 @@
                                         <img src="{{ asset('arquivos/identidade-visual/logo-icone-png-colorido.png') }}"
                                              alt="Aconsult"
                                              class="w-6 h-6 rounded-full">
-                                        <span class="text-white text-xs font-bold">aconsultcontabilidade</span>
+                                        <span class="text-white text-sm font-bold">aconsultcontabilidade</span>
                                     </div>
-                                    <div class="flex items-center gap-3 text-white/60 text-[10px]">
+                                    <div class="flex items-center gap-3 text-white/60 text-xs">
                                         <span class="flex items-center gap-1">
-                                            <i class="fa-solid fa-heart text-marca"></i>
-                                            {{ rand(120, 980) }}
-                                        </span>
-                                        <span class="flex items-center gap-1">
-                                            <i class="fa-solid fa-comment"></i>
-                                            {{ rand(5, 45) }}
+                                            <i class="fa-solid fa-eye text-white/80"></i>
+                                            {{ number_format(rand(1200, 9800)) }}
                                         </span>
                                     </div>
                                 </div>
