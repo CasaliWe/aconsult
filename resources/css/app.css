@@ -5,6 +5,7 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/* ─── Fontes Coolvetica ─── */
 @font-face {
     font-family: 'Coolvetica';
     src: url('/fonts/Coolvetica Rg Cond.woff2') format('woff2');
@@ -41,13 +42,164 @@
     font-display: swap;
 }
 
+/* ─── Tema Tailwind ─── */
 @theme {
     --font-sans: 'Coolvetica', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --color-marca: #e21850;
+    --color-marca-escura: #9b153a;
+    --color-marca-clara: #ff4d7a;
+    --animate-fade-in: fade-in 0.6s ease-out both;
+    --animate-fade-in-up: fade-in-up 0.7s ease-out both;
+    --animate-fade-in-left: fade-in-left 0.6s ease-out both;
+    --animate-fade-in-right: fade-in-right 0.6s ease-out both;
+    --animate-zoom-lento: zoom-lento 8s ease-out both;
+    --animate-pulsar: pulsar 2s ease-in-out infinite;
+    --animate-rolar-logos: rolar-logos 25s linear infinite;
+    --animate-slide-down: slide-down 0.3s ease-out both;
 }
 
+/* ─── Keyframes ─── */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-left {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in-right {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes zoom-lento {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
+
+@keyframes pulsar {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(226, 24, 80, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(226, 24, 80, 0); }
+}
+
+@keyframes rolar-logos {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@keyframes piscar-cursor {
+    0%, 100% { border-color: #e21850; }
+    50% { border-color: transparent; }
+}
+
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes contar-numero {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Base ─── */
 @layer base {
+    html {
+        scroll-behavior: smooth;
+    }
     body {
         font-family: var(--font-sans);
+        overflow-x: hidden;
+    }
+}
+
+/* ─── Utilitários customizados ─── */
+@layer utilities {
+    /* Animação de entrada por scroll */
+    .animar-entrada {
+        opacity: 0;
+        transform: translateY(35px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .animar-entrada.animado {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Delays escalonados */
+    .atraso-1 { transition-delay: 0.1s; }
+    .atraso-2 { transition-delay: 0.2s; }
+    .atraso-3 { transition-delay: 0.3s; }
+    .atraso-4 { transition-delay: 0.4s; }
+    .atraso-5 { transition-delay: 0.5s; }
+    .atraso-6 { transition-delay: 0.6s; }
+    .atraso-7 { transition-delay: 0.7s; }
+    .atraso-8 { transition-delay: 0.8s; }
+
+    /* Cursor piscando para efeito de digitação */
+    .cursor-digitacao {
+        border-right: 3px solid #e21850;
+        animation: piscar-cursor 0.7s step-end infinite;
+        padding-right: 4px;
+    }
+
+    /* Esconder scrollbar */
+    .scrollbar-oculta::-webkit-scrollbar { display: none; }
+    .scrollbar-oculta { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ─── Navbar flutuante ─── */
+.navbar-flutuante {
+    margin: 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 0.75rem 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1564px) {
+    .navbar-flutuante {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1500px;
+    }
+}
+
+.navbar-flutuante.fixo {
+    margin: 0;
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    max-width: 100%;
+}
+
+/* ─── Zoom ativo no banner ─── */
+.slide-banner.ativo .slide-bg-zoom {
+    animation: zoom-lento 8s ease-out forwards;
+}
+
+/* ─── Parallax ─── */
+.bg-parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+@supports (-webkit-touch-callout: none) {
+    .bg-parallax {
+        background-attachment: scroll;
     }
 }

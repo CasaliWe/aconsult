@@ -1,10 +1,191 @@
-<nav class="border-b border-neutral-200 bg-white">
-    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-        <strong class="font-black text-xl">Aconsult</strong>
+{{-- Navbar flutuante - componente global --}}
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div id="navbar-container" class="navbar-flutuante">
+        <div class="flex items-center justify-between">
+            {{-- Logo --}}
+            <a href="{{ route('home') }}" class="shrink-0">
+                <img src="{{ asset('arquivos/identidade-visual/logo-x-colorida.png') }}"
+                     alt="Aconsult Contabilidade"
+                     class="h-9 xl:h-10">
+            </a>
 
-        <ul class="flex items-center gap-6 text-sm font-normal">
-            <li><a href="{{ route('home') }}" class="hover:opacity-80">Home</a></li>
-            <li><a href="{{ route('contato') }}" class="hover:opacity-80">Contato</a></li>
-        </ul>
+            {{-- Links Desktop --}}
+            <ul class="hidden lg:flex items-center gap-7 text-[15px] font-normal">
+                <li>
+                    <a href="{{ route('home') }}" class="hover:text-marca transition-colors duration-300">Início</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-marca transition-colors duration-300">A Consult</a>
+                </li>
+                <li class="relative group">
+                    <button class="flex items-center gap-1.5 hover:text-marca transition-colors duration-300 cursor-pointer">
+                        Soluções
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
+                    </button>
+                    {{-- Dropdown personalizado --}}
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 pt-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <div class="bg-white rounded-2xl shadow-2xl border border-neutral-100/80 p-2 min-w-[260px] animate-slide-down">
+                            <div class="p-3 border-b border-neutral-100 mb-1">
+                                <span class="text-xs font-bold text-marca uppercase tracking-wider">Nossas Soluções</span>
+                            </div>
+                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-chart-line text-sm"></i>
+                                </span>
+                                <div>
+                                    <span class="text-sm font-bold block">Link 1</span>
+                                    <span class="text-xs text-neutral-400">Descrição do link</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-building text-sm"></i>
+                                </span>
+                                <div>
+                                    <span class="text-sm font-bold block">Link 2</span>
+                                    <span class="text-xs text-neutral-400">Descrição do link</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
+                                    <i class="fa-solid fa-globe text-sm"></i>
+                                </span>
+                                <div>
+                                    <span class="text-sm font-bold block">Link 3</span>
+                                    <span class="text-xs text-neutral-400">Descrição do link</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-marca transition-colors duration-300">News</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-marca transition-colors duration-300">Ebook</a>
+                </li>
+                <li>
+                    <a href="{{ route('contato') }}" class="hover:text-marca transition-colors duration-300">Contato</a>
+                </li>
+            </ul>
+
+            {{-- Ações Desktop --}}
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://www.instagram.com/aconsultcontabilidade/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-neutral-400 hover:text-marca transition-colors duration-300"
+                   aria-label="Instagram Aconsult">
+                    <i class="fa-brands fa-instagram text-lg"></i>
+                </a>
+                <a href="https://onvio.com.br/#/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="bg-marca hover:bg-marca-escura text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-marca/25">
+                    Área Cliente
+                </a>
+            </div>
+
+            {{-- Hamburger Mobile --}}
+            <button id="btn-menu-mobile"
+                    class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                    aria-label="Abrir menu de navegação">
+                <i class="fa-solid fa-bars text-xl" id="icone-menu-mobile"></i>
+            </button>
+        </div>
+
+        {{-- Menu Mobile --}}
+        <div id="menu-mobile" class="hidden lg:hidden overflow-hidden transition-all duration-500">
+            <div class="mt-4 pb-4 border-t border-neutral-100 pt-4 flex flex-col gap-1">
+                <a href="{{ route('home') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    Início
+                </a>
+                <a href="#" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    A Consult
+                </a>
+
+                {{-- Soluções Mobile com submenu --}}
+                <div>
+                    <button id="btn-solucoes-mobile"
+                            class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300 w-full text-left flex items-center justify-between cursor-pointer">
+                        Soluções
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" id="icone-solucoes-mobile"></i>
+                    </button>
+                    <div id="submenu-solucoes-mobile" class="hidden pl-4 mt-1 flex flex-col gap-0.5">
+                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-[10px] text-marca"></i>
+                            Link 1
+                        </a>
+                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-building text-[10px] text-marca"></i>
+                            Link 2
+                        </a>
+                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                            <i class="fa-solid fa-globe text-[10px] text-marca"></i>
+                            Link 3
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    News
+                </a>
+                <a href="#" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    Ebook
+                </a>
+                <a href="{{ route('contato') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    Contato
+                </a>
+
+                <div class="flex items-center gap-3 pt-3 border-t border-neutral-100 mt-3 px-4">
+                    <a href="https://www.instagram.com/aconsultcontabilidade/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 text-neutral-500 hover:bg-marca/10 hover:text-marca transition-all duration-300">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://onvio.com.br/#/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="flex-1 bg-marca hover:bg-marca-escura text-white text-center py-2.5 rounded-full text-sm font-bold transition-all duration-300">
+                        Área Cliente
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navbarContainer = document.getElementById('navbar-container');
+        const btnMenu = document.getElementById('btn-menu-mobile');
+        const iconeMenu = document.getElementById('icone-menu-mobile');
+        const menuMobile = document.getElementById('menu-mobile');
+        const btnSolucoesMobile = document.getElementById('btn-solucoes-mobile');
+        const submenuSolucoes = document.getElementById('submenu-solucoes-mobile');
+        const iconeSolucoes = document.getElementById('icone-solucoes-mobile');
+
+        /* Efeito scroll - navbar fica fixa e sólida */
+        let ultimoScroll = 0;
+        window.addEventListener('scroll', () => {
+            const scrollAtual = window.scrollY;
+            navbarContainer.classList.toggle('fixo', scrollAtual > 60);
+            ultimoScroll = scrollAtual;
+        }, { passive: true });
+
+        /* Toggle menu mobile */
+        btnMenu.addEventListener('click', () => {
+            const aberto = !menuMobile.classList.contains('hidden');
+            menuMobile.classList.toggle('hidden');
+            iconeMenu.classList.toggle('fa-bars', aberto);
+            iconeMenu.classList.toggle('fa-xmark', !aberto);
+        });
+
+        /* Toggle submenu soluções mobile */
+        btnSolucoesMobile.addEventListener('click', () => {
+            submenuSolucoes.classList.toggle('hidden');
+            iconeSolucoes.classList.toggle('rotate-180');
+        });
+    });
+</script>
