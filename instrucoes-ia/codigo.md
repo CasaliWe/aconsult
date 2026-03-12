@@ -1,0 +1,11 @@
+### SOBRE O PADRÃO DE CÓDIGO DO PROJETO:
+- Código sempre limpo e reutilizável;
+- Sempre em português os nomes de var, let, consts, functions, class e tudo mais;
+- Sempre com nomes auto explicativos;
+- Cometários objetivos e claros;
+- Sempre escrever o código pensando em tornar ele simples de dar manutenção e escalar;
+- Sempre usar log para debugar, mas não use o log para coisas inúteis como login bem sucessido ou coisas desse tipo, deixaremos o log para entender os problemas da aplicação somente;
+- Sempre use try catch nos controller e js com requisições para tratar erros e falhas;
+- Sempre devolva resposta claras para o usuário, como mensagem de sucesso, erro e tudo mais;
+- Sempre coloque um feedback após clicar em botões indicando que algo está sendo processado;
+- Evite usar muito js, para filtro e qualquer outro tipo de coisa tenta sempre usar query params, se usar muito js vai começar a ficar complicado demais;

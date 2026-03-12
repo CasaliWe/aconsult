@@ -1,0 +1,13 @@
+### PRINCIPAIS INFORMAÇÕES SOBRE O PROJETO:
+- O projeto é um website para uma empresa chamada Aconsult;
+- Todas as vezes que tu precisa de alguma informação sobre a empresa tu deve acessar o site atual deles em https://aconsultcontabilidade.com.br/;
+- Leia sempre esse arquivo até o final e logo em seguida todos os outros arquivos listados aqui: arquitetura.md, codigo.md, layout.md, seguranca.md, servidor.md, observacao.md, /skills;
+- Será um dev Pleno que dará suporte e manutenção ao projeto, então seja amivável tornando o projeto objetivo, claro, organizado e bem comentado;
+- Nunca invente coisas como por exemplo: campos do bando de dados, dados da empresa, arquivos ou qualquer coisa;
+- Sempre verifique o máximo de arquivos para ter o contexto necessário para que consiga fazer as tasks da melhor forma sem bugs;
+- Cuidado em qualquer atualização, deve ser mudanças seguras que não irão quebrar futuramente; 
+- Jamais deixar arquivos sem uso, evitar criar arquivos temporários, somente em casa muito importantes;
+- Sempre use tailwind para o layout, use css apenas em casos de extrema necessidade;
+- Respeite os padrões de layout já aplicador que estão prontos e rodando site;
+- SEMPRE TU DEVE CONSULTAR O ARQUIVO layout.md, é nele que tu vai encontrar cada detalhe relacionado ao layout e como eu quero que fique;
+- Certifique-se de que o projeto está usando a fonte personalizada /public/fonts;

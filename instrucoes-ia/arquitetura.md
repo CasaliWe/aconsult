@@ -1,0 +1,14 @@
+### SOBRE A ARQUITETURA DO PROJETO:
+- Os arquivos do sistema devem ficar em /public/arquivos, tantos os assets do site quando os uploads, porém devemos organizar cada coisa em suas respectivas pastas, não use o storage;
+- rotas devem ficar organizadas em /site com arquivos dentro com as rotas necessárias;
+- os tests devem ficar em /tests dentro da respectiva pasta /Unit /Feature;
+- o css deve ficar apenas no arquivo principal /css/app.css (não usar css, apenas no extremo necessário, sempre usar tailwind);
+- as views devem ficar em /views dentro de respectivas pastas, organizar por pastas que representam rotas, por exemplo: /views/home/home.blade.php, nesse exemplo todo que for relacionado a página home ficará nesse arquivo;
+- Devemos componentisar tudo, como o site inteiro será feito por sections cada section deve ser um componente importado na página, assim facilitando a manutenção e o reaproveitamento, por exemplo o menu, podemos apenas importar em cada página o componente;
+- deve ter apenas 1 layout padrão e é nele que o s.e.o deve ficar muito bem feito;
+- todo js deve ficar dentro da sua página ou componente em específico, e coisas que sejam para js global então pode ficar no arquivo global js que está em /js/app.js ou /js/bootstrap.js, decida qual dos 2 é melhor e use sempre o mesmo;
+- seeders, factory e migrations devem ficar em database;
+- os controllers devem ficar dentro de /controllers e cada página deve ter o seu controller;
+- cada página deve ter seu controller para retornar view e fazer toda a regra necessária;
+- para código que precisa estar em vários controllers transforme em service e importe ele aonde precisa assim mantendo uma boa organização, deixe o service bem nomeado para fácil entendimento;
+- middleware sempre apenas em pontos necessários e bem nomeados para fácil entendimento (futuramente iremos fazer o admin do site então será login);
