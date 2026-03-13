@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-white/60 hover:text-white hover:pl-1 transition-all duration-300 text-base">
+                        <a href="{{ route('ebook') }}" class="text-white/60 hover:text-white hover:pl-1 transition-all duration-300 text-base">
                             Ebook
                         </a>
                     </li>
