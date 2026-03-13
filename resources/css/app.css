@@ -172,6 +172,44 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
 }
 
+/* ─── Banner: tipografia fluida ─── */
+.titulo-banner {
+    font-size: 50px;
+}
+@media (max-width: 1500px) {
+    .titulo-banner {
+        font-size: 40px;
+    }
+}
+
+/* ─── Banner: animações de entrada do conteúdo ─── */
+.slide-banner .elemento-slide {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.slide-banner.ativo .elemento-slide {
+    animation: fade-in-up 0.6s ease-out var(--atraso, 0s) both;
+}
+
+/* ─── Banner: progresso do dot ativo ─── */
+.progresso-dot {
+    transform: scaleX(0);
+    transform-origin: left;
+}
+.dot-banner.ativo .progresso-dot {
+    animation: progresso-dot 5s linear forwards;
+}
+
+@keyframes progresso-dot {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+/* Pausar progresso ao hover no banner */
+#banner-principal:hover .dot-banner.ativo .progresso-dot {
+    animation-play-state: paused;
+}
+
 /* ─── Zoom ativo no banner ─── */
 .slide-banner.ativo .slide-bg-zoom {
     animation: zoom-lento 8s ease-out forwards;

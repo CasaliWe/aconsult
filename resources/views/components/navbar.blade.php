@@ -150,7 +150,10 @@
                     <a href="https://onvio.com.br/#/"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="flex-1 bg-marca hover:bg-marca-escura text-white text-center py-2.5 rounded-full text-sm font-bold transition-all duration-300">
+                       class="flex-1 text-white text-center py-2.5 rounded-full text-sm font-bold transition-all duration-300"
+                       style="background-color: #e21850;"
+                       onmouseenter="this.style.backgroundColor='#9b153a'"
+                       onmouseleave="this.style.backgroundColor='#e21850'">
                         Área Cliente
                     </a>
                 </div>
@@ -183,6 +186,13 @@
             menuMobile.classList.toggle('hidden');
             iconeMenu.classList.toggle('fa-bars', aberto);
             iconeMenu.classList.toggle('fa-xmark', !aberto);
+
+            /* Fundo opaco ao abrir o menu */
+            if (!aberto) {
+                navbarContainer.style.background = 'rgba(255, 255, 255, 1)';
+            } else {
+                navbarContainer.style.background = '';
+            }
         });
 
         /* Toggle submenu soluções mobile */
