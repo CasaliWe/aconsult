@@ -15,7 +15,7 @@
                     Descubra informações essenciais sobre contabilidade, gestão e negócios.
                 </p>
             </div>
-            <a href="#"
+            <a href="{{ route('news') }}"
                class="inline-flex items-center gap-2 hover:text-white px-6 py-3 rounded-full text-base font-bold transition-all duration-300 shrink-0 group"
                style="background-color: rgba(226, 24, 80, 0.1); color: #e21850;"
                onmouseenter="this.style.backgroundColor='#e21850'; this.style.color='white'"
@@ -30,7 +30,7 @@
 
             {{-- Card 1 --}}
             <article class="group animar-entrada atraso-1">
-                <a href="#" class="block">
+                <a href="{{ route('news.mostrar', ['id' => 1]) }}" class="block">
                     <div class="relative overflow-hidden rounded-2xl mb-5">
                         <img src="{{ asset('arquivos/imagens-empresa/3-funcionarias-conversando.jpg') }}"
                              alt="Notícia 1"
@@ -65,7 +65,7 @@
 
             {{-- Card 2 --}}
             <article class="group animar-entrada atraso-2">
-                <a href="#" class="block">
+                <a href="{{ route('news.mostrar', ['id' => 2]) }}" class="block">
                     <div class="relative overflow-hidden rounded-2xl mb-5">
                         <img src="{{ asset('arquivos/imagens-empresa/1-funcionario-concentrado-computador.jpg') }}"
                              alt="Notícia 2"
@@ -100,7 +100,7 @@
 
             {{-- Card 3 --}}
             <article class="group animar-entrada atraso-3">
-                <a href="#" class="block">
+                <a href="{{ route('news.mostrar', ['id' => 3]) }}" class="block">
                     <div class="relative overflow-hidden rounded-2xl mb-5">
                         <img src="{{ asset('arquivos/imagens-empresa/3-mulheres-em-pe.jpg') }}"
                              alt="Notícia 3"

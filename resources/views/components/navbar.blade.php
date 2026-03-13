@@ -59,7 +59,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="#" class="hover:text-marca transition-colors duration-300">News</a>
+                    <a href="{{ route('news') }}" class="hover:text-marca transition-colors duration-300">News</a>
                 </li>
                 <li>
                     <a href="#" class="hover:text-marca transition-colors duration-300">Ebook</a>
@@ -130,7 +130,7 @@
                     </div>
                 </div>
 
-                <a href="#" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                <a href="{{ route('news') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
                     News
                 </a>
                 <a href="#" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">

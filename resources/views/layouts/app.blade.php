@@ -71,5 +71,7 @@
 
     <x-footer />
     <x-whatsapp-flutuante />
+
+    @stack('scripts')
 </body>
 </html>

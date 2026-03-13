@@ -112,6 +112,15 @@
 
 /* ─── Utilitários customizados ─── */
 @layer utilities {
+    /* Ocultar scrollbar mantendo funcionalidade */
+    .scrollbar-oculto {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-oculto::-webkit-scrollbar {
+        display: none;
+    }
+
     /* Animação de entrada por scroll */
     .animar-entrada {
         opacity: 0;
@@ -213,6 +222,47 @@
 /* ─── Zoom ativo no banner ─── */
 .slide-banner.ativo .slide-bg-zoom {
     animation: zoom-lento 8s ease-out forwards;
+}
+
+/* ─── Conteúdo do artigo (Summernote) ─── */
+.conteudo-artigo {
+    @apply text-neutral-600 text-base font-normal leading-relaxed;
+}
+.conteudo-artigo h2 {
+    @apply text-2xl md:text-3xl font-black text-neutral-900 mt-10 mb-4;
+}
+.conteudo-artigo h3 {
+    @apply text-xl md:text-2xl font-black text-neutral-900 mt-8 mb-3;
+}
+.conteudo-artigo p {
+    @apply mb-6;
+}
+.conteudo-artigo ul,
+.conteudo-artigo ol {
+    @apply mb-6 pl-6 flex flex-col gap-2;
+}
+.conteudo-artigo ul {
+    @apply list-disc;
+}
+.conteudo-artigo ol {
+    @apply list-decimal;
+}
+.conteudo-artigo li {
+    @apply text-neutral-600;
+}
+.conteudo-artigo blockquote {
+    @apply border-l-4 pl-6 py-2 my-8 italic text-neutral-500 text-lg;
+    border-color: #e21850;
+}
+.conteudo-artigo img {
+    @apply w-full rounded-2xl my-8;
+}
+.conteudo-artigo strong {
+    @apply text-neutral-900 font-bold;
+}
+.conteudo-artigo a {
+    color: #e21850;
+    @apply underline;
 }
 
 /* ─── Parallax ─── */
