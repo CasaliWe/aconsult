@@ -81,8 +81,7 @@
                             </p>
                         </div>
                         <div class="elemento-slide flex flex-wrap gap-3" style="--atraso: 0.55s">
-                            <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
-                               target="_blank" rel="noopener noreferrer"
+                            <a href="{{ route('solucoes', 'empresas') }}"
                                class="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
                                style="background-color: #e21850;"
                                onmouseenter="this.style.backgroundColor='#9b153a'"
@@ -123,8 +122,7 @@
                             </p>
                         </div>
                         <div class="elemento-slide flex flex-wrap gap-3" style="--atraso: 0.55s">
-                            <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
-                               target="_blank" rel="noopener noreferrer"
+                            <a href="{{ route('solucoes', 'ecommerce') }}"
                                class="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
                                style="background-color: #e21850;"
                                onmouseenter="this.style.backgroundColor='#9b153a'"
@@ -165,8 +163,7 @@
                             </p>
                         </div>
                         <div class="elemento-slide flex flex-wrap gap-3" style="--atraso: 0.55s">
-                            <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
-                               target="_blank" rel="noopener noreferrer"
+                            <a href="{{ route('solucoes', 'comex') }}"
                                class="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
                                style="background-color: #e21850;"
                                onmouseenter="this.style.backgroundColor='#9b153a'"

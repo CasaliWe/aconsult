@@ -28,7 +28,7 @@
                             <div class="p-3 border-b border-neutral-100 mb-1">
                                 <span class="text-xs font-bold text-marca uppercase tracking-wider">Nossas Soluções</span>
                             </div>
-                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                            <a href="{{ route('solucoes', 'empresas') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
                                 <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
                                     <i class="fa-solid fa-building text-sm"></i>
                                 </span>
@@ -37,7 +37,7 @@
                                     <span class="text-xs text-neutral-400">Tributação e contabilidade</span>
                                 </div>
                             </a>
-                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                            <a href="{{ route('solucoes', 'ecommerce') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
                                 <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
                                     <i class="fa-solid fa-cart-shopping text-sm"></i>
                                 </span>
@@ -46,7 +46,7 @@
                                     <span class="text-xs text-neutral-400">Lojas virtuais e marketplaces</span>
                                 </div>
                             </a>
-                            <a href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                            <a href="{{ route('solucoes', 'comex') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
                                 <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
                                     <i class="fa-solid fa-ship text-sm"></i>
                                 </span>
@@ -115,15 +115,15 @@
                         <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" id="icone-solucoes-mobile"></i>
                     </button>
                     <div id="submenu-solucoes-mobile" class="hidden pl-4 mt-1 flex flex-col gap-0.5">
-                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                        <a href="{{ route('solucoes', 'empresas') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
                             <i class="fa-solid fa-building text-[10px] text-marca"></i>
                             Soluções para Empresas
                         </a>
-                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                        <a href="{{ route('solucoes', 'ecommerce') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
                             <i class="fa-solid fa-cart-shopping text-[10px] text-marca"></i>
                             Soluções para E-commerce
                         </a>
-                        <a href="#" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                        <a href="{{ route('solucoes', 'comex') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
                             <i class="fa-solid fa-ship text-[10px] text-marca"></i>
                             Soluções para Comex
                         </a>
