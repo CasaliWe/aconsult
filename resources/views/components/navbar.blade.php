@@ -15,7 +15,7 @@
                     <a href="{{ route('home') }}" class="hover:text-marca transition-colors duration-300">Início</a>
                 </li>
                 <li>
-                    <a href="{{ route('aconsult') }}" class="hover:text-marca transition-colors duration-300">A Consult</a>
+                    <a href="{{ route('aconsult') }}" class="hover:text-marca transition-colors duration-300">Aconsult</a>
                 </li>
                 <li class="relative group">
                     <button class="flex items-center gap-1.5 hover:text-marca transition-colors duration-300 cursor-pointer">
@@ -104,7 +104,7 @@
                     Início
                 </a>
                 <a href="{{ route('aconsult') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
-                    A Consult
+                    Aconsult
                 </a>
 
                 {{-- Soluções Mobile com submenu --}}
