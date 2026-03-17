@@ -57,7 +57,7 @@
         {{-- Slide 2 - Soluções para Empresas --}}
         <div class="slide-banner absolute inset-0 opacity-0 z-0 transition-opacity duration-1000" data-slide="1">
             <div class="absolute inset-0 overflow-hidden">
-                <img src="{{ asset('arquivos/imagens-empresa/3-mulheres-trabalhando-alegre.jpg') }}"
+                <img src="{{ asset('arquivos/imagens-empresa/aconsult-4.jpg') }}"
                      alt="Soluções para empresas Aconsult"
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>
@@ -139,7 +139,7 @@
         {{-- Slide 4 - Soluções para Comex --}}
         <div class="slide-banner absolute inset-0 opacity-0 z-0 transition-opacity duration-1000" data-slide="3">
             <div class="absolute inset-0 overflow-hidden">
-                <img src="{{ asset('arquivos/imagens-empresa/2-funcionario-descontraidos-sorrindo-1.jpg') }}"
+                <img src="{{ asset('arquivos/imagens-empresa/aconsult-5.jpg') }}"
                      alt="Comércio Exterior Aconsult"
                      class="w-full h-full object-cover slide-bg-zoom">
             </div>

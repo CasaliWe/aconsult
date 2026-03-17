@@ -56,7 +56,7 @@
                     </li>
                     <li>
                         <a href="{{ route('aconsult') }}" class="text-white/60 hover:text-white hover:pl-1 transition-all duration-300 text-base">
-                            A Consult
+                            Aconsult
                         </a>
                     </li>
                     <li>
@@ -67,6 +67,11 @@
                     <li>
                         <a href="{{ route('ebook') }}" class="text-white/60 hover:text-white hover:pl-1 transition-all duration-300 text-base">
                             Ebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('trabalhe-conosco') }}" class="text-white/60 hover:text-white hover:pl-1 transition-all duration-300 text-base">
+                            Trabalhe Conosco
                         </a>
                     </li>
                     <li>

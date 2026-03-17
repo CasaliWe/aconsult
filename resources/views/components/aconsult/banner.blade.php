@@ -16,7 +16,7 @@
         <nav class="flex items-center gap-2 text-sm text-white/40 font-normal mb-8" aria-label="Breadcrumb">
             <a href="{{ route('home') }}" class="hover:text-white/70 transition-colors">Início</a>
             <i class="fa-solid fa-chevron-right text-[8px]"></i>
-            <span class="text-white/70">A Consult</span>
+            <span class="text-white/70">Aconsult</span>
         </nav>
 
         <div class="max-w-2xl">

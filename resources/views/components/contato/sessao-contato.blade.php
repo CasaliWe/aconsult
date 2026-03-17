@@ -219,7 +219,7 @@
                         </div>
                         <div class="flex items-center justify-between bg-white rounded-xl px-5 py-3.5 border border-neutral-100">
                             <span class="text-sm font-normal text-neutral-500">Seg — Sex</span>
-                            <span class="text-sm font-black text-neutral-900">08:00 — 18:00</span>
+                            <span class="text-sm font-black text-neutral-900">8h às 12h e 13h30 às 18h</span>
                         </div>
                     </div>
 

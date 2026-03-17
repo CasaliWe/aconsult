@@ -10,7 +10,7 @@
             {{-- Imagem --}}
             <div class="relative animar-entrada">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-neutral-900/10">
-                    <img src="{{ asset('arquivos/imagens-empresa/time-reduzido-chefia-em-pe.jpg') }}"
+                    <img src="{{ asset('arquivos/imagens-empresa/aconsult.jpg') }}"
                          alt="Equipe Aconsult Contabilidade"
                          class="w-full h-full object-cover aspect-[4/3]">
                     {{-- Borda decorativa --}}

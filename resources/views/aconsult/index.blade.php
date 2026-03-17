@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'A Consult | Aconsult Contabilidade - Sobre Nós')
+@section('titulo', 'Aconsult | Aconsult Contabilidade - Sobre Nós')
 @section('descricao', 'Conheça a Aconsult Contabilidade: um escritório comprometido em oferecer soluções contábeis e tributárias para impulsionar o crescimento e o sucesso dos negócios por todo o Brasil.')
 
 @section('conteudo')

@@ -9,9 +9,6 @@
         <div class="numero-bg absolute inset-0 opacity-0 transition-opacity duration-700" data-bg="1">
             <img src="{{ asset('arquivos/imagens-empresa/toda-equipe-reduzida-2.jpg') }}" alt="" class="w-full h-full object-cover">
         </div>
-        <div class="numero-bg absolute inset-0 opacity-0 transition-opacity duration-700" data-bg="2">
-            <img src="{{ asset('arquivos/imagens-empresa/time-reduzido-chefia-em-pe.jpg') }}" alt="" class="w-full h-full object-cover">
-        </div>
         <div class="numero-bg absolute inset-0 opacity-0 transition-opacity duration-700" data-bg="3">
             <img src="{{ asset('arquivos/imagens-empresa/time-pequeno-feliz-trabalhando.jpg') }}" alt="" class="w-full h-full object-cover">
         </div>
@@ -27,7 +24,7 @@
     <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-7xl mx-auto px-6 md:px-10">
         {{-- Título --}}
         <div class="text-center mb-14 animar-entrada">
-            <span class="text-marca text-sm font-bold uppercase tracking-widest">Em números</span>
+            <span class="text-marca text-sm font-bold uppercase tracking-widest">TRAJETÓRIA</span>
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mt-2">
                 Nossos <span class="text-marca">números</span>
             </h2>
@@ -59,7 +56,7 @@
                     <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="350">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Clientes ativos</span>
+                <span class="text-white/60 text-base font-normal">Clientes atendidos</span>
             </div>
 
             <div class="text-center animar-entrada atraso-4">
@@ -68,7 +65,7 @@
                     <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="10">0</span>
                 </div>
                 <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Estados atendidos</span>
+                <span class="text-white/60 text-base font-normal">Estados diferentes</span>
             </div>
         </div>
     </div>

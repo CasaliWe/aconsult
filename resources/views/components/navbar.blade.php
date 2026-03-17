@@ -65,6 +65,9 @@
                     <a href="{{ route('ebook') }}" class="hover:text-marca transition-colors duration-300">Ebook</a>
                 </li>
                 <li>
+                    <a href="{{ route('trabalhe-conosco') }}" class="hover:text-marca transition-colors duration-300">Trabalhe Conosco</a>
+                </li>
+                <li>
                     <a href="{{ route('contato') }}" class="hover:text-marca transition-colors duration-300">Contato</a>
                 </li>
             </ul>
@@ -135,6 +138,9 @@
                 </a>
                 <a href="{{ route('ebook') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
                     Ebook
+                </a>
+                <a href="{{ route('trabalhe-conosco') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
+                    Trabalhe Conosco
                 </a>
                 <a href="{{ route('contato') }}" class="py-2.5 px-4 rounded-xl hover:bg-marca/5 text-[15px] font-normal transition-all duration-300">
                     Contato

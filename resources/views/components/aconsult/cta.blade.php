@@ -2,7 +2,7 @@
 <section class="relative py-28 md:py-36 overflow-hidden">
     {{-- Background parallax --}}
     <div class="absolute inset-0 bg-parallax"
-         style="background-image: url('{{ asset('arquivos/imagens-empresa/3-mulheres-trabalhando-alegre.jpg') }}');"></div>
+         style="background-image: url('{{ asset('arquivos/imagens-empresa/aconsult-4.jpg') }}');"></div>
 
     {{-- Overlay --}}
     <div class="absolute inset-0 bg-gradient-to-br from-neutral-950/90 via-neutral-900/85 to-neutral-950/90"></div>

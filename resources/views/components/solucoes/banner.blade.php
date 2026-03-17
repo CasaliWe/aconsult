@@ -3,9 +3,9 @@
 
 @php
     $imagens = [
-        'empresas' => 'arquivos/imagens-empresa/3-mulheres-trabalhando-alegre.jpg',
-        'ecommerce' => 'arquivos/imagens-empresa/3-funcionarias-conversando.jpg',
-        'comex' => 'arquivos/imagens-empresa/2-funcionario-descontraidos-sorrindo-1.jpg',
+        'empresas' => 'arquivos/imagens-empresa/aconsult-4.jpg',
+        'ecommerce' => 'arquivos/imagens-empresa/aconsult-3.jpg',
+        'comex' => 'arquivos/imagens-empresa/aconsult-5.jpg',
     ];
     $imagemBanner = $imagens[$solucao['slug']] ?? 'arquivos/imagens-empresa/toda-equipe.jpg';
 
