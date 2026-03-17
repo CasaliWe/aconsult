@@ -2,7 +2,7 @@
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     {{-- Fundo --}}
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/3-mulheres-trabalhando-alegre.jpg') }}"
+        <img src="{{ asset('arquivos/imagens-empresa/aconsult-4.jpg') }}"
              alt="News Aconsult"
              class="w-full h-full object-cover">
     </div>

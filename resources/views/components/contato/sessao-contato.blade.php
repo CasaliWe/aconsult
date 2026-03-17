@@ -5,7 +5,7 @@
 {{-- Banner --}}
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/toda-equipe.jpg') }}"
+        <img src="{{ asset('arquivos/imagens-empresa/aconsult-5.jpg') }}"
              alt="Equipe Aconsult Contabilidade"
              class="w-full h-full object-cover">
     </div>
