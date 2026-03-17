@@ -12,7 +12,7 @@
                 Conheça as <span class="text-marca">soluções</span> da Aconsult
             </h2>
             <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                Com mais de 200 clientes atendidos em 10 estados diferentes, oferecemos diversas soluções contábeis que geram valor ao seu negócio.
+                Com mais de 350 clientes atendidos em 10 estados diferentes, oferecemos diversas soluções contábeis que geram valor ao seu negócio.
             </p>
         </div>
 
