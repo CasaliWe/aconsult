@@ -51,7 +51,7 @@
 
                 {{-- Botões de download --}}
                 <div class="flex flex-wrap gap-4">
-                    <a href="https://apps.apple.com/br/app/onvio-documentos/id1005121694"
+                    <a href="{{ $config->link_app_store ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="flex items-center gap-3 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group"
                        style="background-color: #171717;"
@@ -63,7 +63,7 @@
                             <span class="text-base font-bold">App Store</span>
                         </div>
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.thomsonreuters.cs.onvio.drive"
+                    <a href="{{ $config->link_google_play ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="flex items-center gap-3 text-white rounded-2xl px-6 py-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg group"
                        style="background-color: #171717;"

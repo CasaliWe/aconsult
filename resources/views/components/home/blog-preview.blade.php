@@ -1,3 +1,17 @@
+@props(['noticias' => collect()])
+
+@php
+    $noticiasList = $noticias instanceof \Illuminate\Support\Collection ? $noticias : collect($noticias);
+
+    $categoriasCor = [
+        'Tributário' => 'background-color: #e21850;',
+        'Fiscal' => 'background-color: #9b153a;',
+        'Compliance' => 'background-color: #171717;',
+        'E-commerce' => 'background-color: #e21850;',
+        'Comércio Exterior' => 'background-color: #171717;',
+    ];
+@endphp
+
 {{-- Preview Blog - 3 notícias recentes --}}
 <section class="py-20 md:py-28 bg-white relative overflow-hidden">
     {{-- Decoração --}}
@@ -27,111 +41,46 @@
 
         {{-- Grid de cards --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            {{-- Card 1 --}}
-            <article class="group animar-entrada atraso-1">
-                <a href="{{ route('news.mostrar', ['id' => 1]) }}" class="block">
-                    <div class="relative overflow-hidden rounded-2xl mb-5">
-                        <img src="{{ asset('arquivos/imagens-empresa/3-funcionarias-conversando.jpg') }}"
-                             alt="Notícia 1"
-                             class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-marca text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
-                                Tributário
-                            </span>
+            @forelse($noticiasList as $noticia)
+                <article class="group animar-entrada atraso-{{ $loop->iteration <= 3 ? $loop->iteration : 3 }}">
+                    <a href="{{ route('news.mostrar', ['id' => $noticia->id]) }}" class="block">
+                        <div class="relative overflow-hidden rounded-2xl mb-5">
+                            <img src="{{ asset($noticia->thumb) }}"
+                                 alt="{{ $noticia->titulo }}"
+                                 class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-4 left-4">
+                                <span class="text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full"
+                                      style="{{ $categoriasCor[$noticia->categoria] ?? 'background-color: #e21850;' }}">
+                                    {{ $noticia->categoria }}
+                                </span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="flex items-center gap-3 mb-3 text-sm text-neutral-400 font-normal">
-                        <span class="flex items-center gap-1.5">
-                            <i class="fa-regular fa-calendar text-marca"></i>
-                            18 Fev 2026
-                        </span>
-                        <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
-                        <span>5 min de leitura</span>
-                    </div>
-                    <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
-                        O erro silencioso de 2026 que coloca sua empresa em risco
-                    </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
-                        Descubra quais mudanças fiscais de 2026 podem impactar diretamente o seu negócio e como se preparar.
-                    </p>
-                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
-                        Ler notícia
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-            </article>
-
-            {{-- Card 2 --}}
-            <article class="group animar-entrada atraso-2">
-                <a href="{{ route('news.mostrar', ['id' => 2]) }}" class="block">
-                    <div class="relative overflow-hidden rounded-2xl mb-5">
-                        <img src="{{ asset('arquivos/imagens-empresa/1-funcionario-concentrado-computador.jpg') }}"
-                             alt="Notícia 2"
-                             class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-marca-escura text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
-                                Fiscal
+                        <div class="flex items-center gap-3 mb-3 text-sm text-neutral-400 font-normal">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-regular fa-calendar text-marca"></i>
+                                {{ optional($noticia->data_publicacao)->format('d M Y') }}
                             </span>
+                            <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
+                            <span>{{ $noticia->tempo_leitura }} min de leitura</span>
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="flex items-center gap-3 mb-3 text-sm text-neutral-400 font-normal">
-                        <span class="flex items-center gap-1.5">
-                            <i class="fa-regular fa-calendar text-marca"></i>
-                            12 Fev 2026
+                        <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
+                            {{ $noticia->titulo }}
+                        </h3>
+                        <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
+                            {{ $noticia->mini_descricao }}
+                        </p>
+                        <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
+                            Ler notícia
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
                         </span>
-                        <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
-                        <span>7 min de leitura</span>
-                    </div>
-                    <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
-                        IBS e CBS em 2026: por que o ano de teste já exige postura definitiva
-                    </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
-                        Entenda por que as empresas precisam se posicionar agora diante das mudanças do IBS e CBS.
-                    </p>
-                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
-                        Ler notícia
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-            </article>
-
-            {{-- Card 3 --}}
-            <article class="group animar-entrada atraso-3">
-                <a href="{{ route('news.mostrar', ['id' => 3]) }}" class="block">
-                    <div class="relative overflow-hidden rounded-2xl mb-5">
-                        <img src="{{ asset('arquivos/imagens-empresa/3-mulheres-em-pe.jpg') }}"
-                             alt="Notícia 3"
-                             class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4">
-                            <span class="bg-neutral-900 text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
-                                Compliance
-                            </span>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div class="flex items-center gap-3 mb-3 text-sm text-neutral-400 font-normal">
-                        <span class="flex items-center gap-1.5">
-                            <i class="fa-regular fa-calendar text-marca"></i>
-                            21 Jan 2026
-                        </span>
-                        <span class="w-1 h-1 rounded-full bg-neutral-300"></span>
-                        <span>6 min de leitura</span>
-                    </div>
-                    <h3 class="text-xl font-black text-neutral-900 group-hover:text-marca transition-colors duration-300 mb-2 leading-snug">
-                        Compliance tributário e a Reforma Tributária: papel mais estratégico
-                    </h3>
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed line-clamp-2 mb-4">
-                        Saiba por que o compliance tributário ganha importância com a Reforma Tributária no Brasil.
-                    </p>
-                    <span class="inline-flex items-center gap-2 text-marca text-sm font-bold group-hover:gap-3 transition-all duration-300">
-                        Ler notícia
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </span>
-                </a>
-            </article>
+                    </a>
+                </article>
+            @empty
+                <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center">
+                    <p class="text-neutral-500 text-base">Nenhuma notícia publicada no momento.</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>

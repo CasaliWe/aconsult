@@ -1,8 +1,12 @@
+@php
+    $bp = $bannersPaginas['news'] ?? null;
+@endphp
+
 {{-- Banner News - Discreto com efeito de digitação --}}
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     {{-- Fundo --}}
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/aconsult-4.jpg') }}"
+        <img src="{{ asset($bp->imagem ?? 'arquivos/imagens-empresa/aconsult-4.jpg') }}"
              alt="News Aconsult"
              class="w-full h-full object-cover">
     </div>
@@ -24,13 +28,13 @@
         <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-8 h-[2px] rounded-full" style="background-color: #e21850;"></span>
-                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $subtitulo ?? 'Universo Aconsult' }}</span>
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $subtitulo ?? ($bp->super_titulo ?? 'Universo Aconsult') }}</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                {!! $titulo ?? 'Fique por dentro das <span style="color: #e21850;">novidades</span>' !!}
+                {!! $titulo ?? ($bp->titulo ?? 'Fique por dentro das <span style="color: #e21850;">novidades</span>') !!}
             </h1>
             <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
-                {{ $descricao ?? 'Informações essenciais sobre contabilidade, gestão e negócios para o seu crescimento.' }}
+                {{ $descricao ?? ($bp->descricao ?? 'Informações essenciais sobre contabilidade, gestão e negócios para o seu crescimento.') }}
             </p>
         </div>
     </div>

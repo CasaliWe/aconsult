@@ -1,3 +1,10 @@
+@props(['logos'])
+
+@php
+    $logosList = $logos instanceof \Illuminate\Support\Collection ? $logos : collect();
+@endphp
+
+@if($logosList->isNotEmpty())
 {{-- Seção Parceiros - Logos passando automaticamente --}}
 <section class="py-16 bg-neutral-50 overflow-hidden relative">
     {{-- Faixa decorativa superior --}}
@@ -26,13 +33,24 @@
         <div class="flex animate-rolar-logos-mobile md:animate-rolar-logos hover:[animation-play-state:paused]" id="carrossel-logos">
             @for ($i = 0; $i < 2; $i++)
                 <div class="flex items-center gap-16 shrink-0 px-8">
-                    @for ($j = 0; $j < 8; $j++)
+                    @foreach($logosList as $logo)
+                        @php
+                            $logoUrl = !empty($logo->link) ? $logo->link : null;
+                        @endphp
+                        @if($logoUrl)
+                        <a href="{{ $logoUrl }}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-36 h-20 bg-white rounded-xl shadow-sm border border-neutral-100 p-4 hover:shadow-md hover:border-marca/20 transition-all duration-300 group shrink-0">
+                            <img src="{{ asset($logo->imagem) }}"
+                                 alt="{{ $logo->nome }}"
+                                 class="max-h-10 max-w-full object-contain opacity-40 group-hover:opacity-80 transition-opacity duration-300 grayscale group-hover:grayscale-0">
+                        </a>
+                        @else
                         <div class="flex items-center justify-center w-36 h-20 bg-white rounded-xl shadow-sm border border-neutral-100 p-4 hover:shadow-md hover:border-marca/20 transition-all duration-300 group shrink-0">
-                            <img src="{{ asset('arquivos/identidade-visual/logo-x-black.png') }}"
-                                 alt="Logo parceiro"
+                            <img src="{{ asset($logo->imagem) }}"
+                                 alt="{{ $logo->nome }}"
                                  class="max-h-10 max-w-full object-contain opacity-40 group-hover:opacity-80 transition-opacity duration-300 grayscale group-hover:grayscale-0">
                         </div>
-                    @endfor
+                        @endif
+                    @endforeach
                 </div>
             @endfor
         </div>
@@ -41,3 +59,4 @@
     {{-- Faixa decorativa inferior --}}
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-marca/20 to-transparent"></div>
 </section>
+@endif

@@ -1,3 +1,28 @@
+@props([
+    'faqItens' => collect(),
+])
+
+@php
+    $faqExibicao = $faqItens;
+
+    if ($faqExibicao->isEmpty()) {
+        $faqExibicao = collect([
+            (object) [
+                'pergunta' => 'Quais servicos contabeis a Aconsult oferece?',
+                'resposta' => 'A Aconsult oferece servicos contabeis completos, incluindo BPO fiscal e financeiro, gestao de departamento pessoal, assessoria tributaria e suporte para comercio exterior.',
+            ],
+            (object) [
+                'pergunta' => 'A Aconsult atende empresas de todo o Brasil?',
+                'resposta' => 'Sim. Mesmo com sede em Itajai, atendemos clientes em varios estados com uma operacao digital e atendimento proximo.',
+            ],
+            (object) [
+                'pergunta' => 'Como posso entrar em contato com a Aconsult?',
+                'resposta' => 'Voce pode chamar no WhatsApp, enviar e-mail para contato@aconsultcontabilidade.com.br ou falar conosco pelas redes sociais.',
+            ],
+        ]);
+    }
+@endphp
+
 {{-- Seção FAQ - Perguntas Frequentes --}}
 <section class="py-20 md:py-28 bg-neutral-50 relative overflow-hidden">
     {{-- Decoração --}}
@@ -17,91 +42,23 @@
 
         {{-- Accordion --}}
         <div class="flex flex-col gap-4" id="faq-container">
-
-            {{-- Pergunta 1 --}}
-            <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada atraso-1">
-                <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
-                    <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
-                        Quais serviços contábeis a Aconsult oferece?
-                    </span>
-                    <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
-                        <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
-                    </span>
-                </button>
-                <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        A Aconsult oferece uma gama completa de serviços contábeis, incluindo BPO Fiscal e Financeiro, Contabilidade Inteligente, Gestão de Departamento Pessoal, Gestão Fiscal e Tributária, Assessoria para Comércio Exterior, Gestão Societária, Benefícios Fiscais de Santa Catarina e Revisão e Solicitação de RADAR.
-                    </p>
+            @foreach ($faqExibicao as $indice => $faq)
+                <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada">
+                    <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
+                        <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
+                            {{ $faq->pergunta }}
+                        </span>
+                        <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
+                            <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-resposta hidden px-6 md:px-8 pb-6">
+                        <p class="text-neutral-500 text-base font-normal leading-relaxed">
+                            {{ $faq->resposta }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            {{-- Pergunta 2 --}}
-            <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada atraso-2">
-                <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
-                    <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
-                        A Aconsult atende empresas de todo o Brasil?
-                    </span>
-                    <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
-                        <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
-                    </span>
-                </button>
-                <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Sim! Embora nossa sede seja em Itajaí, Santa Catarina, atendemos clientes em mais de 10 estados brasileiros. Nossa estrutura tecnológica permite oferecer suporte completo de forma 100% remota, sem perder a qualidade e proximidade no atendimento.
-                    </p>
-                </div>
-            </div>
-
-            {{-- Pergunta 3 --}}
-            <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada atraso-3">
-                <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
-                    <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
-                        Como funciona a assessoria para Comércio Exterior?
-                    </span>
-                    <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
-                        <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
-                    </span>
-                </button>
-                <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Nossa assessoria para Comércio Exterior abrange regimes especiais, análise fiscal, suporte para habilitação no RADAR da Receita Federal, constituição e extinção de empresas, escritório virtual, consultoria tributária e análise de custos de importação. Temos 99% de sucesso nas solicitações de RADAR.
-                    </p>
-                </div>
-            </div>
-
-            {{-- Pergunta 4 --}}
-            <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada atraso-4">
-                <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
-                    <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
-                        O que é o Benefício Fiscal de Santa Catarina?
-                    </span>
-                    <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
-                        <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
-                    </span>
-                </button>
-                <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Santa Catarina oferece incentivos fiscais estratégicos que podem reduzir significativamente a carga do ICMS. Isso proporciona à sua empresa uma excelente oportunidade de crescimento, ganho de competitividade, expansão de operações e aumento da lucratividade. A Aconsult auxilia na análise e obtenção desses benefícios.
-                    </p>
-                </div>
-            </div>
-
-            {{-- Pergunta 5 --}}
-            <div class="faq-item bg-white rounded-2xl border border-neutral-100 overflow-hidden transition-all duration-300 hover:border-marca/20 animar-entrada atraso-5">
-                <button class="faq-btn w-full px-6 md:px-8 py-5 flex items-center justify-between gap-4 text-left cursor-pointer group">
-                    <span class="text-base md:text-lg font-black text-neutral-900 group-hover:text-marca transition-colors">
-                        Como posso entrar em contato com a Aconsult?
-                    </span>
-                    <span class="faq-icone w-10 h-10 flex items-center justify-center rounded-xl bg-marca/10 text-marca shrink-0 transition-all duration-300">
-                        <i class="fa-solid fa-plus text-sm transition-transform duration-300"></i>
-                    </span>
-                </button>
-                <div class="faq-resposta hidden px-6 md:px-8 pb-6">
-                    <p class="text-neutral-500 text-base font-normal leading-relaxed">
-                        Você pode entrar em contato pelo WhatsApp no número (47) 2125-0281, pelo e-mail contato@aconsultcontabilidade.com.br, ou visitando nosso escritório na Rua São Cristovão, 879, Cordeiros - Itajaí/SC. Também estamos presentes nas redes sociais: Instagram, Facebook e LinkedIn.
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

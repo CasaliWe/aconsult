@@ -21,3 +21,5 @@ Route::get('/news/{id}', [NewsController::class, 'mostrar'])->name('news.mostrar
 
 /* Ebook */
 Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
+Route::post('/ebook/registrar-download', [EbookController::class, 'registrarDownload'])->name('ebook.registrar-download');
+Route::get('/ebook/download/{download}', [EbookController::class, 'baixarArquivo'])->name('ebook.download.arquivo');

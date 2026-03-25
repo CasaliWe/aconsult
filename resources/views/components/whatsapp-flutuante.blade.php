@@ -1,5 +1,5 @@
 {{-- Botão flutuante do WhatsApp - componente global --}}
-<a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
+<a href="https://wa.me/{{ $config->whatsapp_numero ?? '554721250281' }}?text={{ urlencode($config->whatsapp_mensagem ?? 'Olá! Como podemos ajudar?') }}"
    target="_blank"
    rel="noopener noreferrer"
    aria-label="Fale conosco pelo WhatsApp"

@@ -26,7 +26,7 @@
                     Fale com um de nossos especialistas e descubra como a Aconsult pode impulsionar a sua empresa.
                 </p>
             </div>
-            <a href="https://wa.me/554721250281?text=Ol%C3%A1%21+Bem-vindo+%C3%A0+Aconsult%21+%F0%9F%91%8B+Como+podemos+ajudar%3F"
+            <a href="https://wa.me/{{ $config->whatsapp_numero ?? '554721250281' }}?text={{ urlencode($config->whatsapp_mensagem ?? 'Olá! Como podemos ajudar?') }}"
                target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-3 text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 shrink-0 group animar-entrada atraso-2"
                style="background-color: #25D366; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);"

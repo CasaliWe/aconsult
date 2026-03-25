@@ -1,4 +1,17 @@
 {{-- Seção Números - Contadores animados com banners ciclando --}}
+@php
+    $numerosPadrao = collect([
+        ['valor' => 7, 'titulo' => 'Anos de história'],
+        ['valor' => 30, 'titulo' => 'Colaboradores'],
+        ['valor' => 350, 'titulo' => 'Clientes atendidos'],
+        ['valor' => 10, 'titulo' => 'Estados diferentes'],
+    ]);
+
+    $numerosList = isset($nossosNumeros) && $nossosNumeros->count() === 4
+        ? $nossosNumeros->map(fn ($item) => ['valor' => (int) $item->valor, 'titulo' => $item->titulo])->values()
+        : $numerosPadrao;
+@endphp
+
 <section class="relative h-[500px] md:h-[550px] overflow-hidden" id="secao-numeros">
 
     {{-- Imagens de fundo que ciclam a cada 1 segundo --}}
@@ -32,41 +45,16 @@
 
         {{-- Grid de números --}}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 w-full max-w-4xl">
-            <div class="text-center animar-entrada atraso-1">
-                <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-2xl font-bold">+</span>
-                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="7">0</span>
+            @foreach($numerosList as $numero)
+                <div class="text-center animar-entrada atraso-{{ $loop->iteration }}">
+                    <div class="flex items-baseline justify-center gap-1 mb-2">
+                        <span class="text-marca text-2xl font-bold">+</span>
+                        <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="{{ (int) ($numero['valor'] ?? 0) }}">0</span>
+                    </div>
+                    <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
+                    <span class="text-white/60 text-base font-normal">{{ $numero['titulo'] ?? '' }}</span>
                 </div>
-                <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Anos de história</span>
-            </div>
-
-            <div class="text-center animar-entrada atraso-2">
-                <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-2xl font-bold">+</span>
-                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="30">0</span>
-                </div>
-                <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Colaboradores</span>
-            </div>
-
-            <div class="text-center animar-entrada atraso-3">
-                <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-2xl font-bold">+</span>
-                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="350">0</span>
-                </div>
-                <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Clientes atendidos</span>
-            </div>
-
-            <div class="text-center animar-entrada atraso-4">
-                <div class="flex items-baseline justify-center gap-1 mb-2">
-                    <span class="text-marca text-2xl font-bold">+</span>
-                    <span class="text-6xl md:text-7xl lg:text-8xl font-black text-white contador" data-alvo="10">0</span>
-                </div>
-                <div class="w-10 h-0.5 bg-marca/50 mx-auto mb-3 rounded-full"></div>
-                <span class="text-white/60 text-base font-normal">Estados diferentes</span>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

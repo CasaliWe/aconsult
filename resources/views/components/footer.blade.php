@@ -18,25 +18,25 @@
                 </p>
                 {{-- Redes sociais --}}
                 <div class="flex items-center gap-3">
-                    <a href="https://www.instagram.com/aconsultcontabilidade/"
+                    <a href="{{ $config->social_instagram ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 text-white/70 hover:bg-marca hover:text-white transition-all duration-300"
                        aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://www.facebook.com/aconsultcontabilidade"
+                    <a href="{{ $config->social_facebook ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 text-white/70 hover:bg-marca hover:text-white transition-all duration-300"
                        aria-label="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.linkedin.com/company/aconsult-contabilidade/"
+                    <a href="{{ $config->social_linkedin ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 text-white/70 hover:bg-marca hover:text-white transition-all duration-300"
                        aria-label="LinkedIn">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
-                    <a href="#"
+                    <a href="{{ $config->social_youtube ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white/10 text-white/70 hover:bg-marca hover:text-white transition-all duration-300"
                        aria-label="YouTube">
@@ -90,14 +90,14 @@
                         <i class="fa-solid fa-location-dot text-marca mt-1 text-base"></i>
                         <div>
                             <p class="text-white/60 text-base leading-relaxed">
-                                Rua São Cristovão, 879<br>
-                                Cordeiros - Itajaí/SC<br>
-                                CEP 88310-161
+                                {{ $config->endereco_rua ?? 'Rua São Cristovão, 879' }}<br>
+                                {{ $config->endereco_bairro ?? 'Cordeiros' }} - {{ $config->endereco_cidade ?? 'Itajaí' }}/{{ $config->endereco_estado ?? 'SC' }}<br>
+                                CEP {{ $config->endereco_cep ?? '88310-161' }}
                             </p>
                         </div>
                     </li>
                     <li>
-                        <a href="https://www.google.com/maps/search/Rua+S%C3%A3o+Cristov%C3%A3o+879+Cordeiros+Itaja%C3%AD+SC"
+                        <a href="{{ $config->mapa_link_url ?? '#' }}"
                            target="_blank"
                            rel="noopener noreferrer"
                            class="inline-flex items-center gap-2 text-white text-sm font-bold mt-1 rounded-full px-4 py-2 transition-all duration-300"
@@ -110,14 +110,14 @@
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-phone text-marca text-base"></i>
-                        <a href="tel:+554721250281" class="text-white/60 hover:text-white transition-colors text-base">
-                            (47) 2125-0281
+                        <a href="tel:+{{ $config->whatsapp_numero ?? '554721250281' }}" class="text-white/60 hover:text-white transition-colors text-base">
+                            {{ $config->telefone ?? '(47) 2125-0281' }}
                         </a>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-envelope text-marca text-base"></i>
-                        <a href="mailto:contato@aconsultcontabilidade.com.br" class="text-white/60 hover:text-white transition-colors text-base break-all">
-                            contato@aconsultcontabilidade.com.br
+                        <a href="mailto:{{ $config->email ?? 'contato@aconsultcontabilidade.com.br' }}" class="text-white/60 hover:text-white transition-colors text-base break-all">
+                            {{ $config->email ?? 'contato@aconsultcontabilidade.com.br' }}
                         </a>
                     </li>
                 </ul>
@@ -128,7 +128,7 @@
                 <h4 class="text-sm font-bold uppercase tracking-wider text-marca mb-6">Aplicativo</h4>
                 <p class="text-white/60 text-base mb-4 leading-relaxed">Baixe o app e gerencie seus documentos com facilidade.</p>
                 <div class="flex flex-col gap-3">
-                    <a href="https://apps.apple.com/br/app/onvio-documentos/id1005121694"
+                    <a href="{{ $config->link_app_store ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group"
                        style="background-color: rgba(255,255,255,0.1);"
@@ -140,7 +140,7 @@
                             <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors">App Store</span>
                         </div>
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.thomsonreuters.cs.onvio.drive"
+                    <a href="{{ $config->link_google_play ?? '#' }}"
                        target="_blank" rel="noopener noreferrer"
                        class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 group"
                        style="background-color: rgba(255,255,255,0.1);"
@@ -155,7 +155,7 @@
                 </div>
 
                 {{-- Área do cliente --}}
-                <a href="https://onvio.com.br/#/"
+                <a href="{{ $config->link_area_cliente ?? '#' }}"
                    target="_blank" rel="noopener noreferrer"
                    class="mt-5 w-full flex items-center justify-center gap-2 text-white py-3 rounded-xl text-base font-bold transition-all duration-300 hover:shadow-lg hover:shadow-marca/20"
                    style="background-color: #e21850;"

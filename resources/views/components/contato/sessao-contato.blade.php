@@ -2,10 +2,19 @@
 {{-- Página de Contato - Sessão completa                              --}}
 {{-- ═══════════════════════════════════════════════════════════════════ --}}
 
+@php
+    $bp = $bannersPaginas['contato'] ?? null;
+    $mapaSrc = $config->mapa_embed_url ?? '';
+
+    if (preg_match('/src=["\']([^"\']+)["\']/i', $mapaSrc, $mapaMatch)) {
+        $mapaSrc = html_entity_decode($mapaMatch[1], ENT_QUOTES, 'UTF-8');
+    }
+@endphp
+
 {{-- Banner --}}
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/aconsult-5.jpg') }}"
+        <img src="{{ asset($bp->imagem ?? 'arquivos/imagens-empresa/aconsult-5.jpg') }}"
              alt="Equipe Aconsult Contabilidade"
              class="w-full h-full object-cover">
     </div>
@@ -26,13 +35,13 @@
         <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-8 h-[2px] rounded-full" style="background-color: #e21850;"></span>
-                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">Fale conosco</span>
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $bp->super_titulo ?? 'Fale conosco' }}</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                Vamos conversar sobre o <span style="color: #e21850;">seu negócio</span>
+                {!! $bp->titulo ?? 'Vamos conversar sobre o <span style="color: #e21850;">seu negócio</span>' !!}
             </h1>
             <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
-                Estamos prontos para atender você. Entre em contato e descubra como podemos transformar a gestão da sua empresa.
+                {{ $bp->descricao ?? 'Estamos prontos para atender você. Entre em contato e descubra como podemos transformar a gestão da sua empresa.' }}
             </p>
         </div>
     </div>
@@ -172,35 +181,35 @@
 
                         <div class="space-y-5">
                             {{-- Telefone --}}
-                            <a href="tel:+554721250281" class="flex items-center gap-4 group">
+                            <a href="tel:+{{ $config->whatsapp_numero ?? '554721250281' }}" class="flex items-center gap-4 group">
                                 <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 group-hover:bg-white/20 transition-all duration-300">
                                     <i class="fa-solid fa-phone text-lg" style="color: #e21850;"></i>
                                 </span>
                                 <div>
                                     <span class="text-xs text-white/40 font-normal block">Telefone</span>
-                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors">(47) 2125-0281</span>
+                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors">{{ $config->telefone ?? '(47) 2125-0281' }}</span>
                                 </div>
                             </a>
 
                             {{-- WhatsApp --}}
-                            <a href="https://wa.me/554721250281" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
+                            <a href="https://wa.me/{{ $config->whatsapp_numero ?? '554721250281' }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group">
                                 <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 group-hover:bg-white/20 transition-all duration-300">
                                     <i class="fa-brands fa-whatsapp text-lg" style="color: #25D366;"></i>
                                 </span>
                                 <div>
                                     <span class="text-xs text-white/40 font-normal block">WhatsApp</span>
-                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors">(47) 2125-0281</span>
+                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors">{{ $config->telefone ?? '(47) 2125-0281' }}</span>
                                 </div>
                             </a>
 
                             {{-- Email --}}
-                            <a href="mailto:contato@aconsultcontabilidade.com.br" class="flex items-center gap-4 group">
+                            <a href="mailto:{{ $config->email ?? 'contato@aconsultcontabilidade.com.br' }}" class="flex items-center gap-4 group">
                                 <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-white/10 group-hover:bg-white/20 transition-all duration-300">
                                     <i class="fa-solid fa-envelope text-lg" style="color: #e21850;"></i>
                                 </span>
                                 <div>
                                     <span class="text-xs text-white/40 font-normal block">E-mail</span>
-                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors break-all">contato@aconsultcontabilidade.com.br</span>
+                                    <span class="text-base font-bold text-white/90 group-hover:text-white transition-colors break-all">{{ $config->email ?? 'contato@aconsultcontabilidade.com.br' }}</span>
                                 </div>
                             </a>
                         </div>
@@ -219,7 +228,7 @@
                         </div>
                         <div class="flex items-center justify-between bg-white rounded-xl px-5 py-3.5 border border-neutral-100">
                             <span class="text-sm font-normal text-neutral-500">Seg — Sex</span>
-                            <span class="text-sm font-black text-neutral-900">8h às 12h e 13h30 às 18h</span>
+                            <span class="text-sm font-black text-neutral-900">{{ $config->horario_atendimento ?? '8h às 12h e 13h30 às 18h' }}</span>
                         </div>
                     </div>
 
@@ -227,7 +236,7 @@
                     <div class="bg-neutral-50 rounded-2xl p-8 animar-entrada atraso-3">
                         <h4 class="text-base font-black text-neutral-900 mb-5">Acompanhe nas redes</h4>
                         <div class="flex items-center gap-3">
-                            <a href="https://www.instagram.com/aconsultcontabilidade/"
+                            <a href="{{ $config->social_instagram ?? '#' }}"
                                target="_blank" rel="noopener noreferrer"
                                class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-neutral-100 text-neutral-500 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
                                onmouseenter="this.style.backgroundColor='#E4405F'; this.style.borderColor='#E4405F'"
@@ -235,7 +244,7 @@
                                aria-label="Instagram">
                                 <i class="fa-brands fa-instagram text-lg"></i>
                             </a>
-                            <a href="https://www.facebook.com/aconsultcontabilidade"
+                            <a href="{{ $config->social_facebook ?? '#' }}"
                                target="_blank" rel="noopener noreferrer"
                                class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-neutral-100 text-neutral-500 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
                                onmouseenter="this.style.backgroundColor='#1877F2'; this.style.borderColor='#1877F2'"
@@ -243,7 +252,7 @@
                                aria-label="Facebook">
                                 <i class="fa-brands fa-facebook-f text-lg"></i>
                             </a>
-                            <a href="https://www.linkedin.com/company/aconsult-contabilidade/"
+                            <a href="{{ $config->social_linkedin ?? '#' }}"
                                target="_blank" rel="noopener noreferrer"
                                class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-neutral-100 text-neutral-500 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
                                onmouseenter="this.style.backgroundColor='#0A66C2'; this.style.borderColor='#0A66C2'"
@@ -251,7 +260,7 @@
                                aria-label="LinkedIn">
                                 <i class="fa-brands fa-linkedin-in text-lg"></i>
                             </a>
-                            <a href="#"
+                            <a href="{{ $config->social_youtube ?? '#' }}"
                                target="_blank" rel="noopener noreferrer"
                                class="w-12 h-12 flex items-center justify-center rounded-xl bg-white border border-neutral-100 text-neutral-500 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
                                onmouseenter="this.style.backgroundColor='#FF0000'; this.style.borderColor='#FF0000'"
@@ -290,7 +299,7 @@
             <div class="lg:col-span-8 animar-entrada atraso-1">
                 <div class="rounded-2xl overflow-hidden shadow-lg shadow-neutral-900/5 h-[400px] md:h-[480px]">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.788!2d-48.6686!3d-26.9089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8cb2a5f8e7e3d%3A0x1!2sRua%20S%C3%A3o%20Crist%C3%B3v%C3%A3o%2C%20879%20-%20Cordeiros%2C%20Itaja%C3%AD%20-%20SC%2C%2088310-161!5e0!3m2!1spt-BR!2sbr!4v1"
+                        src="{{ $mapaSrc }}"
                         width="100%"
                         height="100%"
                         style="border:0;"
@@ -313,10 +322,10 @@
                         <div>
                             <h4 class="text-sm font-black text-neutral-900 uppercase tracking-wider mb-2">Endereço</h4>
                             <p class="text-base text-neutral-500 font-normal leading-relaxed">
-                                Rua São Cristovão, 879<br>
-                                Bairro Cordeiros<br>
-                                Itajaí — SC<br>
-                                CEP 88310-161
+                                {{ $config->endereco_rua ?? 'Rua São Cristovão, 879' }}<br>
+                                Bairro {{ $config->endereco_bairro ?? 'Cordeiros' }}<br>
+                                {{ $config->endereco_cidade ?? 'Itajaí' }} — {{ $config->endereco_estado ?? 'SC' }}<br>
+                                CEP {{ $config->endereco_cep ?? '88310-161' }}
                             </p>
                         </div>
                     </div>
@@ -349,7 +358,7 @@
                     </div>
 
                     {{-- Botão como chegar --}}
-                    <a href="https://www.google.com/maps/search/Rua+S%C3%A3o+Cristov%C3%A3o+879+Cordeiros+Itaja%C3%AD+SC"
+                    <a href="{{ $config->mapa_link_url ?? '#' }}"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="inline-flex items-center justify-center gap-2 text-white px-6 py-3.5 rounded-full font-bold text-base transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full"

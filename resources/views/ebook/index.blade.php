@@ -4,10 +4,50 @@
 @section('descricao', 'Baixe gratuitamente nossos ebooks exclusivos sobre contabilidade, tributação e gestão empresarial. Conteúdo preparado pelos especialistas da Aconsult.')
 
 @section('conteudo')
+    @php
+        $bp = $bannersPaginas['ebook'] ?? null;
+
+        $cardsEbookExibicao = ($ebookCards ?? collect());
+        if ($cardsEbookExibicao->isEmpty()) {
+            $cardsEbookExibicao = collect([
+                (object) [
+                    'id' => 0,
+                    'categoria' => 'Tributario',
+                    'titulo' => 'Reforma Tributaria 2026: Guia Completo',
+                    'descricao' => 'Tudo sobre IBS, CBS e como preparar sua empresa para as mudancas fiscais de 2026.',
+                    'capa_titulo' => 'Reforma Tributaria 2026',
+                    'capa_subtitulo' => 'Guia completo',
+                    'icone_classe' => 'fa-solid fa-scale-balanced',
+                    'arquivo_ebook' => null,
+                ],
+                (object) [
+                    'id' => 0,
+                    'categoria' => 'E-commerce',
+                    'titulo' => 'Contabilidade para E-commerce: Do Zero ao Lucro',
+                    'descricao' => 'Tributacao, regimes fiscais e estrategias para lojistas virtuais e marketplaces.',
+                    'capa_titulo' => 'Contabilidade para E-commerce',
+                    'capa_subtitulo' => 'Do zero ao lucro',
+                    'icone_classe' => 'fa-solid fa-cart-shopping',
+                    'arquivo_ebook' => null,
+                ],
+                (object) [
+                    'id' => 0,
+                    'categoria' => 'Comercio Exterior',
+                    'titulo' => 'RADAR Siscomex: Passo a Passo para Habilitar',
+                    'descricao' => 'Como habilitar sua empresa para importar e exportar com seguranca e agilidade.',
+                    'capa_titulo' => 'RADAR Siscomex',
+                    'capa_subtitulo' => 'Passo a passo',
+                    'icone_classe' => 'fa-solid fa-ship',
+                    'arquivo_ebook' => null,
+                ],
+            ]);
+        }
+    @endphp
+
     {{-- Banner --}}
     <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
         <div class="absolute inset-0">
-            <img src="{{ asset('arquivos/imagens-empresa/time-pequeno-feliz-trabalhando.jpg') }}"
+            <img src="{{ asset($bp->imagem ?? 'arquivos/imagens-empresa/time-pequeno-feliz-trabalhando.jpg') }}"
                  alt="Ebooks Aconsult Contabilidade"
                  class="w-full h-full object-cover">
         </div>
@@ -27,13 +67,13 @@
             <div class="max-w-2xl">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="w-8 h-[2px] rounded-full" style="background-color: #e21850;"></span>
-                    <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">Material gratuito</span>
+                    <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $bp->super_titulo ?? 'Material gratuito' }}</span>
                 </div>
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                    Conhecimento que <span style="color: #e21850;">transforma</span> negócios
+                    {!! $bp->titulo ?? 'Conhecimento que <span style="color: #e21850;">transforma</span> negócios' !!}
                 </h1>
                 <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
-                    Ebooks gratuitos preparados por especialistas para impulsionar sua empresa.
+                    {{ $bp->descricao ?? 'Ebooks gratuitos preparados por especialistas para impulsionar sua empresa.' }}
                 </p>
             </div>
         </div>
@@ -46,119 +86,44 @@
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                {{-- Ebook 1 --}}
-                <div class="group animar-entrada atraso-1">
-                    <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
-                        {{-- Capa --}}
-                        <div class="relative aspect-[4/3] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 flex items-center justify-center p-8 overflow-hidden">
-                            <div class="absolute top-0 left-0 right-0 h-1.5" style="background-color: #e21850;"></div>
-                            <div class="absolute top-6 right-6 w-16 h-16 rounded-full blur-2xl" style="background-color: rgba(226,24,80,0.2);"></div>
-                            <div class="relative z-10 text-center">
-                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background-color: rgba(226,24,80,0.15);">
-                                    <i class="fa-solid fa-scale-balanced text-lg" style="color: #e21850;"></i>
+                @foreach ($cardsEbookExibicao as $indice => $card)
+                    @php $atrasoClasse = 'atraso-' . (($indice % 6) + 1); @endphp
+                    <div class="group animar-entrada {{ $atrasoClasse }}">
+                        <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
+                            <div class="relative aspect-[4/3] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 flex items-center justify-center p-8 overflow-hidden">
+                                <div class="absolute top-0 left-0 right-0 h-1.5" style="background-color: #e21850;"></div>
+                                <div class="absolute top-6 right-6 w-16 h-16 rounded-full blur-2xl" style="background-color: rgba(226,24,80,0.2);"></div>
+                                <div class="relative z-10 text-center">
+                                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background-color: rgba(226,24,80,0.15);">
+                                        <i class="{{ $card->icone_classe ?: 'fa-solid fa-book-open' }} text-lg" style="color: #e21850;"></i>
+                                    </div>
+                                    <h3 class="text-lg font-black text-white leading-tight">{{ $card->capa_titulo }}</h3>
+                                    @if (!empty($card->capa_subtitulo))
+                                        <p class="text-xs text-white/40 font-normal mt-2">{{ $card->capa_subtitulo }}</p>
+                                    @endif
                                 </div>
-                                <h3 class="text-lg font-black text-white leading-tight">
-                                    Reforma Tributária 2026
-                                </h3>
-                                <p class="text-xs text-white/40 font-normal mt-2">Guia completo</p>
+                                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black text-white" style="background-color: #e21850;">GRATIS</div>
                             </div>
-                            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black text-white" style="background-color: #e21850;">GRÁTIS</div>
-                        </div>
 
-                        {{-- Info --}}
-                        <div class="p-6 flex flex-col flex-1">
-                            <span class="text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style="color: #e21850;">Tributário</span>
-                            <h4 class="text-lg font-black text-neutral-900 mb-2 leading-snug">Reforma Tributária 2026: Guia Completo</h4>
-                            <p class="text-sm text-neutral-500 font-normal leading-relaxed mb-6 flex-1">
-                                Tudo sobre IBS, CBS e como preparar sua empresa para as mudanças fiscais de 2026.
-                            </p>
-                            <button onclick="abrirModalEbook(this)"
-                                    data-titulo="Reforma Tributária 2026: Guia Completo"
-                                    class="w-full inline-flex items-center justify-center gap-2 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer"
-                                    style="background-color: #e21850;"
-                                    onmouseenter="this.style.backgroundColor='#9b153a'"
-                                    onmouseleave="this.style.backgroundColor='#e21850'">
-                                <i class="fa-solid fa-download text-xs"></i>
-                                Baixar ebook
-                            </button>
+                            <div class="p-6 flex flex-col flex-1">
+                                <span class="text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style="color: #e21850;">{{ $card->categoria }}</span>
+                                <h4 class="text-lg font-black text-neutral-900 mb-2 leading-snug">{{ $card->titulo }}</h4>
+                                <p class="text-sm text-neutral-500 font-normal leading-relaxed mb-6 flex-1">{{ $card->descricao }}</p>
+                                <button onclick="abrirModalEbook(this)"
+                                        @if (empty($card->arquivo_ebook) || empty($card->id)) disabled @endif
+                                        data-ebook-id="{{ $card->id ?? '' }}"
+                                        data-titulo="{{ $card->titulo }}"
+                                        class="w-full inline-flex items-center justify-center gap-2 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                                        style="background-color: #e21850;"
+                                        onmouseenter="this.style.backgroundColor='#9b153a'"
+                                        onmouseleave="this.style.backgroundColor='#e21850'">
+                                    <i class="fa-solid fa-download text-xs"></i>
+                                    {{ (!empty($card->arquivo_ebook) && !empty($card->id)) ? 'Baixar ebook' : 'Indisponivel no momento' }}
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                {{-- Ebook 2 --}}
-                <div class="group animar-entrada atraso-2">
-                    <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
-                        <div class="relative aspect-[4/3] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 flex items-center justify-center p-8 overflow-hidden">
-                            <div class="absolute top-0 left-0 right-0 h-1.5" style="background-color: #e21850;"></div>
-                            <div class="absolute bottom-6 left-6 w-16 h-16 rounded-full blur-2xl" style="background-color: rgba(226,24,80,0.2);"></div>
-                            <div class="relative z-10 text-center">
-                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background-color: rgba(226,24,80,0.15);">
-                                    <i class="fa-solid fa-cart-shopping text-lg" style="color: #e21850;"></i>
-                                </div>
-                                <h3 class="text-lg font-black text-white leading-tight">
-                                    Contabilidade para E-commerce
-                                </h3>
-                                <p class="text-xs text-white/40 font-normal mt-2">Do zero ao lucro</p>
-                            </div>
-                            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black text-white" style="background-color: #e21850;">GRÁTIS</div>
-                        </div>
-
-                        <div class="p-6 flex flex-col flex-1">
-                            <span class="text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style="color: #e21850;">E-commerce</span>
-                            <h4 class="text-lg font-black text-neutral-900 mb-2 leading-snug">Contabilidade para E-commerce: Do Zero ao Lucro</h4>
-                            <p class="text-sm text-neutral-500 font-normal leading-relaxed mb-6 flex-1">
-                                Tributação, regimes fiscais e estratégias para lojistas virtuais e marketplaces.
-                            </p>
-                            <button onclick="abrirModalEbook(this)"
-                                    data-titulo="Contabilidade para E-commerce: Do Zero ao Lucro"
-                                    class="w-full inline-flex items-center justify-center gap-2 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer"
-                                    style="background-color: #e21850;"
-                                    onmouseenter="this.style.backgroundColor='#9b153a'"
-                                    onmouseleave="this.style.backgroundColor='#e21850'">
-                                <i class="fa-solid fa-download text-xs"></i>
-                                Baixar ebook
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Ebook 3 --}}
-                <div class="group animar-entrada atraso-3">
-                    <div class="bg-neutral-50 rounded-2xl overflow-hidden border border-neutral-100 hover:shadow-xl hover:shadow-neutral-900/5 hover:-translate-y-1 transition-all duration-500 h-full flex flex-col">
-                        <div class="relative aspect-[4/3] bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 flex items-center justify-center p-8 overflow-hidden">
-                            <div class="absolute top-0 left-0 right-0 h-1.5" style="background-color: #e21850;"></div>
-                            <div class="absolute top-8 left-8 w-16 h-16 rounded-full blur-2xl" style="background-color: rgba(226,24,80,0.2);"></div>
-                            <div class="relative z-10 text-center">
-                                <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" style="background-color: rgba(226,24,80,0.15);">
-                                    <i class="fa-solid fa-ship text-lg" style="color: #e21850;"></i>
-                                </div>
-                                <h3 class="text-lg font-black text-white leading-tight">
-                                    RADAR Siscomex
-                                </h3>
-                                <p class="text-xs text-white/40 font-normal mt-2">Passo a passo</p>
-                            </div>
-                            <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black text-white" style="background-color: #e21850;">GRÁTIS</div>
-                        </div>
-
-                        <div class="p-6 flex flex-col flex-1">
-                            <span class="text-[10px] uppercase tracking-[0.2em] font-bold mb-2" style="color: #e21850;">Comércio Exterior</span>
-                            <h4 class="text-lg font-black text-neutral-900 mb-2 leading-snug">RADAR Siscomex: Passo a Passo para Habilitar</h4>
-                            <p class="text-sm text-neutral-500 font-normal leading-relaxed mb-6 flex-1">
-                                Como habilitar sua empresa para importar e exportar com segurança e agilidade.
-                            </p>
-                            <button onclick="abrirModalEbook(this)"
-                                    data-titulo="RADAR Siscomex: Passo a Passo para Habilitar"
-                                    class="w-full inline-flex items-center justify-center gap-2 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer"
-                                    style="background-color: #e21850;"
-                                    onmouseenter="this.style.backgroundColor='#9b153a'"
-                                    onmouseleave="this.style.backgroundColor='#e21850'">
-                                <i class="fa-solid fa-download text-xs"></i>
-                                Baixar ebook
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
@@ -186,6 +151,7 @@
 
             <form id="formulario-ebook" novalidate>
                 @csrf
+                <input type="hidden" id="ebook-id-hidden" name="ebook_card_id" value="">
                 <input type="hidden" id="ebook-titulo-hidden" name="ebook_titulo" value="">
 
                 <div style="margin-bottom: 12px;">
@@ -247,6 +213,7 @@
         const btnIcone = document.getElementById('btn-ebook-icone');
         const feedback = document.getElementById('feedback-ebook');
         const inputWhatsapp = document.getElementById('ebook-whatsapp');
+        const urlRegistro = "{{ route('ebook.registrar-download') }}";
 
         /* ─── Máscara WhatsApp ─── */
         if (inputWhatsapp) {
@@ -267,8 +234,14 @@
 
         /* ─── Submit com feedback ─── */
         if (formulario) {
-            formulario.addEventListener('submit', (e) => {
+            formulario.addEventListener('submit', async (e) => {
                 e.preventDefault();
+
+                const ebookId = document.getElementById('ebook-id-hidden').value;
+                if (!ebookId) {
+                    exibirFeedback('erro', 'Este ebook nao esta disponivel para download.');
+                    return;
+                }
 
                 btnEbook.disabled = true;
                 btnEbook.style.opacity = '0.7';
@@ -277,26 +250,72 @@
                 btnIcone.className = 'fa-solid fa-spinner fa-spin text-sm';
                 feedback.classList.add('hidden');
 
-                /* Simula envio (substituir por fetch real futuramente) */
-                setTimeout(() => {
-                    btnTexto.textContent = 'Ebook enviado!';
+                try {
+                    const formData = new FormData(formulario);
+
+                    const resposta = await fetch(urlRegistro, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': formData.get('_token'),
+                            'Accept': 'application/json',
+                        },
+                        body: formData,
+                    });
+
+                    const resultado = await resposta.json().catch(() => ({}));
+
+                    if (!resposta.ok || !resultado.ok || !resultado.download_url) {
+                        let mensagemErro = resultado.mensagem || 'Nao foi possivel finalizar o download.';
+
+                        if (resultado.erros) {
+                            const primeiraChave = Object.keys(resultado.erros)[0];
+                            if (primeiraChave && Array.isArray(resultado.erros[primeiraChave]) && resultado.erros[primeiraChave][0]) {
+                                mensagemErro = resultado.erros[primeiraChave][0];
+                            }
+                        }
+
+                        throw new Error(mensagemErro);
+                    }
+
+                    btnTexto.textContent = 'Download iniciado';
                     btnIcone.className = 'fa-solid fa-check text-sm';
                     btnEbook.style.backgroundColor = '#16a34a';
                     btnEbook.style.opacity = '1';
 
-                    feedback.classList.remove('hidden');
-                    feedback.style.backgroundColor = 'rgba(22, 163, 74, 0.1)';
-                    feedback.style.color = '#16a34a';
-                    feedback.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Pronto! Verifique seu e-mail para baixar o ebook.';
+                    exibirFeedback('sucesso', '<i class="fa-solid fa-circle-check mr-2"></i>Dados salvos! O download sera iniciado agora.');
+
+                    const linkDownload = document.createElement('a');
+                    linkDownload.href = resultado.download_url;
+                    linkDownload.style.display = 'none';
+                    document.body.appendChild(linkDownload);
+                    linkDownload.click();
+                    linkDownload.remove();
 
                     formulario.reset();
 
                     setTimeout(() => {
                         fecharModalEbook();
                         resetarBtnEbook();
-                    }, 3000);
-                }, 2000);
+                    }, 1800);
+                } catch (erro) {
+                    exibirFeedback('erro', '<i class="fa-solid fa-circle-xmark mr-2"></i>' + (erro.message || 'Erro ao enviar seus dados.'));
+                    resetarBtnEbook();
+                }
             });
+        }
+
+        function exibirFeedback(tipo, mensagem) {
+            feedback.classList.remove('hidden');
+            feedback.innerHTML = mensagem;
+
+            if (tipo === 'sucesso') {
+                feedback.style.backgroundColor = 'rgba(22, 163, 74, 0.1)';
+                feedback.style.color = '#16a34a';
+                return;
+            }
+
+            feedback.style.backgroundColor = 'rgba(220, 38, 38, 0.1)';
+            feedback.style.color = '#dc2626';
         }
 
         function resetarBtnEbook() {
@@ -314,8 +333,10 @@
     function abrirModalEbook(btn) {
         const modal = document.getElementById('modal-ebook');
         const card = document.getElementById('modal-ebook-card');
+        const ebookId = btn.dataset.ebookId || '';
         const titulo = btn.dataset.titulo || 'Baixar ebook';
 
+        document.getElementById('ebook-id-hidden').value = ebookId;
         document.getElementById('modal-ebook-titulo').textContent = titulo;
         document.getElementById('ebook-titulo-hidden').value = titulo;
 

@@ -4,15 +4,15 @@
 @section('descricao', 'Aconsult Contabilidade: escritório de contabilidade em Itajaí-SC. Contabilidade e inteligência tributária para impulsionar negócios por todo o Brasil.')
 
 @section('conteudo')
-    <x-home.banner-principal />
-    <x-home.parceiros />
-    <x-home.servicos />
+    <x-home.banner-principal :banners="$banners ?? collect()" />
+    <x-home.parceiros :logos="$logosParceiros ?? collect()" />
+    <x-home.servicos :categorias="$categoriasSolucoes ?? collect()" />
     <x-home.numeros />
     <x-home.aplicativo />
-    <x-home.blog-preview />
+    <x-home.blog-preview :noticias="$noticiasPreview ?? collect()" />
     <x-home.cta-contato />
     <x-home.reels />
-    <x-home.depoimentos />
+    <x-home.depoimentos :avaliacoes="$avaliacoes ?? collect()" />
     <x-home.cta-whatsapp />
-    <x-home.faq />
+    <x-home.faq :faqItens="$faqItens ?? collect()" />
 @endsection

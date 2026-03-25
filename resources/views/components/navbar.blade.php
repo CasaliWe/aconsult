@@ -74,14 +74,14 @@
 
             {{-- Ações Desktop --}}
             <div class="hidden lg:flex items-center gap-4">
-                <a href="https://www.instagram.com/aconsultcontabilidade/"
+                <a href="{{ $config->social_instagram ?? '#' }}"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-neutral-400 hover:text-marca transition-colors duration-300"
                    aria-label="Instagram Aconsult">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
-                <a href="https://onvio.com.br/#/"
+                <a href="{{ $config->link_area_cliente ?? '#' }}"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:shadow-lg hover:shadow-marca/25"
@@ -147,13 +147,13 @@
                 </a>
 
                 <div class="flex items-center gap-3 pt-3 border-t border-neutral-100 mt-3 px-4">
-                    <a href="https://www.instagram.com/aconsultcontabilidade/"
+                    <a href="{{ $config->social_instagram ?? '#' }}"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 text-neutral-500 hover:bg-marca/10 hover:text-marca transition-all duration-300">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a href="https://onvio.com.br/#/"
+                    <a href="{{ $config->link_area_cliente ?? '#' }}"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="flex-1 text-white text-center py-2.5 rounded-full text-sm font-bold transition-all duration-300"

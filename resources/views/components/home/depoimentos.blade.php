@@ -1,3 +1,34 @@
+@props([
+    'avaliacoes' => collect(),
+])
+
+@php
+    $avaliacoesExibicao = $avaliacoes;
+
+    if ($avaliacoesExibicao->isEmpty()) {
+        $avaliacoesExibicao = collect([
+            (object) [
+                'nome' => 'Maria Silva',
+                'cargo_empresa' => 'Diretora - Empresa XYZ Importacoes',
+                'texto' => 'A Aconsult transformou completamente a gestao tributaria da nossa empresa. Profissionais competentes, atenciosos e sempre disponiveis.',
+                'nota' => 5,
+            ],
+            (object) [
+                'nome' => 'Roberto Oliveira',
+                'cargo_empresa' => 'CEO - Tech Solutions Ltda',
+                'texto' => 'Desde que comecamos a trabalhar com a Aconsult, conseguimos reduzir significativamente nossos custos tributarios. Uma equipe que realmente entende do negocio.',
+                'nota' => 5,
+            ],
+            (object) [
+                'nome' => 'Ana Costa',
+                'cargo_empresa' => 'Socia - Global Trade SC',
+                'texto' => 'O suporte para habilitacao RADAR foi impecavel. A Aconsult nos orientou em cada etapa e conseguimos a aprovacao rapidamente.',
+                'nota' => 5,
+            ],
+        ]);
+    }
+@endphp
+
 {{-- Seção Depoimentos - Slider automático --}}
 <section class="py-20 md:py-28 bg-white relative overflow-hidden" id="secao-depoimentos">
     {{-- Decoração --}}
@@ -18,102 +49,28 @@
             {{-- Cards container --}}
             <div class="overflow-hidden">
                 <div class="flex transition-transform duration-700 ease-in-out" id="depoimentos-track">
-
-                    {{-- Depoimento 1 --}}
-                    <div class="w-full shrink-0 px-4">
-                        <div class="bg-neutral-50 rounded-3xl p-8 md:p-12 relative">
-                            {{-- Aspas decorativas --}}
-                            <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
-                            <div class="relative z-10">
-                                {{-- Estrelas --}}
-                                <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                </div>
-                                {{-- Texto --}}
-                                <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
-                                    "A Aconsult transformou completamente a gestão tributária da nossa empresa. Profissionais competentes, atenciosos e sempre disponíveis. Recomendo de olhos fechados!"
-                                </p>
-                                {{-- Info do cliente --}}
-                                <div>
-                                    <span class="text-base font-black text-neutral-900 block">Maria Silva</span>
-                                    <span class="text-sm text-neutral-400 font-normal">Diretora - Empresa XYZ Importações</span>
+                    @foreach ($avaliacoesExibicao as $avaliacao)
+                        <div class="w-full shrink-0 px-4">
+                            <div class="bg-neutral-50 rounded-3xl p-8 md:p-12 relative">
+                                <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
+                                <div class="relative z-10">
+                                    <div class="flex items-center gap-1 mb-6 text-yellow-400">
+                                        @php $nota = max(1, min(5, (int) ($avaliacao->nota ?? 5))); @endphp
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="fa-solid fa-star text-base {{ $i <= $nota ? '' : 'opacity-30' }}"></i>
+                                        @endfor
+                                    </div>
+                                    <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
+                                        "{{ $avaliacao->texto }}"
+                                    </p>
+                                    <div>
+                                        <span class="text-base font-black text-neutral-900 block">{{ $avaliacao->nome }}</span>
+                                        <span class="text-sm text-neutral-400 font-normal">{{ $avaliacao->cargo_empresa ?: 'Cliente Aconsult' }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    {{-- Depoimento 2 --}}
-                    <div class="w-full shrink-0 px-4">
-                        <div class="bg-neutral-50 rounded-3xl p-8 md:p-12 relative">
-                            <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
-                            <div class="relative z-10">
-                                <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                </div>
-                                <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
-                                    "Desde que começamos a trabalhar com a Aconsult, conseguimos reduzir significativamente nossos custos tributários. Uma equipe que realmente entende do negócio."
-                                </p>
-                                <div>
-                                    <span class="text-base font-black text-neutral-900 block">Roberto Oliveira</span>
-                                    <span class="text-sm text-neutral-400 font-normal">CEO - Tech Solutions Ltda</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Depoimento 3 --}}
-                    <div class="w-full shrink-0 px-4">
-                        <div class="bg-neutral-50 rounded-3xl p-8 md:p-12 relative">
-                            <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
-                            <div class="relative z-10">
-                                <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                </div>
-                                <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
-                                    "O suporte para habilitação RADAR foi impecável. A Aconsult nos orientou em cada etapa e conseguimos a aprovação rapidamente. Excelente trabalho!"
-                                </p>
-                                <div>
-                                    <span class="text-base font-black text-neutral-900 block">Ana Costa</span>
-                                    <span class="text-sm text-neutral-400 font-normal">Sócia - Global Trade SC</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Depoimento 4 --}}
-                    <div class="w-full shrink-0 px-4">
-                        <div class="bg-neutral-50 rounded-3xl p-8 md:p-12 relative">
-                            <div class="absolute top-6 right-8 text-marca/10 text-[80px] font-black leading-none select-none">"</div>
-                            <div class="relative z-10">
-                                <div class="flex items-center gap-1 mb-6 text-yellow-400">
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                    <i class="fa-solid fa-star text-base"></i>
-                                </div>
-                                <p class="text-neutral-700 text-lg md:text-xl font-normal leading-relaxed mb-8 italic">
-                                    "Profissionais dedicados e sempre atualizados. A Aconsult é parceira estratégica do nosso crescimento. Confiamos plenamente no trabalho deles."
-                                </p>
-                                <div>
-                                    <span class="text-base font-black text-neutral-900 block">Pedro Santos</span>
-                                    <span class="text-sm text-neutral-400 font-normal">Diretor Financeiro - Navegantes Log</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -144,8 +101,15 @@
         const btnPrev = document.getElementById('depoimento-prev');
         const btnNext = document.getElementById('depoimento-next');
         const dotsContainer = document.getElementById('depoimentos-dots');
+        if (!track || !btnPrev || !btnNext || !dotsContainer) {
+            return;
+        }
+
         const slides = track.children;
         const total = slides.length;
+        if (total === 0) {
+            return;
+        }
         let atual = 0;
         let intervalo = null;
 

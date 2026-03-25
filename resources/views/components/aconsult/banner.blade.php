@@ -1,7 +1,11 @@
+@php
+    $bp = $bannersPaginas['aconsult'] ?? null;
+@endphp
+
 {{-- Banner - Página A Consult --}}
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/toda-equipe.jpg') }}"
+        <img src="{{ asset($bp->imagem ?? 'arquivos/imagens-empresa/toda-equipe.jpg') }}"
              alt="Equipe Aconsult Contabilidade"
              class="w-full h-full object-cover">
     </div>
@@ -22,13 +26,13 @@
         <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-8 h-[2px] rounded-full" style="background-color: #e21850;"></span>
-                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">Sobre nós</span>
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $bp->super_titulo ?? 'Sobre nós' }}</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                Conheça a <span style="color: #e21850;">Aconsult</span>
+                {!! $bp->titulo ?? 'Conheça a <span style="color: #e21850;">Aconsult</span>' !!}
             </h1>
             <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
-                Um escritório de contabilidade comprometido em impulsionar o crescimento e o sucesso dos negócios por todo o Brasil.
+                {{ $bp->descricao ?? 'Um escritório de contabilidade comprometido em impulsionar o crescimento e o sucesso dos negócios por todo o Brasil.' }}
             </p>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Noticia;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Throwable;
@@ -12,7 +13,12 @@ class NewsController extends Controller
     public function index(): View
     {
         try {
-            return view('news.index');
+            $noticias = Noticia::where('ativo', true)
+                ->orderByDesc('data_publicacao')
+                ->orderByDesc('id')
+                ->get();
+
+            return view('news.index', compact('noticias'));
         } catch (Throwable $erro) {
             Log::error('Erro ao carregar a pagina de noticias.', [
                 'mensagem' => $erro->getMessage(),
@@ -26,7 +32,16 @@ class NewsController extends Controller
     public function mostrar(string $id): View
     {
         try {
-            return view('news.mostrar', compact('id'));
+            $noticia = Noticia::where('ativo', true)->findOrFail((int) $id);
+
+            $outrasNoticias = Noticia::where('ativo', true)
+                ->where('id', '!=', $noticia->id)
+                ->orderByDesc('data_publicacao')
+                ->orderByDesc('id')
+                ->limit(3)
+                ->get();
+
+            return view('news.mostrar', compact('noticia', 'outrasNoticias'));
         } catch (Throwable $erro) {
             Log::error('Erro ao carregar a noticia.', [
                 'mensagem' => $erro->getMessage(),

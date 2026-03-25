@@ -2,10 +2,14 @@
 {{-- Página Trabalhe Conosco - Sessão completa                         --}}
 {{-- ═══════════════════════════════════════════════════════════════════ --}}
 
+@php
+    $bp = $bannersPaginas['trabalhe-conosco'] ?? null;
+@endphp
+
 {{-- Banner --}}
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ asset('arquivos/imagens-empresa/toda-equipe.jpg') }}"
+        <img src="{{ asset($bp->imagem ?? 'arquivos/imagens-empresa/toda-equipe.jpg') }}"
              alt="Equipe Aconsult Contabilidade"
              class="w-full h-full object-cover">
     </div>
@@ -26,13 +30,13 @@
         <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-8 h-0.5 rounded-full" style="background-color: #e21850;"></span>
-                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">Carreiras</span>
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $bp->super_titulo ?? 'Carreiras' }}</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                Faça parte do time da <span style="color: #e21850;">Aconsult</span>
+                {!! $bp->titulo ?? 'Faça parte do time da <span style="color: #e21850;">Aconsult</span>' !!}
             </h1>
             <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
-                Envie seu currículo e candidate-se para futuras oportunidades em uma equipe focada em excelência contábil e atendimento próximo.
+                {{ $bp->descricao ?? 'Envie seu currículo e candidate-se para futuras oportunidades em uma equipe focada em excelência contábil e atendimento próximo.' }}
             </p>
         </div>
     </div>

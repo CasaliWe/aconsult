@@ -26,7 +26,7 @@
         .login-banner-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(160deg, rgba(155,21,58,0.92) 0%, rgba(226,24,80,0.78) 100%);
+            background: linear-gradient(160deg, rgba(15,23,42,0.82) 0%, rgba(155,21,58,0.55) 100%);
         }
 
         .login-banner-content {
@@ -86,6 +86,26 @@
 
         .login-btn:hover { background-color: #c91545; }
         .login-btn:active { transform: scale(0.98); }
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .login-btn:disabled:hover { background-color: #e21850; }
+
+        .login-spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
         @media (min-width: 1024px) {
             .login-banner { display: block; }
@@ -114,10 +134,10 @@
                 <div style="max-width: 420px;">
                     <p style="color: rgba(255,255,255,0.6); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;">Área Administrativa</p>
                     <h1 style="color: #fff; font-size: 40px; font-weight: 900; line-height: 1.15; margin: 0 0 20px 0;">
-                        Gerencie seu<br>site com<br>facilidade.
+                        Painel<br>Administrativo
                     </h1>
                     <p style="color: rgba(255,255,255,0.7); font-size: 16px; line-height: 1.6; margin: 0;">
-                        Atualize conteúdos, banners, depoimentos e informações do site da Aconsult em poucos cliques.
+                        Gerencie os conteúdos do site de forma rápida e prática.
                     </p>
                 </div>
 
@@ -186,8 +206,16 @@
                         <label for="lembrar" style="margin-left: 8px; font-size: 13px; color: #64748b; cursor: pointer;">Lembrar-me</label>
                     </div>
 
-                    <button type="submit" class="login-btn">Entrar</button>
+                    <button type="submit" class="login-btn" id="btnLogin">Entrar</button>
                 </form>
+
+                <script>
+                    document.getElementById('btnLogin').closest('form').addEventListener('submit', function() {
+                        var btn = document.getElementById('btnLogin');
+                        btn.disabled = true;
+                        btn.innerHTML = '<span class="login-spinner"></span> Entrando...';
+                    });
+                </script>
 
                 <!-- Rodapé mobile -->
                 <p class="login-mobile-footer" style="text-align: center; color: #94a3b8; font-size: 11px; margin-top: 48px;">
