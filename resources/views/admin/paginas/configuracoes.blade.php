@@ -170,6 +170,26 @@
             </div>
         </div>
 
+        {{-- Configuracoes de E-mail --}}
+        <div class="admin-card">
+            <div class="admin-section-header">
+                <div class="admin-section-icon">
+                    <svg width="18" height="18" fill="none" stroke="#e21850" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V8a2 2 0 00-2-2H3a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                    <p class="admin-card-title">Configurações de E-mail</p>
+                    <p class="admin-card-desc">E-mail do administrador que recebe os formulários de Contato e Trabalhe Conosco</p>
+                </div>
+            </div>
+            <div class="admin-grid admin-grid-2">
+                <div>
+                    <label class="admin-label">E-mail administrador do site</label>
+                    <input type="email" name="email_admin" value="{{ old('email_admin', $config->email_admin ?? '') }}" class="admin-input" placeholder="admin@seudominio.com.br">
+                    <p style="margin: 6px 0 0; font-size: 12px; color: #64748b;">Se vazio, o sistema usa o e-mail principal de contato.</p>
+                </div>
+            </div>
+        </div>
+
         {{-- Endereço --}}
         <div class="admin-card">
             <div class="admin-section-header">

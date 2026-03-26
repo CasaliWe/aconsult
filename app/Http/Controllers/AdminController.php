@@ -12,6 +12,10 @@ use App\Models\LogoParceiro;
 use App\Models\Noticia;
 use App\Models\NossoNumero;
 use App\Models\Avaliacao;
+use App\Models\PaginaAconsultCard;
+use App\Models\PaginaAconsultSobre;
+use App\Models\PaginaSolucaoConteudo;
+use App\Models\Reel;
 use App\Models\SolucaoCard;
 use App\Models\SolucaoCategoria;
 use Illuminate\Http\JsonResponse;
@@ -40,6 +44,7 @@ class AdminController extends Controller
             $dados = $request->validate([
                 'telefone'            => 'required|string|max:30',
                 'email'               => 'required|email|max:100',
+                'email_admin'         => 'nullable|email|max:180',
                 'whatsapp_numero'     => 'required|string|max:20',
                 'whatsapp_mensagem'   => 'nullable|string|max:255',
                 'horario_atendimento' => 'nullable|string|max:100',
@@ -63,6 +68,7 @@ class AdminController extends Controller
             $dados['whatsapp_numero'] = $this->normalizarWhatsappNumero($dados['whatsapp_numero']);
             $dados['endereco_cep'] = $this->normalizarCep($dados['endereco_cep'] ?? null);
             $dados['mapa_embed_url'] = $this->extrairSrcMapa($dados['mapa_embed_url'] ?? null);
+            $dados['email_admin'] = !empty($dados['email_admin']) ? trim((string) $dados['email_admin']) : null;
 
             $config = Configuracao::firstOrCreate(['id' => 1]);
             $config->update($dados);
@@ -530,7 +536,105 @@ class AdminController extends Controller
 
     public function reels(): View
     {
-        return view('admin.paginas.reels');
+        $reels = Reel::orderBy('ordem')->orderByDesc('id')->get();
+        return view('admin.paginas.reels', compact('reels'));
+    }
+
+    public function reelSalvar(Request $request): RedirectResponse
+    {
+        try {
+            $dirCapas = $this->caminhoUploadPublic('reels/capas');
+            $dirVideos = $this->caminhoUploadPublic('reels/videos');
+
+            $dados = $request->validate([
+                'id' => 'nullable|exists:reels,id',
+                'capa' => ($request->id ? 'nullable' : 'required') . '|image|mimes:jpg,jpeg,png,webp|max:10240',
+                'video' => ($request->id ? 'nullable' : 'required') . '|file|mimetypes:video/*',
+                'video_largura' => 'nullable|integer|min:1|max:20000',
+                'video_altura' => 'nullable|integer|min:1|max:20000',
+                'ordem' => 'required|integer|min:0|max:9999',
+                'ativo' => 'nullable',
+            ]);
+
+            $dados['ativo'] = $request->has('ativo');
+
+            if ($request->hasFile('video')) {
+                $largura = (int) ($request->input('video_largura') ?? 0);
+                $altura = (int) ($request->input('video_altura') ?? 0);
+
+                if ($largura <= 0 || $altura <= 0) {
+                    return redirect()->back()->withInput()->with('erro', 'Nao foi possivel validar o formato do video. Envie novamente um video vertical.');
+                }
+
+                if ($largura >= $altura) {
+                    return redirect()->back()->withInput()->with('erro', 'Video horizontal nao e permitido. Envie um video no formato vertical (altura maior que largura).');
+                }
+
+                $arquivo = $request->file('video');
+                $nome = 'reel-video-' . time() . '-' . mt_rand(100, 999) . '.' . $arquivo->getClientOriginalExtension();
+                $arquivo->move($dirVideos, $nome);
+                $dados['video'] = 'uploads/reels/videos/' . $nome;
+            } else {
+                unset($dados['video']);
+            }
+
+            if ($request->hasFile('capa')) {
+                $arquivo = $request->file('capa');
+                $nome = 'reel-capa-' . time() . '-' . mt_rand(100, 999) . '.' . $arquivo->getClientOriginalExtension();
+                $arquivo->move($dirCapas, $nome);
+                $dados['capa'] = 'uploads/reels/capas/' . $nome;
+            } else {
+                unset($dados['capa']);
+            }
+
+            unset($dados['video_largura'], $dados['video_altura']);
+
+            if ($request->id) {
+                $reel = Reel::findOrFail($request->id);
+
+                if (isset($dados['capa']) && !empty($reel->capa) && str_starts_with($reel->capa, 'uploads/') && file_exists(public_path($reel->capa))) {
+                    @unlink(public_path($reel->capa));
+                }
+
+                if (isset($dados['video']) && !empty($reel->video) && str_starts_with($reel->video, 'uploads/') && file_exists(public_path($reel->video))) {
+                    @unlink(public_path($reel->video));
+                }
+
+                $reel->update($dados);
+                $msg = 'Reel atualizado com sucesso!';
+            } else {
+                unset($dados['id']);
+                Reel::create($dados);
+                $msg = 'Reel criado com sucesso!';
+            }
+
+            return redirect()->route('admin.reels')->with('sucesso', $msg);
+        } catch (Throwable $erro) {
+            Log::error('Erro ao salvar reel.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->withInput()->with('erro', 'Erro ao salvar o reel.');
+        }
+    }
+
+    public function reelExcluir(int $id): RedirectResponse
+    {
+        try {
+            $reel = Reel::findOrFail($id);
+
+            if (!empty($reel->capa) && str_starts_with($reel->capa, 'uploads/') && file_exists(public_path($reel->capa))) {
+                @unlink(public_path($reel->capa));
+            }
+
+            if (!empty($reel->video) && str_starts_with($reel->video, 'uploads/') && file_exists(public_path($reel->video))) {
+                @unlink(public_path($reel->video));
+            }
+
+            $reel->delete();
+
+            return redirect()->route('admin.reels')->with('sucesso', 'Reel excluido com sucesso!');
+        } catch (Throwable $erro) {
+            Log::error('Erro ao excluir reel.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->with('erro', 'Erro ao excluir o reel.');
+        }
     }
 
     public function avaliacoes(): View
@@ -830,12 +934,143 @@ class AdminController extends Controller
 
     public function paginaAconsult(): View
     {
-        return view('admin.paginas.pagina-aconsult');
+        $this->garantirDadosPadraoPaginaAconsult();
+
+        $sobre = PaginaAconsultSobre::first();
+        $cards = PaginaAconsultCard::orderBy('tipo')->orderBy('ordem')->orderByDesc('id')->get()->groupBy('tipo');
+
+        $valores = $cards->get('valor', collect());
+        $diferenciais = $cards->get('diferencial', collect());
+        $missoes = $cards->get('missao', collect());
+        $iconesAconsult = $this->iconesAconsultDisponiveis();
+
+        return view('admin.paginas.pagina-aconsult', compact('sobre', 'valores', 'diferenciais', 'missoes', 'iconesAconsult'));
+    }
+
+    public function paginaAconsultSobreSalvar(Request $request): RedirectResponse
+    {
+        try {
+            $dirSobre = $this->caminhoUploadPublic('pagina-aconsult/sobre');
+
+            $dados = $request->validate([
+                'imagem' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
+                'estados_atendidos' => 'required|integer|min:0|max:999',
+                'texto' => 'required|string|max:12000',
+            ]);
+
+            $sobre = PaginaAconsultSobre::firstOrCreate(['id' => 1], [
+                'imagem' => 'arquivos/imagens-empresa/aconsult.jpg',
+                'estados_atendidos' => 10,
+                'texto' => '',
+            ]);
+
+            if ($request->hasFile('imagem')) {
+                $arquivo = $request->file('imagem');
+                $nome = 'sobre-' . time() . '-' . mt_rand(100, 999) . '.' . $arquivo->getClientOriginalExtension();
+                $arquivo->move($dirSobre, $nome);
+                $novaImagem = 'uploads/pagina-aconsult/sobre/' . $nome;
+
+                if (!empty($sobre->imagem) && str_starts_with($sobre->imagem, 'uploads/') && file_exists(public_path($sobre->imagem))) {
+                    @unlink(public_path($sobre->imagem));
+                }
+
+                $dados['imagem'] = $novaImagem;
+            }
+
+            $dados['texto'] = trim($dados['texto']);
+
+            $sobre->update($dados);
+
+            return redirect()->route('admin.pagina-aconsult')->with('sucesso', 'Secao Quem Somos atualizada com sucesso!');
+        } catch (Throwable $erro) {
+            Log::error('Erro ao salvar secao Quem Somos da pagina Aconsult.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->withInput()->with('erro', 'Erro ao salvar a secao Quem Somos.');
+        }
+    }
+
+    public function paginaAconsultCardSalvar(Request $request): RedirectResponse
+    {
+        try {
+            $tiposPermitidos = ['valor', 'diferencial', 'missao'];
+
+            $dados = $request->validate([
+                'id' => 'nullable|exists:pagina_aconsult_cards,id',
+                'tipo' => 'required|string|in:' . implode(',', $tiposPermitidos),
+                'titulo' => 'required|string|max:160',
+                'texto' => 'required|string|max:1500',
+                'icone_classe' => 'required|string|in:' . implode(',', array_keys($this->iconesAconsultDisponiveis())),
+                'ordem' => 'required|integer|min:0|max:9999',
+                'ativo' => 'nullable',
+            ]);
+
+            $dados['titulo'] = trim($dados['titulo']);
+            $dados['texto'] = trim($dados['texto']);
+            $dados['ativo'] = $request->has('ativo');
+
+            if ($request->id) {
+                $card = PaginaAconsultCard::findOrFail($request->id);
+                $card->update($dados);
+                $msg = 'Card atualizado com sucesso!';
+            } else {
+                unset($dados['id']);
+                PaginaAconsultCard::create($dados);
+                $msg = 'Card criado com sucesso!';
+            }
+
+            return redirect()->route('admin.pagina-aconsult')->with('sucesso', $msg);
+        } catch (Throwable $erro) {
+            Log::error('Erro ao salvar card da pagina Aconsult.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->withInput()->with('erro', 'Erro ao salvar o card da pagina Aconsult.');
+        }
+    }
+
+    public function paginaAconsultCardExcluir(int $id): RedirectResponse
+    {
+        try {
+            PaginaAconsultCard::findOrFail($id)->delete();
+            return redirect()->route('admin.pagina-aconsult')->with('sucesso', 'Card excluido com sucesso!');
+        } catch (Throwable $erro) {
+            Log::error('Erro ao excluir card da pagina Aconsult.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->with('erro', 'Erro ao excluir o card da pagina Aconsult.');
+        }
     }
 
     public function paginaSolucoes(): View
     {
-        return view('admin.paginas.pagina-solucoes');
+        $this->garantirDadosPadraoPaginaSolucoes();
+
+        $tiposSolucoes = [
+            'empresas' => 'Solucoes para Empresas',
+            'ecommerce' => 'Solucoes para E-commerce',
+            'comex' => 'Solucoes para Comex',
+        ];
+
+        $conteudosSolucoes = PaginaSolucaoConteudo::orderBy('tipo')->get()->keyBy('tipo');
+
+        return view('admin.paginas.pagina-solucoes', compact('tiposSolucoes', 'conteudosSolucoes'));
+    }
+
+    public function paginaSolucoesSalvar(Request $request): RedirectResponse
+    {
+        try {
+            $dados = $request->validate([
+                'tipo' => 'required|string|in:empresas,ecommerce,comex',
+                'conteudo_html' => 'required|string|max:65000',
+            ]);
+
+            $conteudo = trim((string) $dados['conteudo_html']);
+            $conteudo = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $conteudo) ?? '';
+
+            PaginaSolucaoConteudo::updateOrCreate(
+                ['tipo' => $dados['tipo']],
+                ['conteudo_html' => $conteudo]
+            );
+
+            return redirect()->route('admin.pagina-solucoes')->with('sucesso', 'Conteudo principal da solucao atualizado com sucesso!');
+        } catch (Throwable $erro) {
+            Log::error('Erro ao salvar conteudo principal da pagina Solucoes.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->withInput()->with('erro', 'Erro ao salvar o conteudo principal da solucao.');
+        }
     }
 
     private function normalizarTelefone(string $valor): string
@@ -887,5 +1122,84 @@ class AdminController extends Controller
         }
 
         return html_entity_decode($conteudo, ENT_QUOTES, 'UTF-8');
+    }
+
+    private function iconesAconsultDisponiveis(): array
+    {
+        return [
+            'fa-solid fa-heart' => 'Coracao',
+            'fa-solid fa-gem' => 'Gema',
+            'fa-solid fa-rocket' => 'Foguete',
+            'fa-solid fa-shield-halved' => 'Escudo',
+            'fa-solid fa-lightbulb' => 'Lampada',
+            'fa-solid fa-chart-line' => 'Grafico',
+            'fa-solid fa-mobile-screen-button' => 'Celular',
+            'fa-solid fa-user-tie' => 'Profissional',
+            'fa-solid fa-heart-pulse' => 'Coracao pulso',
+            'fa-solid fa-award' => 'Premio',
+            'fa-solid fa-face-smile-beam' => 'Sorriso',
+            'fa-solid fa-layer-group' => 'Camadas',
+            'fa-solid fa-users-gear' => 'Equipe',
+            'fa-solid fa-globe-americas' => 'Globo Americas',
+            'fa-solid fa-handshake-angle' => 'Acordo',
+            'fa-solid fa-face-smile' => 'Satisfacao',
+            'fa-solid fa-bolt' => 'Raio',
+        ];
+    }
+
+    private function garantirDadosPadraoPaginaAconsult(): void
+    {
+        PaginaAconsultSobre::firstOrCreate(['id' => 1], [
+            'imagem' => 'arquivos/imagens-empresa/aconsult.jpg',
+            'estados_atendidos' => 10,
+            'texto' => "Somos um escritorio de contabilidade comprometido em oferecer solucoes contabeis e tributarias para impulsionar o crescimento e o sucesso dos negocios dos nossos clientes.\n\nEspecialistas em comercio exterior, simplificamos os processos para atender as necessidades especificas de cada cliente, proporcionando uma compreensao clara de suas obrigacoes e oportunidades.\n\nPara isso, buscamos permanentemente o desenvolvimento de competencias e o aprimoramento dos processos. Primamos pela satisfacao dos clientes, atraves do atendimento consultivo, da eficiencia, da celeridade nos servicos e da economicidade dos servicos prestados.\n\nNossa equipe multidisciplinar atua como parceira dos nossos clientes, orientando e agindo ativamente para otimizar as rotinas contabeis dos seus negocios.",
+        ]);
+
+        if (PaginaAconsultCard::count() > 0) {
+            return;
+        }
+
+        $cards = [
+            ['tipo' => 'valor', 'titulo' => 'Empatia', 'texto' => 'Respeitamos e valorizamos cada pessoa envolvida na nossa jornada: clientes, parceiros, colaboradores e fornecedores.', 'icone_classe' => 'fa-solid fa-heart', 'ordem' => 1],
+            ['tipo' => 'valor', 'titulo' => 'Excelencia', 'texto' => 'Fazemos sempre o nosso melhor, buscando eficiencia e qualidade em cada entrega.', 'icone_classe' => 'fa-solid fa-gem', 'ordem' => 2],
+            ['tipo' => 'valor', 'titulo' => 'Proatividade', 'texto' => 'Nao esperamos problemas, antecipamos solucoes.', 'icone_classe' => 'fa-solid fa-rocket', 'ordem' => 3],
+            ['tipo' => 'valor', 'titulo' => 'Responsabilidade', 'texto' => 'Compromisso e compromisso. Fazemos o que prometemos, sem excecoes.', 'icone_classe' => 'fa-solid fa-shield-halved', 'ordem' => 4],
+            ['tipo' => 'valor', 'titulo' => 'Inovacao', 'texto' => 'Evoluimos constantemente para oferecer servicos contabeis mais estrategicos e inteligentes.', 'icone_classe' => 'fa-solid fa-lightbulb', 'ordem' => 5],
+            ['tipo' => 'valor', 'titulo' => 'Prosperidade', 'texto' => 'Crescemos juntos, impulsionando negocios e pessoas para o sucesso.', 'icone_classe' => 'fa-solid fa-chart-line', 'ordem' => 6],
+
+            ['tipo' => 'diferencial', 'titulo' => 'Aplicativo Exclusivo', 'texto' => 'Gerencie documentos, acompanhe processos e tenha tudo na palma da mao com nosso app proprio.', 'icone_classe' => 'fa-solid fa-mobile-screen-button', 'ordem' => 1],
+            ['tipo' => 'diferencial', 'titulo' => 'Equipe Especializada', 'texto' => 'Profissionais com formacao solida e experiencia em contabilidade, tributacao e comercio exterior.', 'icone_classe' => 'fa-solid fa-user-tie', 'ordem' => 2],
+            ['tipo' => 'diferencial', 'titulo' => 'Suporte Humanizado', 'texto' => 'Atendimento consultivo e proximo, com pessoas reais que entendem a realidade do seu negocio.', 'icone_classe' => 'fa-solid fa-heart-pulse', 'ordem' => 3],
+            ['tipo' => 'diferencial', 'titulo' => 'Experiencia Comprovada', 'texto' => 'Anos de atuacao no mercado com resultados reais e cases de sucesso em diversos segmentos.', 'icone_classe' => 'fa-solid fa-award', 'ordem' => 4],
+            ['tipo' => 'diferencial', 'titulo' => 'Ampla Carteira de Clientes Satisfeitos', 'texto' => 'Centenas de empresas confiam na Aconsult para cuidar da sua contabilidade e gestao tributaria.', 'icone_classe' => 'fa-solid fa-face-smile-beam', 'ordem' => 5],
+            ['tipo' => 'diferencial', 'titulo' => 'Diversidade de Atendimento', 'texto' => 'Solucoes para empresas, e-commerce e comercio exterior, tudo em um so escritorio.', 'icone_classe' => 'fa-solid fa-layer-group', 'ordem' => 6],
+            ['tipo' => 'diferencial', 'titulo' => 'Equipe Qualificada e Comprometida', 'texto' => 'Time multidisciplinar que atua como parceiro estrategico para otimizar suas rotinas contabeis.', 'icone_classe' => 'fa-solid fa-users-gear', 'ordem' => 7],
+            ['tipo' => 'diferencial', 'titulo' => 'Conformidade Legal Garantida', 'texto' => 'Seguranca total nas obrigacoes fiscais e tributarias, mantendo sua empresa sempre em dia.', 'icone_classe' => 'fa-solid fa-shield-halved', 'ordem' => 8],
+            ['tipo' => 'diferencial', 'titulo' => 'Atendimento a Nivel Brasil', 'texto' => 'Presente em mais de 10 estados, com suporte remoto completo sem perder a proximidade.', 'icone_classe' => 'fa-solid fa-globe-americas', 'ordem' => 9],
+
+            ['tipo' => 'missao', 'titulo' => 'Confianca', 'texto' => 'Construimos relacoes solidas e transparentes com cada cliente.', 'icone_classe' => 'fa-solid fa-handshake-angle', 'ordem' => 1],
+            ['tipo' => 'missao', 'titulo' => 'Satisfacao', 'texto' => 'Primamos por resultados que superam expectativas.', 'icone_classe' => 'fa-solid fa-face-smile', 'ordem' => 2],
+            ['tipo' => 'missao', 'titulo' => 'Eficiencia', 'texto' => 'Entregas ageis com maxima qualidade e precisao.', 'icone_classe' => 'fa-solid fa-bolt', 'ordem' => 3],
+        ];
+
+        foreach ($cards as $card) {
+            PaginaAconsultCard::create(array_merge($card, ['ativo' => true]));
+        }
+    }
+
+    private function garantirDadosPadraoPaginaSolucoes(): void
+    {
+        $defaults = [
+            'empresas' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Empresas</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para empresas.</p>',
+            'ecommerce' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para E-commerce</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para e-commerce.</p>',
+            'comex' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Comex</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para comex.</p>',
+        ];
+
+        foreach ($defaults as $tipo => $conteudoHtml) {
+            PaginaSolucaoConteudo::firstOrCreate(
+                ['tipo' => $tipo],
+                ['conteudo_html' => $conteudoHtml]
+            );
+        }
     }
 }

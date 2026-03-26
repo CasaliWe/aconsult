@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaginaSolucaoConteudo;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -38,8 +39,9 @@ class SolucoesController extends Controller
 
             $solucao = self::SOLUCOES[$tipo];
             $solucao['slug'] = $tipo;
+            $conteudoPrincipal = PaginaSolucaoConteudo::where('tipo', $tipo)->value('conteudo_html');
 
-            return view('solucoes.index', compact('solucao'));
+            return view('solucoes.index', compact('solucao', 'conteudoPrincipal'));
         } catch (Throwable $erro) {
             Log::error('Erro ao carregar a pagina Solucoes.', [
                 'tipo' => $tipo,

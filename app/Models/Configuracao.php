@@ -11,6 +11,7 @@ class Configuracao extends Model
     protected $fillable = [
         'telefone',
         'email',
+        'email_admin',
         'whatsapp_numero',
         'whatsapp_mensagem',
         'horario_atendimento',

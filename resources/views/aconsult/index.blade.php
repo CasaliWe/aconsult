@@ -5,10 +5,10 @@
 
 @section('conteudo')
     <x-aconsult.banner />
-    <x-aconsult.sobre />
-    <x-aconsult.valores />
-    <x-aconsult.diferenciais />
-    <x-aconsult.missao />
+    <x-aconsult.sobre :sobre="$sobreAconsult" />
+    <x-aconsult.valores :cards="$valoresAconsult ?? collect()" />
+    <x-aconsult.diferenciais :cards="$diferenciaisAconsult ?? collect()" />
+    <x-aconsult.missao :cards="$missaoAconsult ?? collect()" />
     <x-aconsult.depoimentos />
     <x-aconsult.cta />
     <x-aconsult.faq />

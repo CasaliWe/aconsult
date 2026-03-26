@@ -63,12 +63,23 @@
                     </p>
                 </div>
 
-                <form id="formulario-trabalhe-conosco" class="space-y-6" novalidate>
+                @if (session('sucesso_trabalhe'))
+                    <div style="margin-bottom: 16px; padding: 12px 14px; border-radius: 10px; background: rgba(22, 163, 74, 0.12); color: #166534; font-size: 13px; font-weight: 700;">
+                        <i class="fa-solid fa-circle-check mr-2"></i>{{ session('sucesso_trabalhe') }}
+                    </div>
+                @endif
+                @if (session('erro_trabalhe') || $errors->any())
+                    <div style="margin-bottom: 16px; padding: 12px 14px; border-radius: 10px; background: rgba(220, 38, 38, 0.12); color: #dc2626; font-size: 13px; font-weight: 700;">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i>{{ session('erro_trabalhe') ?? $errors->first() }}
+                    </div>
+                @endif
+
+                <form id="formulario-trabalhe-conosco" class="space-y-6" method="POST" action="{{ route('trabalhe-conosco.enviar') }}" enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="nome" class="block text-sm font-bold text-neutral-900 mb-2">Nome completo <span style="color: #e21850;">*</span></label>
-                            <input type="text" id="nome" name="nome" required
+                            <input type="text" id="nome" name="nome" required value="{{ old('nome') }}"
                                    placeholder="Seu nome completo"
                                    class="w-full px-4 py-3.5 rounded-xl border border-neutral-200 bg-neutral-50 text-base font-normal text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
                                    onfocus="this.style.borderColor='#e21850'; this.style.boxShadow='0 0 0 2px rgba(226,24,80,0.15)'"
@@ -77,7 +88,7 @@
 
                         <div>
                             <label for="email" class="block text-sm font-bold text-neutral-900 mb-2">E-mail <span style="color: #e21850;">*</span></label>
-                            <input type="email" id="email" name="email" required
+                            <input type="email" id="email" name="email" required value="{{ old('email') }}"
                                    placeholder="seu@email.com"
                                    class="w-full px-4 py-3.5 rounded-xl border border-neutral-200 bg-neutral-50 text-base font-normal text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
                                    onfocus="this.style.borderColor='#e21850'; this.style.boxShadow='0 0 0 2px rgba(226,24,80,0.15)'"
@@ -88,7 +99,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="whatsapp" class="block text-sm font-bold text-neutral-900 mb-2">WhatsApp <span style="color: #e21850;">*</span></label>
-                            <input type="tel" id="whatsapp" name="whatsapp" required
+                            <input type="tel" id="whatsapp" name="whatsapp" required value="{{ old('whatsapp') }}"
                                    placeholder="(00) 00000-0000"
                                    maxlength="15"
                                    class="w-full px-4 py-3.5 rounded-xl border border-neutral-200 bg-neutral-50 text-base font-normal text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
@@ -104,14 +115,14 @@
                                     onfocus="this.style.borderColor='#e21850'; this.style.boxShadow='0 0 0 2px rgba(226,24,80,0.15)'"
                                     onblur="this.style.borderColor=''; this.style.boxShadow=''">
                                 <option value="" disabled selected>Selecione uma área</option>
-                                <option value="contabil">Contábil</option>
-                                <option value="fiscal">Fiscal</option>
-                                <option value="dp">Departamento Pessoal</option>
-                                <option value="comercial">Comercial</option>
-                                <option value="administrativo">Administrativo</option>
-                                <option value="ti">Tecnologia</option>
-                                <option value="estagio">Estágio</option>
-                                <option value="banco-talentos">Banco de Talentos</option>
+                                <option value="contabil" {{ old('vaga') === 'contabil' ? 'selected' : '' }}>Contábil</option>
+                                <option value="fiscal" {{ old('vaga') === 'fiscal' ? 'selected' : '' }}>Fiscal</option>
+                                <option value="dp" {{ old('vaga') === 'dp' ? 'selected' : '' }}>Departamento Pessoal</option>
+                                <option value="comercial" {{ old('vaga') === 'comercial' ? 'selected' : '' }}>Comercial</option>
+                                <option value="administrativo" {{ old('vaga') === 'administrativo' ? 'selected' : '' }}>Administrativo</option>
+                                <option value="ti" {{ old('vaga') === 'ti' ? 'selected' : '' }}>Tecnologia</option>
+                                <option value="estagio" {{ old('vaga') === 'estagio' ? 'selected' : '' }}>Estágio</option>
+                                <option value="banco-talentos" {{ old('vaga') === 'banco-talentos' ? 'selected' : '' }}>Banco de Talentos</option>
                             </select>
                         </div>
                     </div>
@@ -119,7 +130,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="linkedin" class="block text-sm font-bold text-neutral-900 mb-2">LinkedIn</label>
-                            <input type="url" id="linkedin" name="linkedin"
+                            <input type="url" id="linkedin" name="linkedin" value="{{ old('linkedin') }}"
                                    placeholder="https://linkedin.com/in/seu-perfil"
                                    class="w-full px-4 py-3.5 rounded-xl border border-neutral-200 bg-neutral-50 text-base font-normal text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
                                    onfocus="this.style.borderColor='#e21850'; this.style.boxShadow='0 0 0 2px rgba(226,24,80,0.15)'"
@@ -143,7 +154,7 @@
                                   placeholder="Conte brevemente sobre sua experiência, principais habilidades e objetivos profissionais."
                                   class="w-full px-4 py-3.5 rounded-xl border border-neutral-200 bg-neutral-50 text-base font-normal text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 resize-none"
                                   onfocus="this.style.borderColor='#e21850'; this.style.boxShadow='0 0 0 2px rgba(226,24,80,0.15)'"
-                                  onblur="this.style.borderColor=''; this.style.boxShadow=''"></textarea>
+                                  onblur="this.style.borderColor=''; this.style.boxShadow=''">{{ old('apresentacao') }}</textarea>
                     </div>
 
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">

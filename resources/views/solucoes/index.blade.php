@@ -5,7 +5,7 @@
 
 @section('conteudo')
     <x-solucoes.banner :solucao="$solucao" />
-    <x-solucoes.conteudo :solucao="$solucao" />
+    <x-solucoes.conteudo :solucao="$solucao" :conteudoPrincipal="$conteudoPrincipal ?? ''" />
     <x-solucoes.cta />
     <x-solucoes.faq :solucao="$solucao" />
 @endsection

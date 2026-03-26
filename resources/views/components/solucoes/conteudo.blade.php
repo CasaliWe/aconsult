@@ -1,5 +1,5 @@
 {{-- Conteúdo principal - Página Soluções (dinâmico por tipo) --}}
-@props(['solucao'])
+@props(['solucao', 'conteudoPrincipal' => ''])
 
 @php
     $titulos = [
@@ -32,26 +32,35 @@
             </div>
         </div>
 
-        {{-- Conteúdo em desenvolvimento --}}
+        @php
+            $conteudoPrincipalLimpo = trim(strip_tags((string) $conteudoPrincipal));
+        @endphp
+
         <div class="animar-entrada atraso-1">
             <div class="bg-neutral-50 rounded-3xl border border-neutral-100 p-10 md:p-16 text-center">
-                <div class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-marca/10 mb-6">
-                    <i class="fa-solid fa-code text-3xl text-marca"></i>
-                </div>
-                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-5">
-                    <i class="fa-solid fa-hammer text-[10px]"></i>
-                    Em desenvolvimento
-                </span>
-                <h3 class="text-2xl md:text-3xl font-black text-neutral-900 mb-4">
-                    {{ $titulos[$solucao['slug']] }}
-                </h3>
-                <p class="text-neutral-500 text-base font-normal max-w-lg mx-auto leading-relaxed mb-6">
-                    Esta seção está sendo construída com todo cuidado para apresentar os detalhes completos das nossas soluções. Em breve, você encontrará aqui todas as informações sobre <strong class="text-neutral-700">{{ strtolower($titulos[$solucao['slug']]) }}</strong>.
-                </p>
-                <div class="flex items-center justify-center gap-2 text-marca text-sm font-bold">
-                    <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
-                    Conteúdo em breve
-                </div>
+                @if ($conteudoPrincipalLimpo !== '')
+                    <div class="text-left text-neutral-700" style="line-height: 1.7;">
+                        {!! $conteudoPrincipal !!}
+                    </div>
+                @else
+                    <div class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-marca/10 mb-6">
+                        <i class="fa-solid fa-code text-3xl text-marca"></i>
+                    </div>
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold uppercase tracking-wider mb-5">
+                        <i class="fa-solid fa-hammer text-[10px]"></i>
+                        Em desenvolvimento
+                    </span>
+                    <h3 class="text-2xl md:text-3xl font-black text-neutral-900 mb-4">
+                        {{ $titulos[$solucao['slug']] }}
+                    </h3>
+                    <p class="text-neutral-500 text-base font-normal max-w-lg mx-auto leading-relaxed mb-6">
+                        Esta seção está sendo construída com todo cuidado para apresentar os detalhes completos das nossas soluções. Em breve, você encontrará aqui todas as informações sobre <strong class="text-neutral-700">{{ strtolower($titulos[$solucao['slug']]) }}</strong>.
+                    </p>
+                    <div class="flex items-center justify-center gap-2 text-marca text-sm font-bold">
+                        <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
+                        Conteúdo em breve
+                    </div>
+                @endif
             </div>
         </div>
 

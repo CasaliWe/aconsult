@@ -34,44 +34,21 @@
             });
         }
 
-        /* ─── Submit com feedback ─── */
+        /* ─── Submit com feedback visual de processamento ─── */
         if (formulario) {
             formulario.addEventListener('submit', (e) => {
-                e.preventDefault();
+                if (!formulario.checkValidity()) {
+                    return;
+                }
 
-                /* Estado loading */
                 btnEnviar.disabled = true;
                 btnEnviar.style.opacity = '0.7';
                 btnEnviar.style.cursor = 'not-allowed';
                 btnTexto.textContent = 'Enviando...';
                 btnIcone.className = 'fa-solid fa-spinner fa-spin text-sm';
-                feedback.classList.add('hidden');
-
-                /* Simula envio (substituir por fetch real futuramente) */
-                setTimeout(() => {
-                    /* Estado sucesso */
-                    btnTexto.textContent = 'Mensagem enviada!';
-                    btnIcone.className = 'fa-solid fa-check text-sm';
-                    btnEnviar.style.backgroundColor = '#16a34a';
-                    btnEnviar.style.opacity = '1';
-
-                    feedback.classList.remove('hidden');
-                    feedback.style.backgroundColor = 'rgba(22, 163, 74, 0.1)';
-                    feedback.style.color = '#16a34a';
-                    feedback.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Contato recebido com sucesso! Nossa equipe entrará em contato em breve.';
-
-                    formulario.reset();
-
-                    /* Restaura botão após 5s */
-                    setTimeout(() => {
-                        btnEnviar.disabled = false;
-                        btnEnviar.style.opacity = '1';
-                        btnEnviar.style.cursor = 'pointer';
-                        btnEnviar.style.backgroundColor = '#e21850';
-                        btnTexto.textContent = 'Enviar mensagem';
-                        btnIcone.className = 'fa-solid fa-paper-plane text-sm';
-                    }, 5000);
-                }, 2000);
+                if (feedback) {
+                    feedback.classList.add('hidden');
+                }
             });
         }
     });

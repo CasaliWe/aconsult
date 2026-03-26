@@ -51,12 +51,12 @@
 
         if (formulario) {
             formulario.addEventListener('submit', (e) => {
-                e.preventDefault();
                 feedback.classList.add('hidden');
 
                 const arquivo = inputCurriculo?.files?.[0];
 
                 if (!arquivo) {
+                    e.preventDefault();
                     exibirFeedback('Anexe seu currículo em PDF para continuar.');
                     return;
                 }
@@ -66,12 +66,18 @@
                 const tipoValido = arquivo.type === 'application/pdf' || nomeArquivo.endsWith('.pdf');
 
                 if (!tipoValido) {
+                    e.preventDefault();
                     exibirFeedback('Formato inválido. Envie apenas arquivo PDF.');
                     return;
                 }
 
                 if (arquivo.size > limiteBytes) {
+                    e.preventDefault();
                     exibirFeedback('Arquivo maior que 5MB. Reduza o tamanho do currículo e tente novamente.');
+                    return;
+                }
+
+                if (!formulario.checkValidity()) {
                     return;
                 }
 
@@ -80,25 +86,6 @@
                 btnEnviar.style.cursor = 'not-allowed';
                 btnTexto.textContent = 'Enviando...';
                 btnIcone.className = 'fa-solid fa-spinner fa-spin text-sm';
-
-                setTimeout(() => {
-                    btnTexto.textContent = 'Currículo enviado!';
-                    btnIcone.className = 'fa-solid fa-check text-sm';
-                    btnEnviar.style.backgroundColor = '#16a34a';
-                    btnEnviar.style.opacity = '1';
-
-                    exibirFeedback('Currículo recebido com sucesso! Nosso time de recrutamento avaliará seu perfil.', 'sucesso');
-                    formulario.reset();
-
-                    setTimeout(() => {
-                        btnEnviar.disabled = false;
-                        btnEnviar.style.opacity = '1';
-                        btnEnviar.style.cursor = 'pointer';
-                        btnEnviar.style.backgroundColor = '#e21850';
-                        btnTexto.textContent = 'Enviar candidatura';
-                        btnIcone.className = 'fa-solid fa-paper-plane text-sm';
-                    }, 5000);
-                }, 2000);
             });
         }
     });

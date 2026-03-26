@@ -1,4 +1,14 @@
 {{-- Seção Sobre - Página A Consult --}}
+@php
+    $imagemSobre = !empty($sobre?->imagem) ? $sobre->imagem : 'arquivos/imagens-empresa/aconsult.jpg';
+    $estadosAtendidos = (int) ($sobre?->estados_atendidos ?? 10);
+    $textoSobre = trim((string) ($sobre?->texto ?? ''));
+    $paragrafosSobre = collect(preg_split('/\r\n|\r|\n/', $textoSobre))
+        ->map(fn($item) => trim((string) $item))
+        ->filter(fn($item) => $item !== '')
+        ->values();
+@endphp
+
 <section class="py-20 md:py-28 bg-white relative overflow-hidden">
     {{-- Decoração --}}
     <div class="absolute top-0 right-0 w-72 h-72 bg-marca/3 rounded-full blur-3xl translate-x-1/2"></div>
@@ -10,9 +20,9 @@
             {{-- Imagem --}}
             <div class="relative animar-entrada">
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-neutral-900/10">
-                    <img src="{{ asset('arquivos/imagens-empresa/aconsult.jpg') }}"
+                    <img src="{{ asset($imagemSobre) }}"
                          alt="Equipe Aconsult Contabilidade"
-                         class="w-full h-full object-cover aspect-[4/3]">
+                        class="w-full h-full object-cover" style="aspect-ratio: 4 / 3;">
                     {{-- Borda decorativa --}}
                     <div class="absolute bottom-0 left-0 right-0 h-1.5" style="background-color: #e21850;"></div>
                 </div>
@@ -22,7 +32,7 @@
                         <i class="fa-solid fa-handshake text-xl" style="color: #e21850;"></i>
                     </div>
                     <div>
-                        <span class="text-2xl font-black text-neutral-900 block leading-none">10+</span>
+                        <span class="text-2xl font-black text-neutral-900 block leading-none">{{ $estadosAtendidos }}+</span>
                         <span class="text-xs text-neutral-400 font-normal">Estados atendidos</span>
                     </div>
                 </div>
@@ -35,18 +45,11 @@
                     A <span style="color: #e21850;">Aconsult</span>
                 </h2>
                 <div class="flex flex-col gap-5 text-neutral-600 text-base font-normal leading-relaxed">
-                    <p>
-                        Somos um escritório de contabilidade comprometido em oferecer soluções contábeis e tributárias para impulsionar o crescimento e o sucesso dos negócios dos nossos clientes.
-                    </p>
-                    <p>
-                        Especialistas em comércio exterior, simplificamos os processos para atender às necessidades específicas de cada cliente, proporcionando uma compreensão clara de suas obrigações e oportunidades.
-                    </p>
-                    <p>
-                        Para isso, buscamos permanentemente o desenvolvimento de competências e o aprimoramento dos processos. Primamos pela satisfação dos clientes, através do atendimento consultivo, da eficiência, da celeridade nos serviços e da economicidade dos serviços prestados.
-                    </p>
-                    <p>
-                        Nossa equipe multidisciplinar atua como parceira dos nossos clientes, orientando e agindo ativamente para otimizar as rotinas contábeis dos seus negócios.
-                    </p>
+                    @forelse ($paragrafosSobre as $paragrafo)
+                        <p>{{ $paragrafo }}</p>
+                    @empty
+                        <p>Conteudo da secao Quem Somos ainda nao foi configurado.</p>
+                    @endforelse
                 </div>
 
                 {{-- Botão --}}

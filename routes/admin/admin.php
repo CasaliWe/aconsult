@@ -47,6 +47,8 @@ Route::prefix('admin')->group(function () {
         Route::delete('/news/{id}', [AdminController::class, 'newsExcluir'])->name('admin.news.excluir');
         Route::post('/news/upload-imagem', [AdminController::class, 'newsUploadImagem'])->name('admin.news.upload-imagem');
         Route::get('/reels', [AdminController::class, 'reels'])->name('admin.reels');
+        Route::post('/reels', [AdminController::class, 'reelSalvar'])->name('admin.reels.salvar');
+        Route::delete('/reels/{id}', [AdminController::class, 'reelExcluir'])->name('admin.reels.excluir');
         Route::get('/avaliacoes', [AdminController::class, 'avaliacoes'])->name('admin.avaliacoes');
         Route::post('/avaliacoes', [AdminController::class, 'avaliacaoSalvar'])->name('admin.avaliacoes.salvar');
         Route::delete('/avaliacoes/{id}', [AdminController::class, 'avaliacaoExcluir'])->name('admin.avaliacoes.excluir');
@@ -58,6 +60,10 @@ Route::prefix('admin')->group(function () {
         Route::post('/ebook/cards', [AdminController::class, 'ebookCardSalvar'])->name('admin.ebook.cards.salvar');
         Route::delete('/ebook/cards/{id}', [AdminController::class, 'ebookCardExcluir'])->name('admin.ebook.cards.excluir');
         Route::get('/pagina-aconsult', [AdminController::class, 'paginaAconsult'])->name('admin.pagina-aconsult');
+        Route::post('/pagina-aconsult/sobre', [AdminController::class, 'paginaAconsultSobreSalvar'])->name('admin.pagina-aconsult.sobre.salvar');
+        Route::post('/pagina-aconsult/cards', [AdminController::class, 'paginaAconsultCardSalvar'])->name('admin.pagina-aconsult.cards.salvar');
+        Route::delete('/pagina-aconsult/cards/{id}', [AdminController::class, 'paginaAconsultCardExcluir'])->name('admin.pagina-aconsult.cards.excluir');
         Route::get('/pagina-solucoes', [AdminController::class, 'paginaSolucoes'])->name('admin.pagina-solucoes');
+        Route::post('/pagina-solucoes', [AdminController::class, 'paginaSolucoesSalvar'])->name('admin.pagina-solucoes.salvar');
     });
 });

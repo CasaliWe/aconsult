@@ -11,7 +11,7 @@
     <x-home.aplicativo />
     <x-home.blog-preview :noticias="$noticiasPreview ?? collect()" />
     <x-home.cta-contato />
-    <x-home.reels />
+    <x-home.reels :reels="$reels ?? collect()" :instagramMarcaId="$instagramMarcaId ?? 'aconsultcontabilidade'" />
     <x-home.depoimentos :avaliacoes="$avaliacoes ?? collect()" />
     <x-home.cta-whatsapp />
     <x-home.faq :faqItens="$faqItens ?? collect()" />
