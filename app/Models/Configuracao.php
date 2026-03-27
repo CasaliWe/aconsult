@@ -29,6 +29,7 @@ class Configuracao extends Model
         'link_area_cliente',
         'link_app_store',
         'link_google_play',
+        'link_google_form_proposta',
         'email_notificacao_ebook',
     ];
 }

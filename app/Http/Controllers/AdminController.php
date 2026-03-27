@@ -62,6 +62,7 @@ class AdminController extends Controller
                 'link_area_cliente'   => 'nullable|string|max:255',
                 'link_app_store'      => 'nullable|string|max:255',
                 'link_google_play'    => 'nullable|string|max:255',
+                'link_google_form_proposta' => 'nullable|string|max:500',
             ]);
 
             $dados['telefone'] = $this->normalizarTelefone($dados['telefone']);
@@ -87,7 +88,10 @@ class AdminController extends Controller
     public function banners(): View
     {
         $banners = BannerHome::orderBy('ordem')->get();
-        $bannersPaginas = BannerPagina::orderBy('nome_exibicao')->get();
+        $bannersPaginas = BannerPagina::query()
+            ->whereNotIn('pagina', ['solucoes-empresas', 'solucoes-ecommerce', 'solucoes-comex'])
+            ->orderBy('nome_exibicao')
+            ->get();
         return view('admin.paginas.banners', compact('banners', 'bannersPaginas'));
     }
 
@@ -1037,39 +1041,106 @@ class AdminController extends Controller
 
     public function paginaSolucoes(): View
     {
-        $this->garantirDadosPadraoPaginaSolucoes();
+        $solucoesPagina = PaginaSolucaoConteudo::query()
+            ->orderBy('ordem')
+            ->orderBy('id')
+            ->get();
 
-        $tiposSolucoes = [
-            'empresas' => 'Solucoes para Empresas',
-            'ecommerce' => 'Solucoes para E-commerce',
-            'comex' => 'Solucoes para Comex',
-        ];
+        $icones = $this->iconesDisponiveis();
 
-        $conteudosSolucoes = PaginaSolucaoConteudo::orderBy('tipo')->get()->keyBy('tipo');
-
-        return view('admin.paginas.pagina-solucoes', compact('tiposSolucoes', 'conteudosSolucoes'));
+        return view('admin.paginas.pagina-solucoes', compact('solucoesPagina', 'icones'));
     }
 
     public function paginaSolucoesSalvar(Request $request): RedirectResponse
     {
         try {
             $dados = $request->validate([
-                'tipo' => 'required|string|in:empresas,ecommerce,comex',
+                'id' => 'nullable|exists:pagina_solucoes_conteudos,id',
+                'tipo' => 'required|string|max:30|regex:/^[a-z0-9-]+$/',
+                'nome_menu' => 'required|string|max:120',
+                'mini_descricao' => 'required|string|max:255',
+                'icone_classe' => 'required|string|in:' . implode(',', array_keys($this->iconesDisponiveis())),
+                'breadcrumb' => 'nullable|string|max:120',
+                'banner_super_titulo' => 'nullable|string|max:120',
+                'banner_titulo' => 'nullable|string|max:500',
+                'banner_descricao' => 'nullable|string|max:500',
+                'banner_imagem' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:10240',
+                'ordem' => 'required|integer|min:0|max:9999',
+                'ativo' => 'nullable',
                 'conteudo_html' => 'required|string|max:65000',
             ]);
+
+            $tipo = trim((string) $dados['tipo']);
+            $querySlug = PaginaSolucaoConteudo::where('tipo', $tipo);
+            if (!empty($dados['id'])) {
+                $querySlug->where('id', '!=', (int) $dados['id']);
+            }
+            if ($querySlug->exists()) {
+                return redirect()->back()->withInput()->with('erro', 'Este slug já está em uso por outra solução.');
+            }
 
             $conteudo = trim((string) $dados['conteudo_html']);
             $conteudo = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $conteudo) ?? '';
 
-            PaginaSolucaoConteudo::updateOrCreate(
-                ['tipo' => $dados['tipo']],
-                ['conteudo_html' => $conteudo]
-            );
+            $payload = [
+                'tipo' => $tipo,
+                'nome_menu' => trim((string) $dados['nome_menu']),
+                'mini_descricao' => trim((string) $dados['mini_descricao']),
+                'icone_classe' => $dados['icone_classe'],
+                'breadcrumb' => !empty($dados['breadcrumb']) ? trim((string) $dados['breadcrumb']) : trim((string) $dados['nome_menu']),
+                'banner_super_titulo' => !empty($dados['banner_super_titulo']) ? trim((string) $dados['banner_super_titulo']) : null,
+                'banner_titulo' => !empty($dados['banner_titulo']) ? trim((string) $dados['banner_titulo']) : null,
+                'banner_descricao' => !empty($dados['banner_descricao']) ? trim((string) $dados['banner_descricao']) : null,
+                'ordem' => (int) $dados['ordem'],
+                'ativo' => $request->has('ativo'),
+                'conteudo_html' => $conteudo,
+            ];
 
-            return redirect()->route('admin.pagina-solucoes')->with('sucesso', 'Conteudo principal da solucao atualizado com sucesso!');
+            $solucao = !empty($dados['id'])
+                ? PaginaSolucaoConteudo::findOrFail((int) $dados['id'])
+                : new PaginaSolucaoConteudo();
+
+            if ($request->hasFile('banner_imagem')) {
+                $dirBanners = $this->caminhoUploadPublic('banners');
+                $arquivo = $request->file('banner_imagem');
+                $nome = 'pagina-solucao-' . $tipo . '-' . time() . '.' . $arquivo->getClientOriginalExtension();
+                $arquivo->move($dirBanners, $nome);
+                $payload['banner_imagem'] = 'uploads/banners/' . $nome;
+
+                if ($solucao->banner_imagem && str_starts_with($solucao->banner_imagem, 'uploads/') && file_exists(public_path($solucao->banner_imagem))) {
+                    @unlink(public_path($solucao->banner_imagem));
+                }
+            }
+
+            $solucao->fill($payload);
+            $solucao->save();
+
+            $mensagem = !empty($dados['id'])
+                ? 'Solução atualizada com sucesso!'
+                : 'Solução criada com sucesso!';
+
+            return redirect()->route('admin.pagina-solucoes')->with('sucesso', $mensagem);
         } catch (Throwable $erro) {
             Log::error('Erro ao salvar conteudo principal da pagina Solucoes.', ['mensagem' => $erro->getMessage()]);
             return redirect()->back()->withInput()->with('erro', 'Erro ao salvar o conteudo principal da solucao.');
+        }
+    }
+
+    public function paginaSolucoesExcluir(int $id): RedirectResponse
+    {
+        try {
+            $solucao = PaginaSolucaoConteudo::findOrFail($id);
+
+            if ($solucao->banner_imagem && str_starts_with($solucao->banner_imagem, 'uploads/') && file_exists(public_path($solucao->banner_imagem))) {
+                @unlink(public_path($solucao->banner_imagem));
+            }
+
+            $solucao->delete();
+
+            return redirect()->route('admin.pagina-solucoes')->with('sucesso', 'Solução removida com sucesso!');
+        } catch (Throwable $erro) {
+            Log::error('Erro ao excluir solução da pagina Solucoes.', ['mensagem' => $erro->getMessage()]);
+            return redirect()->back()->with('erro', 'Erro ao excluir a solução.');
         }
     }
 
@@ -1190,16 +1261,70 @@ class AdminController extends Controller
     private function garantirDadosPadraoPaginaSolucoes(): void
     {
         $defaults = [
-            'empresas' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Empresas</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para empresas.</p>',
-            'ecommerce' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para E-commerce</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para e-commerce.</p>',
-            'comex' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Comex</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para comex.</p>',
+            'empresas' => [
+                'nome_menu' => 'Soluções para Empresas',
+                'mini_descricao' => 'Tributação e contabilidade',
+                'icone_classe' => 'fa-solid fa-building',
+                'breadcrumb' => 'Empresas',
+                'banner_super_titulo' => 'Empresas',
+                'banner_titulo' => 'Soluções para <span style="color: #e21850;">empresas</span>',
+                'banner_descricao' => 'Tributação fiscal, contabilidade inteligente e gestão estratégica para o seu negócio crescer com segurança.',
+                'banner_imagem' => 'arquivos/imagens-empresa/aconsult-4.jpg',
+                'ordem' => 1,
+                'ativo' => true,
+                'conteudo_html' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Empresas</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para empresas.</p>',
+            ],
+            'ecommerce' => [
+                'nome_menu' => 'Soluções para E-commerce',
+                'mini_descricao' => 'Lojas virtuais e marketplaces',
+                'icone_classe' => 'fa-solid fa-cart-shopping',
+                'breadcrumb' => 'E-commerce',
+                'banner_super_titulo' => 'E-commerce',
+                'banner_titulo' => 'Soluções para <span style="color: #e21850;">e-commerce</span>',
+                'banner_descricao' => 'Contabilidade especializada para lojas virtuais, marketplaces e negócios digitais.',
+                'banner_imagem' => 'arquivos/imagens-empresa/aconsult-3.jpg',
+                'ordem' => 2,
+                'ativo' => true,
+                'conteudo_html' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para E-commerce</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para e-commerce.</p>',
+            ],
+            'comex' => [
+                'nome_menu' => 'Soluções para Comex',
+                'mini_descricao' => 'Comércio exterior e RADAR',
+                'icone_classe' => 'fa-solid fa-ship',
+                'breadcrumb' => 'Comex',
+                'banner_super_titulo' => 'Comércio Exterior',
+                'banner_titulo' => 'Especialistas em <span style="color: #e21850;">comércio exterior</span>',
+                'banner_descricao' => 'Assessoria estratégica em RADAR, regimes especiais e operações internacionais.',
+                'banner_imagem' => 'arquivos/imagens-empresa/aconsult-5.jpg',
+                'ordem' => 3,
+                'ativo' => true,
+                'conteudo_html' => '<h3 style="font-size: 28px; font-weight: 800; margin: 0 0 16px; color: #111827;">Solucoes para Comex</h3><p style="margin: 0 0 14px; font-size: 16px; line-height: 1.75; color: #4b5563;">Esta secao esta sendo construida com todo cuidado para apresentar os detalhes completos das nossas solucoes.</p><p style="margin: 0; font-size: 16px; line-height: 1.75; color: #4b5563;">Em breve, voce encontrara aqui todas as informacoes sobre solucoes para comex.</p>',
+            ],
         ];
 
-        foreach ($defaults as $tipo => $conteudoHtml) {
-            PaginaSolucaoConteudo::firstOrCreate(
+        foreach ($defaults as $tipo => $dadosPadrao) {
+            $conteudoPadrao = $dadosPadrao['conteudo_html'];
+            unset($dadosPadrao['conteudo_html']);
+
+            $item = PaginaSolucaoConteudo::firstOrCreate(
                 ['tipo' => $tipo],
-                ['conteudo_html' => $conteudoHtml]
+                array_merge($dadosPadrao, ['conteudo_html' => $conteudoPadrao])
             );
+
+            $atualizacao = [];
+            foreach ($dadosPadrao as $campo => $valor) {
+                if (empty($item->{$campo})) {
+                    $atualizacao[$campo] = $valor;
+                }
+            }
+
+            if (empty($item->conteudo_html)) {
+                $atualizacao['conteudo_html'] = $conteudoPadrao;
+            }
+
+            if (!empty($atualizacao)) {
+                $item->update($atualizacao);
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\BannerPagina;
 use App\Models\Configuracao;
 use App\Models\NossoNumero;
+use App\Models\PaginaSolucaoConteudo;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,20 @@ class AppServiceProvider extends ServiceProvider
         if (Schema::hasTable('nossos_numeros')) {
             $nossosNumeros = NossoNumero::orderBy('ordem')->get();
             View::share('nossosNumeros', $nossosNumeros);
+        }
+
+        if (
+            Schema::hasTable('pagina_solucoes_conteudos')
+            && Schema::hasColumn('pagina_solucoes_conteudos', 'ativo')
+            && Schema::hasColumn('pagina_solucoes_conteudos', 'ordem')
+        ) {
+            $solucoesMenu = PaginaSolucaoConteudo::query()
+                ->where('ativo', true)
+                ->orderBy('ordem')
+                ->orderBy('id')
+                ->get();
+
+            View::share('solucoesMenu', $solucoesMenu);
         }
     }
 }

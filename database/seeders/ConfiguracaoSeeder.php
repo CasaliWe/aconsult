@@ -33,6 +33,7 @@ class ConfiguracaoSeeder extends Seeder
             'link_area_cliente'    => 'https://onvio.com.br/#/',
             'link_app_store'       => 'https://apps.apple.com/br/app/onvio-documentos/id1005121694',
             'link_google_play'     => 'https://play.google.com/store/apps/details?id=com.thomsonreuters.cs.onvio.drive',
+            'link_google_form_proposta' => null,
         ]);
 
         // Banners Home
@@ -99,30 +100,6 @@ class ConfiguracaoSeeder extends Seeder
                 'titulo'        => 'Conheça a <span style="color: #e21850;">Aconsult</span>',
                 'descricao'     => 'Um escritório de contabilidade comprometido em impulsionar o crescimento e o sucesso dos negócios por todo o Brasil.',
                 'imagem'        => 'arquivos/imagens-empresa/toda-equipe.jpg',
-            ],
-            [
-                'pagina'        => 'solucoes-empresas',
-                'nome_exibicao' => 'Soluções — Empresas',
-                'super_titulo'  => 'Empresas',
-                'titulo'        => 'Soluções para <span style="color: #e21850;">empresas</span>',
-                'descricao'     => 'Tributação fiscal, contabilidade inteligente e gestão estratégica para o seu negócio crescer com segurança.',
-                'imagem'        => 'arquivos/imagens-empresa/aconsult-4.jpg',
-            ],
-            [
-                'pagina'        => 'solucoes-ecommerce',
-                'nome_exibicao' => 'Soluções — E-commerce',
-                'super_titulo'  => 'E-commerce',
-                'titulo'        => 'Soluções para <span style="color: #e21850;">e-commerce</span>',
-                'descricao'     => 'Contabilidade especializada para lojas virtuais, marketplaces e negócios digitais.',
-                'imagem'        => 'arquivos/imagens-empresa/aconsult-3.jpg',
-            ],
-            [
-                'pagina'        => 'solucoes-comex',
-                'nome_exibicao' => 'Soluções — Comércio Exterior',
-                'super_titulo'  => 'Comércio Exterior',
-                'titulo'        => 'Especialistas em <span style="color: #e21850;">comércio exterior</span>',
-                'descricao'     => 'Assessoria estratégica em RADAR, regimes especiais e operações internacionais.',
-                'imagem'        => 'arquivos/imagens-empresa/aconsult-5.jpg',
             ],
             [
                 'pagina'        => 'contato',

@@ -1,4 +1,8 @@
 {{-- Navbar flutuante - componente global --}}
+@php
+    $solucoesMenuLista = collect($solucoesMenu ?? [])->filter(fn ($item) => !empty($item->tipo));
+@endphp
+
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
     <div id="navbar-container" class="navbar-flutuante">
         <div class="flex items-center justify-between">
@@ -28,33 +32,17 @@
                             <div class="p-3 border-b border-neutral-100 mb-1">
                                 <span class="text-xs font-bold text-marca uppercase tracking-wider">Nossas Soluções</span>
                             </div>
-                            <a href="{{ route('solucoes', 'empresas') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
-                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
-                                    <i class="fa-solid fa-building text-sm"></i>
-                                </span>
-                                <div>
-                                    <span class="text-sm font-bold block">Soluções para Empresas</span>
-                                    <span class="text-xs text-neutral-400">Tributação e contabilidade</span>
-                                </div>
-                            </a>
-                            <a href="{{ route('solucoes', 'ecommerce') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
-                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
-                                    <i class="fa-solid fa-cart-shopping text-sm"></i>
-                                </span>
-                                <div>
-                                    <span class="text-sm font-bold block">Soluções para E-commerce</span>
-                                    <span class="text-xs text-neutral-400">Lojas virtuais e marketplaces</span>
-                                </div>
-                            </a>
-                            <a href="{{ route('solucoes', 'comex') }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
-                                <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
-                                    <i class="fa-solid fa-ship text-sm"></i>
-                                </span>
-                                <div>
-                                    <span class="text-sm font-bold block">Soluções para Comex</span>
-                                    <span class="text-xs text-neutral-400">Comércio exterior e RADAR</span>
-                                </div>
-                            </a>
+                            @foreach ($solucoesMenuLista as $item)
+                                <a href="{{ route('solucoes', $item->tipo) }}" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-marca/5 transition-all duration-300 group/link">
+                                    <span class="w-9 h-9 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover/link:bg-marca group-hover/link:text-white transition-all duration-300">
+                                        <i class="{{ $item->icone_classe ?: 'fa-solid fa-briefcase' }} text-sm"></i>
+                                    </span>
+                                    <div>
+                                        <span class="text-sm font-bold block">{{ $item->nome_menu ?: $item->breadcrumb ?: 'Solução' }}</span>
+                                        <span class="text-xs text-neutral-400">{{ $item->mini_descricao ?: 'Saiba mais sobre esta solução' }}</span>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </li>
@@ -81,6 +69,13 @@
                    aria-label="Instagram Aconsult">
                     <i class="fa-brands fa-instagram text-lg"></i>
                 </a>
+                     <a href="{{ $config->social_linkedin ?? '#' }}"
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         class="text-neutral-400 hover:text-marca transition-colors duration-300"
+                         aria-label="LinkedIn Aconsult">
+                        <i class="fa-brands fa-linkedin text-lg"></i>
+                     </a>
                 <a href="{{ $config->link_area_cliente ?? '#' }}"
                    target="_blank"
                    rel="noopener noreferrer"
@@ -118,18 +113,12 @@
                         <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" id="icone-solucoes-mobile"></i>
                     </button>
                     <div id="submenu-solucoes-mobile" class="hidden pl-4 mt-1 flex flex-col gap-0.5">
-                        <a href="{{ route('solucoes', 'empresas') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
-                            <i class="fa-solid fa-building text-[10px] text-marca"></i>
-                            Soluções para Empresas
-                        </a>
-                        <a href="{{ route('solucoes', 'ecommerce') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
-                            <i class="fa-solid fa-cart-shopping text-[10px] text-marca"></i>
-                            Soluções para E-commerce
-                        </a>
-                        <a href="{{ route('solucoes', 'comex') }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
-                            <i class="fa-solid fa-ship text-[10px] text-marca"></i>
-                            Soluções para Comex
-                        </a>
+                        @foreach ($solucoesMenuLista as $item)
+                            <a href="{{ route('solucoes', $item->tipo) }}" class="py-2 px-4 rounded-xl hover:bg-marca/5 text-sm text-neutral-500 hover:text-marca transition-all duration-300 flex items-center gap-2">
+                                <i class="{{ $item->icone_classe ?: 'fa-solid fa-briefcase' }} text-[10px] text-marca"></i>
+                                {{ $item->nome_menu ?: $item->breadcrumb ?: 'Solução' }}
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 
@@ -152,6 +141,13 @@
                        rel="noopener noreferrer"
                        class="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 text-neutral-500 hover:bg-marca/10 hover:text-marca transition-all duration-300">
                         <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="{{ $config->social_linkedin ?? '#' }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="w-10 h-10 flex items-center justify-center rounded-xl bg-neutral-100 text-neutral-500 hover:bg-marca/10 hover:text-marca transition-all duration-300"
+                       aria-label="LinkedIn Aconsult">
+                        <i class="fa-brands fa-linkedin"></i>
                     </a>
                     <a href="{{ $config->link_area_cliente ?? '#' }}"
                        target="_blank"

@@ -176,6 +176,22 @@
                     {{-- Feedback --}}
                     <div id="feedback-contato" class="hidden mt-4 p-4 rounded-xl text-sm font-bold"></div>
                 </form>
+
+                <div class="mt-8 rounded-2xl border border-marca/15 bg-marca/5 p-6 md:p-7">
+                    <p class="text-base md:text-lg text-neutral-800 font-bold leading-relaxed mb-4">
+                        Quer receber uma proposta personalizada? Preencha o formulário e entraremos em contato imediatamente.
+                    </p>
+                    <a href="{{ $config->link_google_form_proposta ?? '#' }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center gap-2 text-white px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                       style="background-color: #e21850;"
+                       onmouseenter="this.style.backgroundColor='#9b153a'"
+                       onmouseleave="this.style.backgroundColor='#e21850'">
+                        <i class="fa-solid fa-file-signature text-sm"></i>
+                        Preencher proposta no Google Form
+                    </a>
+                </div>
             </div>
 
             {{-- Sidebar - Informações de contato --}}

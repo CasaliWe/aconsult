@@ -65,5 +65,6 @@ Route::prefix('admin')->group(function () {
         Route::delete('/pagina-aconsult/cards/{id}', [AdminController::class, 'paginaAconsultCardExcluir'])->name('admin.pagina-aconsult.cards.excluir');
         Route::get('/pagina-solucoes', [AdminController::class, 'paginaSolucoes'])->name('admin.pagina-solucoes');
         Route::post('/pagina-solucoes', [AdminController::class, 'paginaSolucoesSalvar'])->name('admin.pagina-solucoes.salvar');
+        Route::delete('/pagina-solucoes/{id}', [AdminController::class, 'paginaSolucoesExcluir'])->name('admin.pagina-solucoes.excluir');
     });
 });

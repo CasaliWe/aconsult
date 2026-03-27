@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/aconsult', [AConsultController::class, 'index'])->name('aconsult');
-Route::get('/solucoes/{tipo}', [SolucoesController::class, 'index'])->name('solucoes')->whereIn('tipo', ['empresas', 'ecommerce', 'comex']);
+Route::get('/solucoes/{tipo}', [SolucoesController::class, 'index'])->name('solucoes')->where('tipo', '[a-z0-9-]+');
 Route::get('/contato', [ContatoController::class, 'index'])->name('contato');
 Route::post('/contato', [ContatoController::class, 'enviar'])->name('contato.enviar');
 Route::get('/trabalhe-conosco', [TrabalheConoscoController::class, 'index'])->name('trabalhe-conosco');

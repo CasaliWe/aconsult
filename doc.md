@@ -1,2 +1,0 @@
-### DOCUMENTAÇAO DO PROJETO:
-- 

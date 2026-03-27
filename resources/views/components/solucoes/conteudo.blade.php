@@ -1,19 +1,5 @@
 {{-- Conteúdo principal - Página Soluções (dinâmico por tipo) --}}
-@props(['solucao', 'conteudoPrincipal' => ''])
-
-@php
-    $titulos = [
-        'empresas' => 'Soluções para Empresas',
-        'ecommerce' => 'Soluções para E-commerce',
-        'comex' => 'Soluções para Comex',
-    ];
-
-    $icones = [
-        'empresas' => 'fa-solid fa-building',
-        'ecommerce' => 'fa-solid fa-cart-shopping',
-        'comex' => 'fa-solid fa-ship',
-    ];
-@endphp
+@props(['solucao', 'conteudoPrincipal' => '', 'solucoesAtivas' => null])
 
 <section class="py-20 md:py-28 bg-white relative overflow-hidden">
     {{-- Decoração --}}
@@ -24,11 +10,11 @@
         {{-- Badge --}}
         <div class="flex items-center gap-3 mb-8 animar-entrada">
             <span class="w-14 h-14 flex items-center justify-center rounded-2xl bg-marca/10">
-                <i class="{{ $solucao['icone'] }} text-2xl text-marca"></i>
+                <i class="{{ $solucao->icone_classe ?: 'fa-solid fa-briefcase' }} text-2xl text-marca"></i>
             </span>
             <div>
-                <span class="text-marca text-xs font-bold uppercase tracking-widest">{{ $solucao['subtitulo'] }}</span>
-                <h2 class="text-2xl md:text-3xl font-black text-neutral-900">{{ $solucao['titulo'] }}</h2>
+                <span class="text-marca text-xs font-bold uppercase tracking-widest">{{ $solucao->mini_descricao ?: 'Solução personalizada' }}</span>
+                <h2 class="text-2xl md:text-3xl font-black text-neutral-900">{{ $solucao->nome_menu ?: 'Solução' }}</h2>
             </div>
         </div>
 
@@ -51,10 +37,10 @@
                         Em desenvolvimento
                     </span>
                     <h3 class="text-2xl md:text-3xl font-black text-neutral-900 mb-4">
-                        {{ $titulos[$solucao['slug']] }}
+                        {{ $solucao->nome_menu ?: 'Solução' }}
                     </h3>
                     <p class="text-neutral-500 text-base font-normal max-w-lg mx-auto leading-relaxed mb-6">
-                        Esta seção está sendo construída com todo cuidado para apresentar os detalhes completos das nossas soluções. Em breve, você encontrará aqui todas as informações sobre <strong class="text-neutral-700">{{ strtolower($titulos[$solucao['slug']]) }}</strong>.
+                        Esta seção está sendo construída com todo cuidado para apresentar os detalhes completos das nossas soluções. Em breve, você encontrará aqui todas as informações sobre <strong class="text-neutral-700">{{ strtolower($solucao->nome_menu ?: 'esta solução') }}</strong>.
                     </p>
                     <div class="flex items-center justify-center gap-2 text-marca text-sm font-bold">
                         <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
@@ -68,16 +54,16 @@
         <div class="mt-14 bg-neutral-100 rounded-3xl p-8 md:p-10 animar-entrada atraso-2">
             <p class="text-center text-neutral-400 text-sm font-bold uppercase tracking-widest mb-6">Conheça também</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                @foreach (['empresas' => ['Soluções para Empresas', 'fa-solid fa-building', 'Tributação e contabilidade'], 'ecommerce' => ['Soluções para E-commerce', 'fa-solid fa-cart-shopping', 'Lojas virtuais e marketplaces'], 'comex' => ['Soluções para Comex', 'fa-solid fa-ship', 'Comércio exterior e RADAR']] as $slug => $info)
-                    @if ($slug !== $solucao['slug'])
-                        <a href="{{ route('solucoes', $slug) }}"
+                @foreach (($solucoesAtivas ?? collect()) as $outraSolucao)
+                    @if ($outraSolucao->tipo !== $solucao->tipo)
+                        <a href="{{ route('solucoes', $outraSolucao->tipo) }}"
                            class="group flex items-center gap-4 bg-white rounded-2xl border border-neutral-200 p-5 transition-all duration-300 hover:border-marca/20 hover:shadow-lg hover:shadow-marca/5 hover:-translate-y-1">
                             <span class="w-11 h-11 flex items-center justify-center rounded-xl bg-marca/10 text-marca group-hover:bg-marca group-hover:text-white transition-all duration-300 shrink-0">
-                                <i class="{{ $info[1] }} text-sm"></i>
+                                <i class="{{ $outraSolucao->icone_classe ?: 'fa-solid fa-briefcase' }} text-sm"></i>
                             </span>
                             <div>
-                                <span class="text-sm font-bold text-neutral-900 group-hover:text-marca transition-colors">{{ $info[0] }}</span>
-                                <span class="block text-xs text-neutral-400">{{ $info[2] }}</span>
+                                <span class="text-sm font-bold text-neutral-900 group-hover:text-marca transition-colors">{{ $outraSolucao->nome_menu ?: 'Solução' }}</span>
+                                <span class="block text-xs text-neutral-400">{{ $outraSolucao->mini_descricao ?: 'Clique para saber mais' }}</span>
                             </div>
                             <i class="fa-solid fa-arrow-right text-[10px] text-neutral-300 group-hover:text-marca ml-auto transition-all duration-300 group-hover:translate-x-1"></i>
                         </a>

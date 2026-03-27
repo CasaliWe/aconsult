@@ -174,7 +174,7 @@
             </p>
             <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-marca animate-pulse"></span>
-                <span class="text-white/40 text-sm">Itajaí, Santa Catarina</span>
+                <span class="text-white/40 text-sm">Desenvolvido por <span style="color: #a855f7;">WOOW!</span></span>
             </div>
         </div>
     </div>

@@ -306,6 +306,10 @@
                     <label class="admin-label">Google Play</label>
                     <input type="text" name="link_google_play" value="{{ old('link_google_play', $config->link_google_play) }}" class="admin-input" placeholder="https://play.google.com/...">
                 </div>
+                <div>
+                    <label class="admin-label">Google Form (Proposta Personalizada)</label>
+                    <input type="text" name="link_google_form_proposta" value="{{ old('link_google_form_proposta', $config->link_google_form_proposta) }}" class="admin-input" placeholder="https://docs.google.com/forms/...">
+                </div>
             </div>
         </div>
 

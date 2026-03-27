@@ -2,32 +2,14 @@
 @props(['solucao'])
 
 @php
-    $slugsPagina = [
-        'empresas' => 'solucoes-empresas',
-        'ecommerce' => 'solucoes-ecommerce',
-        'comex' => 'solucoes-comex',
-    ];
-    $bp = $bannersPaginas[$slugsPagina[$solucao['slug']] ?? ''] ?? null;
-
-    $imagensFallback = [
-        'empresas' => 'arquivos/imagens-empresa/aconsult-4.jpg',
-        'ecommerce' => 'arquivos/imagens-empresa/aconsult-3.jpg',
-        'comex' => 'arquivos/imagens-empresa/aconsult-5.jpg',
-    ];
-    $imagemBanner = $bp->imagem ?? ($imagensFallback[$solucao['slug']] ?? 'arquivos/imagens-empresa/toda-equipe.jpg');
-
-    $descricoesFallback = [
-        'empresas' => 'Tributação fiscal, contabilidade inteligente e gestão estratégica para o seu negócio crescer com segurança.',
-        'ecommerce' => 'Contabilidade especializada para lojas virtuais, marketplaces e negócios digitais.',
-        'comex' => 'Assessoria estratégica em RADAR, regimes especiais e operações internacionais.',
-    ];
-    $descricao = $bp->descricao ?? ($descricoesFallback[$solucao['slug']] ?? '');
+    $imagemBanner = $solucao->banner_imagem ?: 'arquivos/imagens-empresa/toda-equipe.jpg';
+    $descricao = $solucao->banner_descricao ?: ($solucao->mini_descricao ?: 'Conheça nossas soluções contábeis estratégicas para o seu negócio.');
 @endphp
 
 <section class="relative w-full pt-32 pb-20 md:pt-36 md:pb-24 overflow-hidden">
     <div class="absolute inset-0">
         <img src="{{ asset($imagemBanner) }}"
-             alt="{{ $solucao['titulo'] }} - Aconsult Contabilidade"
+               alt="{{ $solucao->nome_menu ?: 'Soluções' }} - Aconsult Contabilidade"
              class="w-full h-full object-cover">
     </div>
     <div class="absolute inset-0 bg-gradient-to-r from-black/92 via-black/75 to-black/50"></div>
@@ -43,16 +25,16 @@
             <i class="fa-solid fa-chevron-right text-[8px]"></i>
             <span class="text-white/50">Soluções</span>
             <i class="fa-solid fa-chevron-right text-[8px]"></i>
-            <span class="text-white/70">{{ $solucao['breadcrumb'] }}</span>
+            <span class="text-white/70">{{ $solucao->breadcrumb ?: ($solucao->nome_menu ?: 'Detalhes') }}</span>
         </nav>
 
         <div class="max-w-2xl">
             <div class="flex items-center gap-3 mb-4">
                 <span class="w-8 h-[2px] rounded-full" style="background-color: #e21850;"></span>
-                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $bp->super_titulo ?? $solucao['subtitulo'] }}</span>
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold" style="color: #e21850;">{{ $solucao->banner_super_titulo ?: ($solucao->mini_descricao ?: 'Nossas soluções') }}</span>
             </div>
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.08] mb-4">
-                {!! $bp->titulo ?? e($solucao['titulo']) !!}
+                {!! $solucao->banner_titulo ?: e($solucao->nome_menu ?: 'Soluções') !!}
             </h1>
             <p class="text-base md:text-lg text-white/50 font-normal max-w-lg leading-relaxed">
                 {{ $descricao }}
