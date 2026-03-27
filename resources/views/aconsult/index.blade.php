@@ -9,7 +9,7 @@
     <x-aconsult.valores :cards="$valoresAconsult ?? collect()" />
     <x-aconsult.diferenciais :cards="$diferenciaisAconsult ?? collect()" />
     <x-aconsult.missao :cards="$missaoAconsult ?? collect()" />
-    <x-aconsult.depoimentos />
+    <x-home.depoimentos :avaliacoes="$avaliacoes ?? collect()" />
     <x-aconsult.cta />
-    <x-aconsult.faq />
+    <x-home.faq :faqItens="$faqItens ?? collect()" />
 @endsection

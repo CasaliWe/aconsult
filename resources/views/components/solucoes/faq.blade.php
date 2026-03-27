@@ -1,5 +1,5 @@
 {{-- Seção FAQ - Página Soluções (dinâmico por tipo) --}}
-@props(['solucao'])
+@props(['solucao', 'faqItens' => collect()])
 
 @php
     $perguntas = [
@@ -26,7 +26,14 @@
         ],
     ];
 
-    $faqItems = $perguntas[$solucao['slug']] ?? $perguntas['empresas'];
+    if (collect($faqItens)->isNotEmpty()) {
+        $faqItems = collect($faqItens)
+            ->map(fn($item) => [$item->pergunta, $item->resposta])
+            ->values()
+            ->all();
+    } else {
+        $faqItems = $perguntas[$solucao['slug']] ?? $perguntas['empresas'];
+    }
 @endphp
 
 <section class="py-20 md:py-28 bg-neutral-50 relative overflow-hidden">

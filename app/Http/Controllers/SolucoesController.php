@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FaqItem;
 use App\Models\PaginaSolucaoConteudo;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
@@ -28,7 +29,12 @@ class SolucoesController extends Controller
                 abort(404);
             }
 
-            return view('solucoes.index', compact('solucao', 'solucoesAtivas'));
+            $faqItens = FaqItem::where('ativo', true)
+                ->orderBy('ordem')
+                ->orderByDesc('id')
+                ->get();
+
+            return view('solucoes.index', compact('solucao', 'solucoesAtivas', 'faqItens'));
         } catch (Throwable $erro) {
             Log::error('Erro ao carregar a pagina Solucoes.', [
                 'tipo' => $tipo,

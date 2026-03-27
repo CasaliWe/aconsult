@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Avaliacao;
+use App\Models\FaqItem;
 use App\Models\PaginaAconsultCard;
 use App\Models\PaginaAconsultSobre;
 use Illuminate\Support\Facades\Log;
@@ -25,7 +27,17 @@ class AConsultController extends Controller
             $diferenciaisAconsult = $cards->get('diferencial', collect());
             $missaoAconsult = $cards->get('missao', collect());
 
-            return view('aconsult.index', compact('sobreAconsult', 'valoresAconsult', 'diferenciaisAconsult', 'missaoAconsult'));
+            $avaliacoes = Avaliacao::where('ativo', true)
+                ->orderBy('ordem')
+                ->orderByDesc('id')
+                ->get();
+
+            $faqItens = FaqItem::where('ativo', true)
+                ->orderBy('ordem')
+                ->orderByDesc('id')
+                ->get();
+
+            return view('aconsult.index', compact('sobreAconsult', 'valoresAconsult', 'diferenciaisAconsult', 'missaoAconsult', 'avaliacoes', 'faqItens'));
         } catch (Throwable $erro) {
             Log::error('Erro ao carregar a pagina A Consult.', [
                 'mensagem' => $erro->getMessage(),

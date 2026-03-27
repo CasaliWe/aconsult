@@ -7,5 +7,5 @@
     <x-solucoes.banner :solucao="$solucao" />
     <x-solucoes.conteudo :solucao="$solucao" :conteudoPrincipal="$solucao->conteudo_html ?? ''" :solucoesAtivas="$solucoesAtivas" />
     <x-solucoes.cta />
-    <x-solucoes.faq :solucao="['slug' => $solucao->tipo, 'titulo' => $solucao->nome_menu]" />
+    <x-solucoes.faq :solucao="['slug' => $solucao->tipo, 'titulo' => $solucao->nome_menu]" :faqItens="$faqItens ?? collect()" />
 @endsection

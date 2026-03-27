@@ -113,7 +113,7 @@
                 </div>
                 <div>
                     <label class="admin-label">Banner - Título (aceita HTML)</label>
-                    <input type="text" id="bannerTitulo" name="banner_titulo" value="{{ old('banner_titulo') }}" class="admin-input" placeholder="Soluções para <span style='color:#e21850;'>empresas</span>">
+                    <input type="text" id="bannerTitulo" name="banner_titulo" value="{{ old('banner_titulo', "Soluções para <span style='color:#e21850;'>empresas</span>") }}" class="admin-input">
                 </div>
                 <div>
                     <label class="admin-label">Banner - Mini descrição</label>
@@ -187,8 +187,8 @@
                 selector: '#conteudoSolucao',
                 height: 480,
                 menubar: false,
-                plugins: 'lists link table code fullscreen charmap preview autoresize',
-                toolbar: 'undo redo | blocks fontsize bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link table | preview fullscreen code',
+                plugins: 'lists link image table code fullscreen charmap preview autoresize',
+                toolbar: 'undo redo | blocks fontsize bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | preview fullscreen code',
                 branding: false,
                 language: 'pt_BR',
             });
@@ -201,7 +201,7 @@
             document.getElementById('miniDescricaoSolucao').value = '';
             document.getElementById('breadcrumbSolucao').value = '';
             document.getElementById('bannerSuperTitulo').value = '';
-            document.getElementById('bannerTitulo').value = '';
+            document.getElementById('bannerTitulo').value = "Soluções para <span style='color:#e21850;'>empresas</span>";
             document.getElementById('bannerDescricao').value = '';
             document.getElementById('bannerImagem').value = '';
             document.getElementById('ativoSolucao').checked = true;
