@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Login | Admin Aconsult</title>
+    <meta name="author" content="Aconsult Contabilidade">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- SEO -->
+    <title>Login | Admin | Aconsult</title>
+    <meta name="description" content="Acesso ao painel administrativo da Aconsult Contabilidade.">
+    <meta name="keywords" content="admin, login, painel administrativo, Aconsult">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Login | Admin | Aconsult">
+    <meta property="og:description" content="Acesso ao painel administrativo da Aconsult Contabilidade.">
+    <meta property="og:image" content="{{ asset('arquivos/identidade-visual/thumb.png') }}">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Aconsult Contabilidade">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Login | Admin | Aconsult">
+    <meta name="twitter:description" content="Acesso ao painel administrativo da Aconsult Contabilidade.">
+    <meta name="twitter:image" content="{{ asset('arquivos/identidade-visual/thumb.png') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('arquivos/identidade-visual/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('arquivos/identidade-visual/favicon.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

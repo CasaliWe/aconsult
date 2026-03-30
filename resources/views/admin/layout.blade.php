@@ -4,8 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Aconsult Contabilidade">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- SEO -->
     <title>@yield('titulo', 'Admin') | Aconsult</title>
+    <meta name="description" content="@yield('descricao', 'Administração do sistema Aconsult.')">
+    <meta name="keywords" content="@yield('palavras_chave', 'admin, painel administrativo, gestão, Aconsult')">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('titulo', 'Admin') | Aconsult">
+    <meta property="og:description" content="@yield('descricao', 'Administração do sistema Aconsult.')">
+    <meta property="og:image" content="{{ asset('arquivos/identidade-visual/thumb.png') }}">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Aconsult Contabilidade">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('titulo', 'Admin') | Aconsult">
+    <meta name="twitter:description" content="@yield('descricao', 'Administração do sistema Aconsult.')">
+    <meta name="twitter:image" content="{{ asset('arquivos/identidade-visual/thumb.png') }}">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('arquivos/identidade-visual/favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('arquivos/identidade-visual/favicon.png') }}">
 

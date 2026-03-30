@@ -65,19 +65,27 @@
                         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <span class="text-sm font-bold text-neutral-900 uppercase tracking-wider">Compartilhar</span>
                             <div class="flex items-center gap-3">
-                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
-                                   onmouseenter="this.style.backgroundColor='#1877F2'" onmouseleave="this.style.backgroundColor=''"
-                                   aria-label="Compartilhar no Facebook">
+                                {{-- Facebook --}}
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('news.mostrar', ['id' => $noticia->id])) }}"
+                                   class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
+                                   onmouseenter="this.style.backgroundColor='#1877F2'" onmouseleave="this.style.backgroundColor=''" 
+                                   aria-label="Compartilhar no Facebook" target="_blank">
                                     <i class="fa-brands fa-facebook-f text-sm"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
-                                   onmouseenter="this.style.backgroundColor='#0A66C2'" onmouseleave="this.style.backgroundColor=''"
-                                   aria-label="Compartilhar no LinkedIn">
+
+                                {{-- LinkedIn --}}
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(route('news.mostrar', ['id' => $noticia->id])) }}&title={{ urlencode($noticia->titulo) }}&summary={{ urlencode($noticia->mini_descricao) }}"
+                                   class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
+                                   onmouseenter="this.style.backgroundColor='#0A66C2'" onmouseleave="this.style.backgroundColor=''" 
+                                   aria-label="Compartilhar no LinkedIn" target="_blank">
                                     <i class="fa-brands fa-linkedin-in text-sm"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
-                                   onmouseenter="this.style.backgroundColor='#25D366'" onmouseleave="this.style.backgroundColor=''"
-                                   aria-label="Compartilhar no WhatsApp">
+
+                                {{-- WhatsApp --}}
+                                <a href="https://api.whatsapp.com/send?text={{ urlencode($noticia->titulo . ' ' . route('news.mostrar', ['id' => $noticia->id])) }}"
+                                   class="w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-500 hover:text-white transition-all duration-300"
+                                   onmouseenter="this.style.backgroundColor='#25D366'" onmouseleave="this.style.backgroundColor=''" 
+                                   aria-label="Compartilhar no WhatsApp" target="_blank">
                                     <i class="fa-brands fa-whatsapp text-sm"></i>
                                 </a>
                             </div>
