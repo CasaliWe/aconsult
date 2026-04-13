@@ -20,7 +20,7 @@
                 <span class="text-marca text-sm font-bold uppercase tracking-widest">Vamos conversar</span>
                 <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mt-3 mb-4">
                     Pronto para transformar<br>
-                    <span class="text-white/70">a gestão do seu negócio?</span>
+                    <span class="text-white/70">a gestão da sua empresa?</span>
                 </h2>
                 <p class="text-white/50 font-normal text-base max-w-lg">
                     Fale com um de nossos especialistas e descubra como a Aconsult pode impulsionar a sua empresa.

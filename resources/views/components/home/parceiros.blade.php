@@ -13,7 +13,7 @@
     <div class="max-w-7xl mx-auto px-6 md:px-10 mb-10 animar-entrada">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="text-center md:text-left">
-                <span class="text-marca text-sm font-bold uppercase tracking-widest">Parceiros</span>
+                <span class="text-marca text-sm font-bold uppercase tracking-widest"></span>
                 <h2 class="text-2xl md:text-3xl lg:text-4xl font-black text-neutral-900 mt-1">
                     Quem <span class="text-marca">confia</span> na Aconsult
                 </h2>
